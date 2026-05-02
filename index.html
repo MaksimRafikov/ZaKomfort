@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Каталог реализованных ремонтов | Уфа</title>
+    <meta
+      name="description"
+      content="Реальные кейсы ремонта и дизайна: по ЖК, площади, стилю. База для клиентов и команды."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="logo" href="index.html">Ремонт и дизайн <span>| Уфа</span></a>
+        <nav class="nav-links" aria-label="Навигация">
+          <a href="#catalog">Каталог</a>
+          <a href="case.html?id=pervomaysky-44">Пример кейса</a>
+          <a href="case.html?id=pervomaysky-44&amp;manager=true">Режим менеджера</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="container hero">
+        <h1>Реализованные ремонты</h1>
+        <p class="lead">
+          Здесь собраны реальные кейсы: готовые ремонты, дизайн-проекты, проект и реализация, видеообзоры.
+          Отправляйте клиенту одну ссылку — без входа в Telegram.
+        </p>
+      </div>
+
+      <div class="container">
+        <section class="filters" id="catalog" aria-label="Фильтры">
+          <h2>Фильтры</h2>
+
+          <div class="filter-row">
+            <span class="filter-label">Жилой комплекс</span>
+            <div id="filter-complex" class="filter-row" style="margin-bottom: 0"></div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-label">Площадь</span>
+            <div id="filter-area">
+              <button type="button" class="chip chip--active" data-value="">Все</button>
+              <button type="button" class="chip" data-value="до 40">до 40 м²</button>
+              <button type="button" class="chip" data-value="40–55">40–55 м²</button>
+              <button type="button" class="chip" data-value="55–80">55–80 м²</button>
+              <button type="button" class="chip" data-value="80+">80+ м²</button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-label">Стиль</span>
+            <div id="filter-style">
+              <button type="button" class="chip chip--active" data-value="">Все</button>
+              <button type="button" class="chip" data-value="Современный светлый интерьер">
+                Современный светлый
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-label">Зона / помещение</span>
+            <div id="filter-room">
+              <button type="button" class="chip chip--active" data-value="">Все</button>
+              <button type="button" class="chip" data-value="кухня-гостиная">Кухня-гостиная</button>
+              <button type="button" class="chip" data-value="спальня">Спальня</button>
+              <button type="button" class="chip" data-value="санузел">Санузел</button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <span class="filter-label">Материалы</span>
+            <div>
+              <button type="button" class="chip" id="chip-filter-project">Есть проект / рендер</button>
+              <button type="button" class="chip" id="chip-filter-video">Есть видео</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="container">
+        <div id="case-grid" class="grid" aria-live="polite"></div>
+      </div>
+    </main>
+
+    <footer class="container footer-note">
+      MVP: данные в <code>js/data.js</code>. Хостинг: GitHub Pages, Cloudflare Pages или аналог.
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/catalog.js"></script>
+  </body>
+</html>
