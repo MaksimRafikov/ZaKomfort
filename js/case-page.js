@@ -24,35 +24,9 @@
     return inner;
   }
 
-  function renderManager(c, show) {
-    const panel = document.getElementById("manager-panel");
-    const toggle = document.getElementById("manager-toggle");
-    if (!panel || !toggle || !c.manager) return;
-
-    if (show) {
-      panel.classList.add("is-visible");
-    }
-
-    panel.innerHTML = `
-      <h3>Когда отправлять этот кейс</h3>
-      <ul class="list-check">${c.manager.whenToSend.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
-      <h3>Боли клиента</h3>
-      <ul class="list-check">${c.manager.pains.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
-      <h3>На что обратить внимание</h3>
-      <ul class="list-check">${c.manager.focusPoints.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>
-      <h3>Готовый текст</h3>
-      <pre>${escapeHtml(c.manager.script)}</pre>
-    `;
-
-    toggle.addEventListener("click", () => {
-      panel.classList.toggle("is-visible");
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-    const managerMode = params.get("manager") === "true";
 
     const c = id ? getCaseById(id) : null;
     const root = document.getElementById("case-root");
@@ -88,12 +62,21 @@
           )
           .join("")}</div>`
       : "<p>Фото до ремонта не добавлены.</p>";
-    const estimateHtml = c.estimate?.fileUrl
-      ? `
-        <p><a class="btn btn--primary" href="${escapeHtml(c.estimate.fileUrl)}" download>${escapeHtml(c.estimate.label || "Скачать смету")}</a></p>
-        <p>${escapeHtml(c.estimate.note || "")}</p>
-      `
-      : "<p>Смета будет добавлена.</p>";
+    const compareHtml = c.compareGallery?.length
+      ? `<div class="gallery">${c.compareGallery
+          .map(
+            (g) => `
+              <figure>
+                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
+                <figcaption>${escapeHtml(g.caption)}</figcaption>
+              </figure>
+            `
+          )
+          .join("")}</div>`
+      : "";
+    const quizAction = c.cta?.quiz
+      ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel)}</a>`
+      : `<a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">${escapeHtml(c.cta.buttonLabel)}</a>`;
 
     root.innerHTML = `
       <div class="case-hero">
@@ -103,17 +86,16 @@
           <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
           <div class="case-actions">
             <a class="btn btn--primary" href="#gallery">Смотреть фото</a>
-            <a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">${escapeHtml(c.cta.buttonLabel)}</a>
+            ${quizAction}
           </div>
         </div>
       </div>
 
       <div class="container">
-        ${managerMode ? '<div class="manager-toggle"><button type="button" class="btn btn--ghost" id="manager-toggle">Скрыть / показать подсказки для менеджера</button></div><div class="manager-panel is-visible" id="manager-panel"></div>' : '<div class="manager-toggle"><button type="button" class="btn btn--ghost" id="manager-toggle">Показать подсказку для менеджера</button></div><div class="manager-panel" id="manager-panel"></div>'}
-
         <section class="section">
           <h2>Паспорт объекта</h2>
           <p><strong>Площадь:</strong> ${escapeHtml(c.areaLabel)} · <strong>Тип:</strong> ${escapeHtml(c.roomsLabel || "квартира")} · <strong>Формат:</strong> ${escapeHtml(c.format)} · <strong>Сегмент:</strong> ${escapeHtml(c.segment)}</p>
+          ${c.address ? `<p><strong>Адрес:</strong> ${escapeHtml(c.address)}</p>` : ""}
           ${budgetHtml}
         </section>
 
@@ -161,15 +143,9 @@
           ${beforeHtml}
         </section>
 
-        <section class="section">
-          <h2>${escapeHtml(c.video?.label || "Видео")}</h2>
-          ${videoHtml}
-        </section>
+        ${compareHtml ? `<section class="section"><h2>Проект / реализация</h2>${compareHtml}</section>` : ""}
 
-        <section class="section">
-          <h2>Смета проекта</h2>
-          ${estimateHtml}
-        </section>
+        ${c.video && (c.video.embedUrl || c.video.fileUrl || c.video.externalUrl) ? `<section class="section"><h2>${escapeHtml(c.video.label || "Видео")}</h2>${videoHtml}</section>` : ""}
 
         <section class="section">
           <h2>Кому подходит</h2>
@@ -183,14 +159,14 @@
         <div class="container cta-bar__inner">
           <p>Обсудить похожий ремонт</p>
           <div class="cta-bar__actions">
-            <a class="btn btn--primary" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>
+            ${c.cta.quiz ? `<a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">Пройти квиз</a>` : `<a class="btn btn--primary" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>`}
+            <a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>
             ${c.cta.whatsapp ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
             ${c.cta.telegram ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.telegram)}" target="_blank" rel="noopener">Telegram</a>` : ""}
+            ${c.cta.vk ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.vk)}" target="_blank" rel="noopener">VK</a>` : ""}
           </div>
         </div>
       </div>
     `;
-
-    renderManager(c, managerMode);
   });
 })();
