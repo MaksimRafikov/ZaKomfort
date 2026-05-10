@@ -66,9 +66,9 @@ img {
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
   text-decoration: none;
 }
 
@@ -77,9 +77,11 @@ img {
   color: var(--accent);
 }
 
-.logo span {
-  font-weight: 500;
-  color: var(--muted);
+.logo__img {
+  width: auto;
+  height: 56px;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-links {
@@ -532,6 +534,15 @@ img {
 }
 
 @media (max-width: 640px) {
+  .site-header__inner {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .logo__img {
+    height: 42px;
+  }
+
   .filter-row {
     gap: 0.4rem;
   }
