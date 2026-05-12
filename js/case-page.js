@@ -163,6 +163,7 @@
             <a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>
             ${c.cta.whatsapp ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
             ${c.cta.telegram ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.telegram)}" target="_blank" rel="noopener">Telegram</a>` : ""}
+            ${c.cta.max ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.max)}" target="_blank" rel="noopener">Max</a>` : ""}
             ${c.cta.vk ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.vk)}" target="_blank" rel="noopener">VK</a>` : ""}
           </div>
         </div>
