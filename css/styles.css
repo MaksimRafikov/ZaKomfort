@@ -653,6 +653,11 @@ img {
   color: var(--accent);
 }
 
+.page-404 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
 @media (max-width: 640px) {
   .site-header__inner {
     padding-top: 0.75rem;
