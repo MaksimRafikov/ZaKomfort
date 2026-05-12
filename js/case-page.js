@@ -100,7 +100,7 @@
         </section>
 
         <section class="section">
-          <h2>Задача</h2>
+          <h2>Запрос заказчика</h2>
           <p>${escapeHtml(c.task)}</p>
         </section>
 
