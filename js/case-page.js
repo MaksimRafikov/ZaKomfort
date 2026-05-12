@@ -26,6 +26,76 @@
     return inner;
   }
 
+  function ensureCaseLightbox() {
+    let overlay = document.getElementById("case-lightbox");
+    if (overlay) return overlay;
+
+    overlay = document.createElement("div");
+    overlay.id = "case-lightbox";
+    overlay.className = "lightbox";
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Фото в полном размере");
+    overlay.hidden = true;
+    overlay.innerHTML =
+      '<button type="button" class="lightbox__close" aria-label="Закрыть">&times;</button><img class="lightbox__img" alt="" />';
+
+    const imgEl = overlay.querySelector(".lightbox__img");
+    const closeBtn = overlay.querySelector(".lightbox__close");
+
+    function close() {
+      overlay.hidden = true;
+      imgEl.removeAttribute("src");
+      document.body.style.overflow = "";
+    }
+
+    closeBtn.addEventListener("click", close);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (!overlay.hidden && e.key === "Escape") close();
+    });
+
+    document.body.appendChild(overlay);
+    overlay._openLightbox = (src, alt) => {
+      imgEl.src = src;
+      imgEl.alt = alt || "";
+      overlay.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    };
+    overlay._closeLightbox = close;
+    return overlay;
+  }
+
+  function bindCaseImageLightbox(container) {
+    const overlay = ensureCaseLightbox();
+
+    container.addEventListener("click", (e) => {
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      const src = img.currentSrc || img.src;
+      if (!src) return;
+      overlay._openLightbox(src, img.getAttribute("alt") || "");
+    });
+
+    container.addEventListener("keydown", (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const img = e.target.closest("img");
+      if (!img || !container.contains(img)) return;
+      e.preventDefault();
+      const src = img.currentSrc || img.src;
+      if (!src) return;
+      overlay._openLightbox(src, img.getAttribute("alt") || "");
+    });
+
+    container.querySelectorAll("img").forEach((img) => {
+      img.style.cursor = "zoom-in";
+      if (!img.hasAttribute("tabindex")) img.setAttribute("tabindex", "0");
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
@@ -197,5 +267,7 @@
         </div>
       </div>
     `;
+
+    bindCaseImageLightbox(root);
   });
 })();
