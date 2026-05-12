@@ -20,7 +20,9 @@
     if (video.externalUrl) {
       inner += `<p><a class="btn btn--primary" href="${escapeHtml(video.externalUrl)}" target="_blank" rel="noopener">Смотреть видео</a></p>`;
     }
-    inner += `<div class="video-fallback"><p>${escapeHtml(video.note)}</p></div>`;
+    if (video.note) {
+      inner += `<div class="video-fallback"><p>${escapeHtml(video.note)}</p></div>`;
+    }
     return inner;
   }
 
@@ -38,7 +40,33 @@
       return;
     }
 
-    document.title = `${c.title} · ${c.areaLabel} · Каталог работ`;
+    const PUBLIC_SITE = "https://maksimrafikov.github.io/ZaKomfort/";
+
+    const setMetaContent = (selector, content) => {
+      const el = document.querySelector(selector);
+      if (el && content) el.setAttribute("content", content);
+    };
+
+    const absPublicUrl = (relativePath) => {
+      try {
+        return new URL(String(relativePath).replace(/^\//, ""), PUBLIC_SITE).href;
+      } catch {
+        return relativePath;
+      }
+    };
+
+    document.title = `${c.title} · ${c.areaLabel} · За Комфортом`;
+    setMetaContent('meta[name="description"]', c.summary || "");
+    setMetaContent('meta[property="og:title"]', `${c.title} · ${c.areaLabel}`);
+    setMetaContent('meta[property="og:description"]', c.summary || "");
+    setMetaContent('meta[property="og:image"]', absPublicUrl(c.cover));
+    setMetaContent(
+      "meta[property=\"og:url\"]",
+      `${PUBLIC_SITE.replace(/\/$/, "")}/case.html?id=${encodeURIComponent(c.id)}`
+    );
+    setMetaContent("meta[name=\"twitter:title\"]", `${c.title} · ${c.areaLabel}`);
+    setMetaContent("meta[name=\"twitter:description\"]", c.summary || "");
+    setMetaContent("meta[name=\"twitter:image\"]", absPublicUrl(c.cover));
 
     const videoHtml = c.video ? renderVideo(c.video) : "";
     const budgetHtml = c.budgetLabel
@@ -80,7 +108,7 @@
 
     root.innerHTML = `
       <div class="case-hero">
-        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="" width="1600" height="900" />
+        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" />
         <div class="case-hero__content container">
           <h1>${escapeHtml(c.title)}</h1>
           <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
