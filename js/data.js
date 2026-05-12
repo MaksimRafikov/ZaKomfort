@@ -20,7 +20,7 @@ const CASES = [
     ],
     rooms: ["кухня-гостиная", "спальня", "санузел"],
     hasProjectRender: true,
-    hasVideo: false,
+    hasVideo: true,
     cover: "assets/pervomaysky-44/after-8.png",
     summary:
       "Реализованный проект однокомнатной квартиры 44 м² с полным циклом работ: от инженерной базы до чистовой отделки и подключения сантехники.",
@@ -162,12 +162,12 @@ const CASES = [
       },
     ],
     video: {
-      label: "Видеообзор объекта",
+      label: "Видео с комментариями эксперта",
       embedUrl: null,
       externalUrl: null,
-      fileUrl: null,
+      fileUrl: "assets/pervomaysky-44/expert-overview.mp4",
       poster: "assets/pervomaysky-44/after-1.png",
-      note: "Видео по объекту будет добавлено позже.",
+      note: "",
     },
     cta: {
       phone: "+7 (917) 766-09-38",
