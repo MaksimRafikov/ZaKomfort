@@ -152,13 +152,15 @@
     const planHtml = c.plan
       ? `<div class="gallery"><figure><img src="${escapeHtml(c.plan.src)}" alt="${escapeHtml(c.plan.alt || "План объекта")}" width="1200" height="800" loading="lazy" /><figcaption>${escapeHtml(c.plan.caption || "")}</figcaption></figure></div>`
       : "<p>План объекта будет добавлен.</p>";
+    const photoCaption = escapeHtml(c.title);
+
     const beforeHtml = c.beforeGallery?.length
       ? `<div class="gallery">${c.beforeGallery
           .map(
             (g) => `
               <figure>
                 <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
-                <figcaption>${escapeHtml(g.caption)}</figcaption>
+                <figcaption>${photoCaption}</figcaption>
               </figure>
             `
           )
@@ -170,7 +172,7 @@
             (g) => `
               <figure>
                 <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
-                <figcaption>${escapeHtml(g.caption)}</figcaption>
+                <figcaption>${photoCaption}</figcaption>
               </figure>
             `
           )
@@ -231,8 +233,8 @@
               .map(
                 (g) => `
               <figure>
-                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
-                <figcaption>${escapeHtml(g.caption)}</figcaption>
+                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || c.title)}" width="800" height="600" loading="lazy" />
+                <figcaption>${photoCaption}</figcaption>
               </figure>
             `
               )
@@ -249,26 +251,17 @@
 
         ${c.video && (c.video.embedUrl || c.video.fileUrl || c.video.externalUrl) ? `<section class="section"><h2>${escapeHtml(c.video.label || "Видео")}</h2>${videoHtml}</section>` : ""}
 
-        <section class="section">
-          <h2>Кому подходит</h2>
-          <ul class="list-check">
+        <section class="section section--fit">
+          <h2>Если узнаёте себя</h2>
+          <ul class="list-check list-check--fit">
             ${c.clientFit.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
           </ul>
+          ${
+            c.cta?.quiz
+              ? `<p class="section-cta"><a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel || "Обсудить похожий ремонт")}</a></p>`
+              : ""
+          }
         </section>
-      </div>
-
-      <div class="cta-bar">
-        <div class="container cta-bar__inner">
-          <p>Обсудить похожий ремонт</p>
-          <div class="cta-bar__actions">
-            ${c.cta.quiz ? `<a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">Пройти квиз</a>` : `<a class="btn btn--primary" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>`}
-            <a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">Позвонить</a>
-            ${c.cta.whatsapp ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>` : ""}
-            ${c.cta.telegram ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.telegram)}" target="_blank" rel="noopener">Telegram</a>` : ""}
-            ${c.cta.max ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.max)}" target="_blank" rel="noopener">Max</a>` : ""}
-            ${c.cta.vk ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.vk)}" target="_blank" rel="noopener">VK</a>` : ""}
-          </div>
-        </div>
       </div>
     `;
 
