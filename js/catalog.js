@@ -17,7 +17,7 @@
 
   function matchesFilters(c) {
     if (state.complex && c.complex !== state.complex) return false;
-    if (state.area && areaBucket(c.areaSqm) !== state.area) return false;
+    if (state.area && c.areaSqm != null && areaBucket(c.areaSqm) !== state.area) return false;
     if (state.style && c.style !== state.style) return false;
     if (state.room && !c.rooms.includes(state.room)) return false;
     if (state.project && !c.hasProjectRender) return false;

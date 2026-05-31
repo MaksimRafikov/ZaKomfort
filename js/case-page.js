@@ -9,12 +9,16 @@
     return CASES.find((c) => c.id === id);
   }
 
+  function videoMime(url) {
+    return /\.mov$/i.test(url) ? "video/quicktime" : "video/mp4";
+  }
+
   function renderVideo(video) {
     if (video.embedUrl) {
       return `<div class="video-block"><iframe title="${escapeHtml(video.label)}" src="${escapeHtml(video.embedUrl)}" allowfullscreen loading="lazy"></iframe></div>`;
     }
     if (video.fileUrl) {
-      return `<div class="video-block"><video controls playsinline preload="metadata" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="video/mp4" />Ваш браузер не поддерживает видео.</video></div>`;
+      return `<div class="video-block"><video controls playsinline preload="metadata" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="${videoMime(video.fileUrl)}" />Ваш браузер не поддерживает видео.</video></div>`;
     }
     let inner = "";
     if (video.externalUrl) {
