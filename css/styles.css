@@ -139,15 +139,6 @@ img {
   box-shadow: var(--shadow);
 }
 
-.filters h2 {
-  margin: 0 0 1rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-}
-
 .filter-row {
   display: flex;
   flex-wrap: wrap;
@@ -164,6 +155,107 @@ img {
   font-size: 0.8rem;
   color: var(--muted);
   margin-bottom: -0.25rem;
+}
+
+.filter-row--complex {
+  margin-bottom: 0;
+}
+
+.filter-complex-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+}
+
+.social-channels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+
+.social-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.social-channel:hover {
+  border-color: #cfcfcf;
+  color: var(--accent);
+}
+
+.social-channel:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.social-channel__icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.social-channel--max .social-channel__icon {
+  color: #5b4eff;
+}
+
+.social-channel--telegram .social-channel__icon {
+  color: #26a5e4;
+}
+
+.social-channel--2gis .social-channel__icon {
+  color: #2dbe2c;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.15s;
+}
+
+.social-link:hover {
+  color: var(--accent);
+}
+
+.social-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.social-link__icon {
+  flex-shrink: 0;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.social-link--whatsapp .social-link__icon {
+  color: #25d366;
+}
+
+.social-link--telegram .social-link__icon {
+  color: #26a5e4;
+}
+
+.social-link--max .social-link__icon {
+  color: #5b4eff;
+}
+
+.social-link--vk .social-link__icon {
+  color: #0077ff;
 }
 
 .chip {
@@ -632,18 +724,10 @@ img {
 .site-footer__messengers {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem 1.25rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border);
-}
-
-.site-footer__messengers a {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.site-footer__messengers a:hover {
-  color: var(--accent);
 }
 
 .section--fit {

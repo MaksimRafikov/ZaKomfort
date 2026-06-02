@@ -1,27 +1,10 @@
 (function () {
   const state = {
     complex: "",
-    area: "",
-    style: "",
-    room: "",
-    project: false,
-    video: false,
   };
-
-  function areaBucket(sqm) {
-    if (sqm <= 40) return "до 40";
-    if (sqm <= 55) return "40–55";
-    if (sqm <= 80) return "55–80";
-    return "80+";
-  }
 
   function matchesFilters(c) {
     if (state.complex && c.complex !== state.complex) return false;
-    if (state.area && c.areaSqm != null && areaBucket(c.areaSqm) !== state.area) return false;
-    if (state.style && c.style !== state.style) return false;
-    if (state.room && !c.rooms.includes(state.room)) return false;
-    if (state.project && !c.hasProjectRender) return false;
-    if (state.video && !c.hasVideo) return false;
     return true;
   }
 
@@ -31,7 +14,7 @@
 
     if (!list.length) {
       grid.innerHTML =
-        '<p class="empty-state">Нет кейсов по выбранным фильтрам. Сбросьте фильтры или расширьте базу в <code>js/data.js</code>.</p>';
+        '<p class="empty-state">Нет кейсов по выбранному ЖК. Выберите «Все ЖК» или другой комплекс.</p>';
       return;
     }
 
@@ -66,35 +49,6 @@
     return div.innerHTML;
   }
 
-  function wireChips(containerSelector, key, getValue) {
-    const row = document.querySelector(containerSelector);
-    if (!row) return;
-    row.querySelectorAll(".chip[data-value]").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        const val = chip.getAttribute("data-value");
-        const current = state[key];
-        const next = current === val ? "" : val;
-        state[key] = getValue ? getValue(next, val) : next;
-        row.querySelectorAll(".chip[data-value]").forEach((c) => {
-          const v = c.getAttribute("data-value");
-          const active = state[key] === v;
-          c.classList.toggle("chip--active", active);
-        });
-        renderCards(CASES.filter(matchesFilters));
-      });
-    });
-  }
-
-  function wireToggle(chipSelector, key) {
-    const chip = document.querySelector(chipSelector);
-    if (!chip) return;
-    chip.addEventListener("click", () => {
-      state[key] = !state[key];
-      chip.classList.toggle("chip--active", state[key]);
-      renderCards(CASES.filter(matchesFilters));
-    });
-  }
-
   function initFilters() {
     const complexes = getComplexes();
     const complexRow = document.getElementById("filter-complex");
@@ -119,12 +73,6 @@
         });
       });
     }
-
-    wireChips("#filter-area", "area", null);
-    wireChips("#filter-style", "style", null);
-    wireChips("#filter-room", "room", null);
-    wireToggle("#chip-filter-project", "project");
-    wireToggle("#chip-filter-video", "video");
   }
 
   document.addEventListener("DOMContentLoaded", () => {

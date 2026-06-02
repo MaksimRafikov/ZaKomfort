@@ -258,7 +258,7 @@
           </ul>
           ${
             c.cta?.quiz
-              ? `<p class="section-cta"><a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel || "Обсудить похожий ремонт")}</a></p>`
+              ? `<p class="section-cta"><a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel || "Обсудить дизайн")}</a></p>`
               : ""
           }
         </section>
