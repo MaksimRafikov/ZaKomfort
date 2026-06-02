@@ -129,7 +129,7 @@ const CASES = [
     "max": "https://max.ru/chat?phone=%2B79641995283",
     "vk": "https://vk.com/za.komfortom",
     "quiz": "https://zakomfortom.com/design-project",
-    "buttonLabel": "Обсудить дизайн"
+    "buttonLabel": "Обсудить похожий дизайн"
   }
 },
   {
@@ -275,7 +275,7 @@ const CASES = [
     "max": "https://max.ru/chat?phone=%2B79641995283",
     "vk": "https://vk.com/za.komfortom",
     "quiz": "https://zakomfortom.com/design-project",
-    "buttonLabel": "Обсудить дизайн"
+    "buttonLabel": "Обсудить похожий дизайн"
   }
 },
   {
@@ -413,7 +413,7 @@ const CASES = [
     "max": "https://max.ru/chat?phone=%2B79641995283",
     "vk": "https://vk.com/za.komfortom",
     "quiz": "https://zakomfortom.com/design-project",
-    "buttonLabel": "Обсудить дизайн"
+    "buttonLabel": "Обсудить похожий дизайн"
   }
 },
   {
@@ -528,7 +528,7 @@ const CASES = [
     "max": "https://max.ru/chat?phone=%2B79641995283",
     "vk": "https://vk.com/za.komfortom",
     "quiz": "https://zakomfortom.com/design-project",
-    "buttonLabel": "Обсудить дизайн"
+    "buttonLabel": "Обсудить похожий дизайн"
   }
 },
   {
@@ -659,7 +659,7 @@ const CASES = [
       "max": "https://max.ru/chat?phone=%2B79641995283",
       "vk": "https://vk.com/za.komfortom",
       "quiz": "https://zakomfortom.com/design-project",
-      "buttonLabel": "Обсудить дизайн"
+      "buttonLabel": "Обсудить похожий дизайн"
     }
   },
   {
@@ -803,7 +803,7 @@ const CASES = [
       "max": "https://max.ru/chat?phone=%2B79641995283",
       "vk": "https://vk.com/za.komfortom",
       "quiz": "https://zakomfortom.com/design-project",
-      "buttonLabel": "Обсудить дизайн"
+      "buttonLabel": "Обсудить похожий дизайн"
     }
   },
   {
@@ -942,7 +942,7 @@ const CASES = [
       "max": "https://max.ru/chat?phone=%2B79641995283",
       "vk": "https://vk.com/za.komfortom",
       "quiz": "https://zakomfortom.com/design-project",
-      "buttonLabel": "Обсудить дизайн"
+      "buttonLabel": "Обсудить похожий дизайн"
     }
   },
   {
@@ -1068,7 +1068,7 @@ const CASES = [
       max: "https://max.ru/chat?phone=%2B79641995283",
       vk: "https://vk.com/za.komfortom",
       quiz: "https://zakomfortom.com/design-project",
-      buttonLabel: "Обсудить дизайн"
+      buttonLabel: "Обсудить похожий дизайн"
     }
   },
   {
@@ -1198,7 +1198,7 @@ const CASES = [
       max: "https://max.ru/chat?phone=%2B79641995283",
       vk: "https://vk.com/za.komfortom",
       quiz: "https://zakomfortom.com/design-project",
-      buttonLabel: "Обсудить дизайн"
+      buttonLabel: "Обсудить похожий дизайн"
     }
   },
   {
@@ -1315,7 +1315,7 @@ const CASES = [
       max: "https://max.ru/chat?phone=%2B79641995283",
       vk: "https://vk.com/za.komfortom",
       quiz: "https://zakomfortom.com/design-project",
-      buttonLabel: "Обсудить дизайн"
+      buttonLabel: "Обсудить похожий дизайн"
     }
   },
   {
@@ -1422,7 +1422,7 @@ const CASES = [
       max: "https://max.ru/chat?phone=%2B79641995283",
       vk: "https://vk.com/za.komfortom",
       quiz: "https://zakomfortom.com/design-project",
-      buttonLabel: "Обсудить дизайн"
+      buttonLabel: "Обсудить похожий дизайн"
     }
   },
   {
@@ -1603,7 +1603,7 @@ const CASES = [
       max: "https://max.ru/chat?phone=%2B79641995283",
       vk: "https://vk.com/za.komfortom",
       quiz: "https://zakomfortom.com/design-project",
-      buttonLabel: "Обсудить дизайн",
+      buttonLabel: "Обсудить похожий дизайн",
     },
   },
 ];

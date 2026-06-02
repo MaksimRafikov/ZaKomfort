@@ -178,9 +178,7 @@
           )
           .join("")}</div>`
       : "";
-    const quizAction = c.cta?.quiz
-      ? `<a class="btn btn--ghost" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel)}</a>`
-      : `<a class="btn btn--ghost" href="tel:${escapeHtml(c.cta.phone.replace(/\s/g, ""))}">${escapeHtml(c.cta.buttonLabel)}</a>`;
+    const heroAction = `<a class="btn btn--ghost" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать похожий ремонт</a>`;
 
     root.innerHTML = `
       <div class="case-hero">
@@ -190,7 +188,7 @@
           <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
           <div class="case-actions">
             <a class="btn btn--primary" href="#gallery">Смотреть фото</a>
-            ${quizAction}
+            ${heroAction}
           </div>
         </div>
       </div>
@@ -256,11 +254,7 @@
           <ul class="list-check list-check--fit">
             ${c.clientFit.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
           </ul>
-          ${
-            c.cta?.quiz
-              ? `<p class="section-cta"><a class="btn btn--primary" href="${escapeHtml(c.cta.quiz)}" target="_blank" rel="noopener">${escapeHtml(c.cta.buttonLabel || "Обсудить дизайн")}</a></p>`
-              : ""
-          }
+          <p class="section-cta"><a class="btn btn--primary" href="https://zakomfortom.com/design-project" target="_blank" rel="noopener noreferrer">Обсудить похожий дизайн</a></p>
         </section>
       </div>
     `;
