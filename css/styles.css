@@ -205,7 +205,13 @@ img {
   height: 1.25rem;
 }
 
-.social-channel--max .social-channel__icon {
+.social-channel__icon--brand,
+.social-link__icon--brand {
+  object-fit: contain;
+  border-radius: 0.25rem;
+}
+
+.social-channel--max .social-channel__icon:not(.social-channel__icon--brand) {
   color: #5b4eff;
 }
 
@@ -250,7 +256,7 @@ img {
   color: #26a5e4;
 }
 
-.social-link--max .social-link__icon {
+.social-link--max .social-link__icon:not(.social-link__icon--brand) {
   color: #5b4eff;
 }
 
