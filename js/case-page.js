@@ -114,7 +114,7 @@
       return;
     }
 
-    const PUBLIC_SITE = "https://maksimrafikov.github.io/ZaKomfort/";
+    const PUBLIC_SITE = "https://katalog.zakomfortom.com/";
 
     const setMetaContent = (selector, content) => {
       const el = document.querySelector(selector);
