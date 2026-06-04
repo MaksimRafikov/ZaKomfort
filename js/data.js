@@ -1453,7 +1453,7 @@ const CASES = [
     ],
     hasProjectRender: false,
     hasVideo: true,
-    cover: "assets/tau-house-3k/after-4.png",
+    cover: "assets/tau-house-3k/after-1.png",
     summary: "Квартира в ЖК Tau House: дизайн-проект и ремонт под ключ с аккуратной чистовой отделкой, продуманным освещением и готовностью к заселению.",
     task: "Заказчик хотел современную квартиру «под ключ» без лишней перегрузки в интерьере: светлые тона, функциональные зоны, качественная инженерная часть и понятный результат по проекту. Важно было заранее увидеть планировку решений и получить аккуратную реализацию в срок.",
     objectDescription: "Выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. Смонтированы потолки, двери, свет, установлена сантехника и чистовая фурнитура. Объект передан в состоянии, готовом к меблировке.",
@@ -1484,36 +1484,71 @@ const CASES = [
     gallery: [
       {
         src: "assets/tau-house-3k/after-1.png",
-        alt: "Санузел: крупноформатная плитка, ниши с подсветкой",
-        caption: "Санузел"
+        alt: "После ремонта: Гостиная",
+        caption: "Гостиная"
       },
       {
         src: "assets/tau-house-3k/after-2.png",
-        alt: "Коридор: двери скрытого монтажа и декоративная штукатурка",
-        caption: "Коридор"
+        alt: "После ремонта: Кухня-гостиная",
+        caption: "Кухня-гостиная"
       },
       {
         src: "assets/tau-house-3k/after-3.png",
-        alt: "Спальня: ТВ-зона, рифлёный комод и реечная панель",
+        alt: "После ремонта: Спальня",
         caption: "Спальня"
       },
       {
         src: "assets/tau-house-3k/after-4.png",
+        alt: "После ремонта: Санузел",
+        caption: "Санузел"
+      },
+      {
+        src: "assets/tau-house-3k/after-5.png",
+        alt: "После ремонта: Коридор",
+        caption: "Коридор"
+      },
+      {
+        src: "assets/tau-house-3k/after-6.png",
+        alt: "После ремонта: Детали отделки",
+        caption: "Детали отделки"
+      },
+      {
+        src: "assets/tau-house-3k/after-7.png",
+        alt: "После ремонта: Общий вид",
+        caption: "Общий вид"
+      },
+      {
+        src: "assets/tau-house-3k/after-8.png",
+        alt: "Санузел: крупноформатная плитка, ниши с подсветкой",
+        caption: "Санузел"
+      },
+      {
+        src: "assets/tau-house-3k/after-9.png",
+        alt: "Коридор: двери скрытого монтажа и декоративная штукатурка",
+        caption: "Коридор"
+      },
+      {
+        src: "assets/tau-house-3k/after-10.png",
+        alt: "Спальня: ТВ-зона, рифлёный комод и реечная панель",
+        caption: "Спальня"
+      },
+      {
+        src: "assets/tau-house-3k/after-11.png",
         alt: "Кухня: рифлёные фасады, чёрная мойка и подсветка фартука",
         caption: "Кухня"
       },
       {
-        src: "assets/tau-house-3k/after-5.png",
+        src: "assets/tau-house-3k/after-12.png",
         alt: "Спальня: кольцевая люстра и скрытая дверь в отделке стены",
         caption: "Спальня"
       },
       {
-        src: "assets/tau-house-3k/after-6.png",
+        src: "assets/tau-house-3k/after-13.png",
         alt: "Деталь отделки: контурная подсветка потолка",
         caption: "Освещение"
       },
       {
-        src: "assets/tau-house-3k/after-7.png",
+        src: "assets/tau-house-3k/after-14.png",
         alt: "Спальня: изголовье с канелюрами и фактурные обои",
         caption: "Спальня"
       }
@@ -1540,7 +1575,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/tau-house-3k/expert-overview.mp4",
-      poster: "assets/tau-house-3k/after-4.png",
+      poster: "assets/tau-house-3k/after-1.png",
       note: ""
     },
     cta: {
