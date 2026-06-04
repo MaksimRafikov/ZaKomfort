@@ -21,7 +21,7 @@
     grid.innerHTML = list
       .map(
         (c) => `
-      <article class="card" data-id="${escapeHtml(c.id)}">
+      <a class="card" href="case.html?id=${encodeURIComponent(c.id)}" data-id="${escapeHtml(c.id)}" aria-label="Смотреть кейс: ${escapeHtml(c.title)}">
         <div class="card__media">
           <img src="${escapeHtml(c.cover)}" alt="" width="600" height="450" loading="lazy" />
         </div>
@@ -35,9 +35,9 @@
               .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
               .join("")}
           </div>
-          <a class="btn btn--primary" href="case.html?id=${encodeURIComponent(c.id)}">Смотреть кейс</a>
+          <span class="btn btn--primary">Смотреть кейс</span>
         </div>
-      </article>
+      </a>
     `
       )
       .join("");
