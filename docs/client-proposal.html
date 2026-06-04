@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Коммерческое предложение — Каталог работ «За Комфортом»</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      :root {
+        --accent: #1f5f4e;
+        --accent-light: #e8f3ef;
+        --accent-dark: #174a3d;
+        --text: #141414;
+        --muted: #5c5c5c;
+        --border: #e0e0e0;
+        --surface: #ffffff;
+        --bg: #f6f8f7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        font-size: 11pt;
+        line-height: 1.55;
+      }
+
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        padding: 18mm 20mm 22mm;
+        background: var(--surface);
+        page-break-after: always;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page:last-child {
+        page-break-after: auto;
+      }
+
+      .page--cover {
+        background: linear-gradient(145deg, #0f172a 0%, #1e3a5f 38%, #1f5f4e 72%, #2a7a64 100%);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 24mm 22mm;
+      }
+
+      .page--cover::after {
+        content: "";
+        position: absolute;
+        right: -40mm;
+        top: 30mm;
+        width: 120mm;
+        height: 120mm;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .cover-logo {
+        height: 52px;
+        width: auto;
+        margin-bottom: 1.25rem;
+        color: #fff;
+      }
+
+      .studio-mark {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .studio-mark img,
+      .studio-mark svg {
+        height: 22px;
+        width: auto;
+      }
+
+      .page-header .studio-mark {
+        color: var(--text);
+      }
+
+      .page-header .studio-mark svg {
+        height: 20px;
+      }
+
+      .studio-footer {
+        margin-top: 2rem;
+        padding: 1rem 1.1rem;
+        background: var(--accent-light);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .studio-footer svg {
+        height: 36px;
+        width: auto;
+        flex-shrink: 0;
+      }
+
+      .studio-footer p {
+        margin: 0;
+        font-size: 10pt;
+      }
+
+      .studio-footer strong {
+        color: var(--accent-dark);
+      }
+
+      .cover-badge {
+        display: inline-block;
+        font-size: 9pt;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.85;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+      }
+
+      .cover h1 {
+        font-size: 28pt;
+        line-height: 1.15;
+        margin: 1.2rem 0 0.6rem;
+        font-weight: 700;
+        max-width: 16ch;
+      }
+
+      .cover-lead {
+        font-size: 13pt;
+        opacity: 0.92;
+        max-width: 38ch;
+        margin: 0 0 2rem;
+      }
+
+      .cover-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        font-size: 10pt;
+        opacity: 0.9;
+      }
+
+      .cover-meta strong {
+        display: block;
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        opacity: 0.7;
+        margin-bottom: 0.2rem;
+      }
+
+      .page-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 0.65rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .page-header h2 {
+        margin: 0;
+        font-size: 16pt;
+        color: var(--accent);
+      }
+
+      .page-num {
+        font-size: 9pt;
+        color: var(--muted);
+      }
+
+      h3 {
+        font-size: 12pt;
+        color: var(--accent-dark);
+        margin: 1.4rem 0 0.5rem;
+      }
+
+      p {
+        margin: 0 0 0.65rem;
+      }
+
+      .lead {
+        font-size: 12pt;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.65rem;
+        margin: 1rem 0 1.25rem;
+      }
+
+      .stat {
+        background: var(--accent-light);
+        border-radius: 10px;
+        padding: 0.75rem 0.65rem;
+        text-align: center;
+      }
+
+      .stat__value {
+        display: block;
+        font-size: 18pt;
+        font-weight: 700;
+        color: var(--accent);
+        line-height: 1.1;
+      }
+
+      .stat__label {
+        font-size: 8.5pt;
+        color: var(--muted);
+        margin-top: 0.25rem;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.75rem 0 1rem;
+        font-size: 10pt;
+      }
+
+      th,
+      td {
+        border: 1px solid var(--border);
+        padding: 0.5rem 0.6rem;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: var(--accent-light);
+        color: var(--accent-dark);
+        font-weight: 600;
+      }
+
+      tr:nth-child(even) td {
+        background: #fafafa;
+      }
+
+      .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0.5rem 0 0;
+      }
+
+      .checklist li {
+        padding: 0.35rem 0 0.35rem 1.5rem;
+        position: relative;
+      }
+
+      .checklist li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.85rem 1rem;
+        background: #fafafa;
+      }
+
+      .card h4 {
+        margin: 0 0 0.4rem;
+        font-size: 11pt;
+        color: var(--accent);
+      }
+
+      .card p {
+        margin: 0;
+        font-size: 10pt;
+        color: var(--muted);
+      }
+
+      .price-tiers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.65rem;
+        margin: 1rem 0;
+      }
+
+      .tier {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.85rem;
+        text-align: center;
+      }
+
+      .tier--featured {
+        border-color: var(--accent);
+        background: var(--accent-light);
+        box-shadow: 0 4px 16px rgba(31, 95, 78, 0.12);
+      }
+
+      .tier__name {
+        font-size: 9pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .tier__price {
+        font-size: 14pt;
+        font-weight: 700;
+        color: var(--accent);
+      }
+
+      .tier__note {
+        font-size: 8.5pt;
+        color: var(--muted);
+        margin-top: 0.4rem;
+      }
+
+      .highlight-box {
+        background: linear-gradient(135deg, var(--accent-light), #fff);
+        border-left: 4px solid var(--accent);
+        padding: 0.9rem 1rem;
+        border-radius: 0 10px 10px 0;
+        margin: 1rem 0;
+      }
+
+      .highlight-box strong {
+        color: var(--accent-dark);
+        font-size: 13pt;
+      }
+
+      .footer-note {
+        position: absolute;
+        bottom: 14mm;
+        left: 20mm;
+        right: 20mm;
+        font-size: 8.5pt;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        padding-top: 0.5rem;
+      }
+
+      .page--cover .footer-note {
+        border-top-color: rgba(255, 255, 255, 0.25);
+        color: rgba(255, 255, 255, 0.75);
+        position: static;
+        margin-top: 2rem;
+      }
+
+      .cases-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.4rem;
+        font-size: 8.5pt;
+        margin-top: 0.5rem;
+      }
+
+      .case-chip {
+        background: var(--accent-light);
+        color: var(--accent-dark);
+        padding: 0.3rem 0.45rem;
+        border-radius: 6px;
+        text-align: center;
+      }
+
+      @media print {
+        body {
+          background: #fff;
+        }
+        .page {
+          margin: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Обложка -->
+    <section class="page page--cover">
+      <div>
+        <img class="cover-logo" src="brand/ii-studio-logo-light.svg" alt="ИИ-студия" width="240" height="52" />
+        <span class="cover-badge">Коммерческое предложение</span>
+        <h1>Каталог реализованных ремонтов</h1>
+        <p class="cover-lead">
+          Веб-каталог портфолио для студии дизайна и ремонта «За Комфортом» — инструмент продаж на базе реальных объектов в Уфе
+        </p>
+      </div>
+      <div class="cover-meta">
+        <div>
+          <strong>Проект</strong>
+          katalog.zakomfortom.com
+        </div>
+        <div>
+          <strong>Формат</strong>
+          Сайт-каталог под ключ
+        </div>
+        <div>
+          <strong>Регион</strong>
+          Уфа, Башкортостан
+        </div>
+        <div>
+          <strong>Дата</strong>
+          Июнь 2026
+        </div>
+        <div>
+          <strong>Исполнитель</strong>
+          ИИ-студия
+        </div>
+      </div>
+      <p class="footer-note">
+        Документ подготовлен ИИ-студией для согласования объёма работ и коммерческих условий.
+      </p>
+    </section>
+
+    <!-- Суть проекта -->
+    <section class="page">
+      <header class="page-header">
+        <h2>Суть проекта</h2>
+        <span class="page-num">02</span>
+      </header>
+      <p class="lead">
+        Реализован не шаблонный лендинг, а отдельный продающий цифровой продукт — каталог кейсов с фильтрацией, подробными
+        страницами объектов и готовой инфраструктурой для масштабирования.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <span class="stat__value">12</span>
+          <span class="stat__label">кейсов в каталоге</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">158</span>
+          <span class="stat__label">медиафайлов</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">1 600+</span>
+          <span class="stat__label">строк контента</span>
+        </div>
+        <div class="stat">
+          <span class="stat__value">100%</span>
+          <span class="stat__label">готов к публикации</span>
+        </div>
+      </div>
+
+      <h3>Задача для бизнеса</h3>
+      <p>
+        Показать реальные ремонты и дизайн-проекты так, чтобы клиент мог быстро найти похожий объект по ЖК, площади и
+        формату работ — и перейти к заявке в мессенджер или на основной сайт. Каталог снижает барьер доверия и ускоряет
+        принятие решения о встрече и расчёте.
+      </p>
+
+      <h3>Опубликованные объекты</h3>
+      <div class="cases-grid">
+        <span class="case-chip">ЖК На Успенской</span>
+        <span class="case-chip">ЖК Конди Нова</span>
+        <span class="case-chip">Квартал Энтузиастов</span>
+        <span class="case-chip">ЖК Novaland</span>
+        <span class="case-chip">ЖК Трилогия</span>
+        <span class="case-chip">Tau House</span>
+        <span class="case-chip">ЖК Грин Парк</span>
+        <span class="case-chip">ЖК Нестеровский</span>
+        <span class="case-chip">ЖК Империал</span>
+        <span class="case-chip">Tau House 3к</span>
+        <span class="case-chip">Первомайский 44</span>
+        <span class="case-chip">+ фильтр по ЖК</span>
+      </div>
+
+      <div class="highlight-box">
+        <p>
+          <strong>Рекомендуемая рыночная стоимость проекта для Уфы: 220 000 – 280 000 ₽</strong><br />
+          Для студии, где один объект оценивается в миллионы рублей, каталог из 12 реализованных ремонтов — логичная
+          инвестиция в продажи, а не «расход на сайтик».
+        </p>
+      </div>
+    </section>
+
+    <!-- Что сделано -->
+    <section class="page">
+      <header class="page-header">
+        <h2>Объём выполненных работ</h2>
+        <span class="page-num">03</span>
+      </header>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 32%">Направление</th>
+            <th>Результат</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Дизайн и вёрстка</strong></td>
+            <td>Фирменный UI в стиле «За Комфортом», адаптив 375–1440 px, единая сетка карточек и страниц кейсов</td>
+          </tr>
+          <tr>
+            <td><strong>Главная страница</strong></td>
+            <td>Каталог с фильтром по жилым комплексам, карточки объектов, пустое состояние, CTA на основной сайт</td>
+          </tr>
+          <tr>
+            <td><strong>Страница кейса</strong></td>
+            <td>Галерея, планировка, список работ, блок «кому подойдёт», видео эксперта, лайтбокс фото</td>
+          </tr>
+          <tr>
+            <td><strong>Контент</strong></td>
+            <td>12 структурированных кейсов: задача, описание объекта, highlights, теги, метаданные для карточек</td>
+          </tr>
+          <tr>
+            <td><strong>Медиа</strong></td>
+            <td>Фото «после», планы, видео с комментариями, сравнения до/после (где применимо), оптимизированные пути</td>
+          </tr>
+          <tr>
+            <td><strong>Конверсия</strong></td>
+            <td>CTA: WhatsApp, Telegram, Max, VK, переход на квиз/расчёт с zakomfortom.com</td>
+          </tr>
+          <tr>
+            <td><strong>SEO и публикация</strong></td>
+            <td>Meta, Open Graph, canonical, robots; деплой на GitHub Pages, поддомен katalog.zakomfortom.com</td>
+          </tr>
+          <tr>
+            <td><strong>Сопровождение</strong></td>
+            <td>Скрипты добавления кейсов, валидация данных, регламент inbox → assets → data.js</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Технические особенности</h3>
+      <ul class="checklist">
+        <li>Единый источник данных — js/data.js (без CMS, быстрая загрузка)</li>
+        <li>Ленивая загрузка изображений, доступные состояния hover/focus</li>
+        <li>Страница 404, отложенная загрузка скриптов</li>
+        <li>Пайплайн: исходники в inbox, на сайте только assets</li>
+        <li>Автопроверка целостности путей и схемы данных перед публикацией</li>
+      </ul>
+    </section>
+
+    <!-- Ценность -->
+    <section class="page">
+      <header class="page-header">
+        <h2>Ценность для заказчика</h2>
+        <span class="page-num">04</span>
+      </header>
+
+      <div class="two-col">
+        <div class="card">
+          <h4>Доверие</h4>
+          <p>Клиент видит не «красивые картинки», а реальные объекты с адресами, площадями и перечнем работ.</p>
+        </div>
+        <div class="card">
+          <h4>Скорость сделки</h4>
+          <p>Фильтр по ЖК и формату сокращает время подбора похожего кейса для консультации.</p>
+        </div>
+        <div class="card">
+          <h4>Масштаб</h4>
+          <p>Добавление нового объекта — по регламенту, без переделки всего сайта.</p>
+        </div>
+        <div class="card">
+          <h4>Маркетинг</h4>
+          <p>Готовые сниппеты для соцсетей и рекламы: OG-разметка, отдельный домен каталога.</p>
+        </div>
+      </div>
+
+      <h3>Сравнение с типовыми решениями</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Решение</th>
+            <th>Ориентир в Уфе</th>
+            <th>Ограничение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Конструктор (Tilda и аналоги)</td>
+            <td>30 000 – 60 000 ₽</td>
+            <td>Нет 12 кастомных лонгрид-кейсов, видео, до/после, валидации медиа</td>
+          </tr>
+          <tr>
+            <td>Каталог «под ключ» в студии</td>
+            <td>от 79 000 ₽</td>
+            <td>Часто без вашего объёма уникальных текстов и медиа-структуры</td>
+          </tr>
+          <tr>
+            <td><strong>Данный проект</strong></td>
+            <td><strong>220 000 – 280 000 ₽</strong></td>
+            <td>Полный цикл: UI + 12 кейсов + деплой + процесс обновления</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Что усиливает стоимость</h3>
+      <ul class="checklist">
+        <li>Редактура и структура продающих текстов под нишу ремонта</li>
+        <li>Организация 150+ медиафайлов и привязка к данным</li>
+        <li>Готовый поддомен и инструкция для команды заказчика</li>
+      </ul>
+    </section>
+
+    <!-- Цены -->
+    <section class="page">
+      <header class="page-header">
+        <h2>Коммерческие условия</h2>
+        <span class="page-num">05</span>
+      </header>
+
+      <p class="lead">Три сценария оценки — в зависимости от формата сотрудничества и глубины вовлечения исполнителя.</p>
+
+      <div class="price-tiers">
+        <div class="tier">
+          <div class="tier__name">Базовый</div>
+          <div class="tier__price">120–150 тыс. ₽</div>
+          <div class="tier__note">Долгосрочные отношения, без обесценивания объёма</div>
+        </div>
+        <div class="tier tier--featured">
+          <div class="tier__name">Рекомендуемый</div>
+          <div class="tier__price">220–280 тыс. ₽</div>
+          <div class="tier__note">Рыночная цена для Уфы, проект под ключ</div>
+        </div>
+        <div class="tier">
+          <div class="tier__name">Премиум</div>
+          <div class="tier__price">250–320 тыс. ₽</div>
+          <div class="tier__note">Позиция «инвестиция в продажи», студийный уровень</div>
+        </div>
+      </div>
+
+      <h3>Пример детализации счёта (240 000 ₽)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Статья</th>
+            <th style="width: 22%">Сумма</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Концепция и UI каталога</td>
+            <td>45 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Вёрстка, адаптив, интерактив (фильтры, лайтбокс, видео)</td>
+            <td>55 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Шаблон кейса, SEO, деплой, поддомен</td>
+            <td>35 000 ₽</td>
+          </tr>
+          <tr>
+            <td>Наполнение 12 кейсов (тексты + медиа + структура)</td>
+            <td>120 000 ₽</td>
+          </tr>
+          <tr>
+            <td><strong>Итого</strong></td>
+            <td><strong>255 000 ₽</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Дополнительные услуги (не в первый платёж)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Услуга</th>
+            <th>Ориентир</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Новый кейс (медиа + текст + публикация)</td>
+            <td>8 000 – 15 000 ₽ / объект</td>
+          </tr>
+          <tr>
+            <td>Техподдержка и мелкие правки</td>
+            <td>5 000 – 10 000 ₽ / месяц</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Итог -->
+    <section class="page">
+      <header class="page-header">
+        <h2>Итог и следующие шаги</h2>
+        <span class="page-num">06</span>
+      </header>
+
+      <div class="highlight-box">
+        <p>
+          <strong>Передаётся заказчику:</strong><br />
+          Работающий каталог на katalog.zakomfortom.com · 12 опубликованных кейсов · инструкция по добавлению новых
+          объектов · проверенная структура медиа и данных.
+        </p>
+      </div>
+
+      <h3>Формулировка для согласования</h3>
+      <p style="font-style: italic; color: var(--muted); border-left: 3px solid var(--accent); padding-left: 1rem;">
+        «Каталог из 12 реализованных объектов с фильтрацией, видео эксперта, SEO и отдельным доменом. Стоимость
+        проекта — 220 000 – 280 000 ₽. Сроки и этапы оплаты согласуются отдельно. После сдачи — поддержка и
+        добавление новых кейсов по регламенту.»
+      </p>
+
+      <h3>Следующие шаги</h3>
+      <ol style="margin: 0; padding-left: 1.25rem; color: var(--text)">
+        <li>Согласовать итоговую сумму и формат оплаты (50/50 или по этапам).</li>
+        <li>Зафиксировать передачу прав на код, контент и медиа.</li>
+        <li>При необходимости — оформить договор на сопровождение и добавление кейсов.</li>
+      </ol>
+
+      <div class="studio-footer">
+        <img src="brand/ii-studio-logo.svg" alt="ИИ-студия" />
+        <p>
+          <strong>ИИ-студия</strong> — разработка, дизайн и цифровые продукты.<br />
+          Подготовлено коммерческое предложение по проекту каталога для студии «За Комфортом».
+        </p>
+      </div>
+
+      <p class="footer-note" style="position: static; margin-top: 1.5rem">
+        Документ носит коммерческий характер. Цены указаны в рублях РФ, без НДС (при необходимости уточняется отдельно).
+        Актуальность рыночных ориентиров: регион Уфа / Башкортостан, 2025–2026.
+      </p>
+    </section>
+  </body>
+</html>

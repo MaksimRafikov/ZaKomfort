@@ -260,6 +260,23 @@ const CASES = [
       "caption": ""
     }
   ],
+  "beforeGallery": [
+    {
+      "src": "assets/kondi-nova/before-1.png",
+      "alt": "Квартира до ремонта: подготовка оснований",
+      "caption": "До ремонта: черновой этап"
+    },
+    {
+      "src": "assets/kondi-nova/before-2.png",
+      "alt": "Санузел до ремонта: черновая отделка",
+      "caption": "До ремонта: санузел"
+    },
+    {
+      "src": "assets/kondi-nova/before-3.png",
+      "alt": "Квартира до ремонта: разводка электрики",
+      "caption": "До ремонта: инженерные сети"
+    }
+  ],
   "video": {
     "label": "Видео с комментариями эксперта",
     "embedUrl": null,
@@ -1103,6 +1120,23 @@ const CASES = [
         caption: "Детали отделки"
       }
     ],
+    beforeGallery: [
+      {
+        src: "assets/green-park-93/before-1.png",
+        alt: "Квартира до ремонта: черновая отделка у окна",
+        caption: "До ремонта: черновой этап"
+      },
+      {
+        src: "assets/green-park-93/before-2.png",
+        alt: "Квартира до ремонта: разводка труб у панорамных окон",
+        caption: "До ремонта: инженерные сети"
+      },
+      {
+        src: "assets/green-park-93/before-3.png",
+        alt: "Квартира до ремонта: монтаж отопления перед стяжкой",
+        caption: "До ремонта: отопление"
+      }
+    ],
     video: {
       label: "Видео с комментариями эксперта",
       embedUrl: null,
@@ -1360,6 +1394,23 @@ const CASES = [
         caption: "Санузел"
       }
     ],
+    beforeGallery: [
+      {
+        src: "assets/imperial-3k/before-1.png",
+        alt: "Квартира до ремонта: разводка инженерных сетей в полу",
+        caption: "До ремонта: черновой этап"
+      },
+      {
+        src: "assets/imperial-3k/before-2.png",
+        alt: "Квартира до ремонта: коридор с трубами тёплого пола",
+        caption: "До ремонта: коридор"
+      },
+      {
+        src: "assets/imperial-3k/before-3.png",
+        alt: "Квартира до ремонта: укладка труб перед стяжкой",
+        caption: "До ремонта: инженерные сети"
+      }
+    ],
     video: {
       label: "Видео с комментариями эксперта",
       embedUrl: null,
@@ -1465,6 +1516,23 @@ const CASES = [
         src: "assets/tau-house-3k/after-7.png",
         alt: "Спальня: изголовье с канелюрами и фактурные обои",
         caption: "Спальня"
+      }
+    ],
+    beforeGallery: [
+      {
+        src: "assets/tau-house-3k/before-1.png",
+        alt: "Квартира до ремонта: возведение перегородок",
+        caption: "До ремонта: черновой этап"
+      },
+      {
+        src: "assets/tau-house-3k/before-2.png",
+        alt: "Квартира до ремонта: кирпичная кладка стен",
+        caption: "До ремонта: перегородки"
+      },
+      {
+        src: "assets/tau-house-3k/before-3.png",
+        alt: "Квартира до ремонта: монтаж отопления",
+        caption: "До ремонта: инженерные сети"
       }
     ],
     video: {
