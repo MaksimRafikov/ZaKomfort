@@ -8,6 +8,35 @@
     return true;
   }
 
+  function caseHref(id) {
+    return `case.html?id=${encodeURIComponent(id)}`;
+  }
+
+  function bindCardNavigation(grid) {
+    if (!grid || grid.dataset.navBound === "1") return;
+    grid.dataset.navBound = "1";
+
+    grid.addEventListener("click", (e) => {
+      const card = e.target.closest("a.card, article.card[data-id]");
+      if (!card) return;
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+      const href =
+        card.tagName === "A" && card.href
+          ? card.href
+          : caseHref(card.getAttribute("data-id") || "");
+
+      const innerLink = e.target.closest("a[href]");
+      if (innerLink && innerLink !== card) return;
+
+      if (card.tagName === "A") return;
+
+      e.preventDefault();
+      window.location.assign(href);
+    });
+  }
+
   function renderCards(list) {
     const grid = document.getElementById("case-grid");
     if (!grid) return;
@@ -21,9 +50,9 @@
     grid.innerHTML = list
       .map(
         (c) => `
-      <a class="card" href="case.html?id=${encodeURIComponent(c.id)}" data-id="${escapeHtml(c.id)}" aria-label="Смотреть кейс: ${escapeHtml(c.title)}">
+      <a class="card" href="${caseHref(c.id)}" data-id="${escapeHtml(c.id)}" aria-label="Смотреть кейс: ${escapeHtml(c.title)}">
         <div class="card__media">
-          <img src="${escapeHtml(c.cover)}" alt="" width="600" height="450" loading="lazy" />
+          <img src="${escapeHtml(c.cover)}" alt="" width="600" height="450" loading="lazy" decoding="async" />
         </div>
         <div class="card__body">
           <h3 class="card__title">${escapeHtml(c.title)}</h3>
@@ -41,6 +70,8 @@
     `
       )
       .join("");
+
+    bindCardNavigation(grid);
   }
 
   function escapeHtml(s) {

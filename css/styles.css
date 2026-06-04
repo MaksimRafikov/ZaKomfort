@@ -317,6 +317,15 @@ img {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(31, 95, 78, 0.12);
+}
+
+a.card > * {
+  pointer-events: none;
+}
+
+a.card {
+  pointer-events: auto;
 }
 
 .card:hover {
