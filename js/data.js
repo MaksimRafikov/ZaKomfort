@@ -511,6 +511,31 @@ const CASES = [
       "src": "assets/novaland/after-7.png",
       "alt": "После ремонта",
       "caption": ""
+    },
+    {
+      "src": "assets/novaland/after-8.png",
+      "alt": "Санузел: накладная раковина, овальное зеркало с подсветкой",
+      "caption": "Санузел"
+    },
+    {
+      "src": "assets/novaland/after-9.png",
+      "alt": "Кухня: фасады под дерево, фартук под бетон и паркет «ёлочкой»",
+      "caption": "Кухня"
+    },
+    {
+      "src": "assets/novaland/after-10.png",
+      "alt": "Декоративный кирпич, зеркало и бра у входа в зону отдыха",
+      "caption": "Детали отделки"
+    },
+    {
+      "src": "assets/novaland/after-11.png",
+      "alt": "Зона у окна: дизайнерский радиатор и встроенный шкаф",
+      "caption": "Гостиная"
+    },
+    {
+      "src": "assets/novaland/after-12.png",
+      "alt": "Деревянная перегородка с ТВ-нишей и рейками",
+      "caption": "Гостиная"
     }
   ],
   "video": {
@@ -1051,6 +1076,31 @@ const CASES = [
         src: "assets/green-park-93/after-9.jpg",
         alt: "После ремонта: Спальня, рабочая зона",
         caption: "Спальня, рабочая зона"
+      },
+      {
+        src: "assets/green-park-93/after-10.png",
+        alt: "ТВ-зона: декоративная штукатурка, молдинги и рифлёная тумба",
+        caption: "ТВ-зона"
+      },
+      {
+        src: "assets/green-park-93/after-11.png",
+        alt: "Спальня: фотообои с одуванчиками и дизайнерский радиатор",
+        caption: "Спальня"
+      },
+      {
+        src: "assets/green-park-93/after-12.png",
+        alt: "Кухня-столовая: вид в гостиную с линейным светом",
+        caption: "Кухня-столовая"
+      },
+      {
+        src: "assets/green-park-93/after-13.png",
+        alt: "Гостиная: кресло и акцентная мебель у окна",
+        caption: "Гостиная"
+      },
+      {
+        src: "assets/green-park-93/after-14.png",
+        alt: "Детали отделки: молдинги и LED-подсветка стены",
+        caption: "Детали отделки"
       }
     ],
     video: {
@@ -1298,6 +1348,16 @@ const CASES = [
         src: "assets/imperial-3k/after-8.png",
         alt: "После ремонта: Общий вид",
         caption: "Общий вид"
+      },
+      {
+        src: "assets/imperial-3k/after-9.png",
+        alt: "Коридор: декоративная штукатурка и линейная подсветка",
+        caption: "Коридор"
+      },
+      {
+        src: "assets/imperial-3k/after-10.png",
+        alt: "Санузел: мраморная плитка, накладная раковина и золотые светильники",
+        caption: "Санузел"
       }
     ],
     video: {
@@ -1342,7 +1402,7 @@ const CASES = [
     ],
     hasProjectRender: false,
     hasVideo: true,
-    cover: "assets/tau-house-3k/after-1.png",
+    cover: "assets/tau-house-3k/after-4.png",
     summary: "Квартира в ЖК Tau House: дизайн-проект и ремонт под ключ с аккуратной чистовой отделкой, продуманным освещением и готовностью к заселению.",
     task: "Заказчик хотел современную квартиру «под ключ» без лишней перегрузки в интерьере: светлые тона, функциональные зоны, качественная инженерная часть и понятный результат по проекту. Важно было заранее увидеть планировку решений и получить аккуратную реализацию в срок.",
     objectDescription: "Выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. Смонтированы потолки, двери, свет, установлена сантехника и чистовая фурнитура. Объект передан в состоянии, готовом к меблировке.",
@@ -1373,38 +1433,38 @@ const CASES = [
     gallery: [
       {
         src: "assets/tau-house-3k/after-1.png",
-        alt: "После ремонта: Гостиная",
-        caption: "Гостиная"
+        alt: "Санузел: крупноформатная плитка, ниши с подсветкой",
+        caption: "Санузел"
       },
       {
         src: "assets/tau-house-3k/after-2.png",
-        alt: "После ремонта: Кухня-гостиная",
-        caption: "Кухня-гостиная"
+        alt: "Коридор: двери скрытого монтажа и декоративная штукатурка",
+        caption: "Коридор"
       },
       {
         src: "assets/tau-house-3k/after-3.png",
-        alt: "После ремонта: Спальня",
+        alt: "Спальня: ТВ-зона, рифлёный комод и реечная панель",
         caption: "Спальня"
       },
       {
         src: "assets/tau-house-3k/after-4.png",
-        alt: "После ремонта: Санузел",
-        caption: "Санузел"
+        alt: "Кухня: рифлёные фасады, чёрная мойка и подсветка фартука",
+        caption: "Кухня"
       },
       {
         src: "assets/tau-house-3k/after-5.png",
-        alt: "После ремонта: Коридор",
-        caption: "Коридор"
+        alt: "Спальня: кольцевая люстра и скрытая дверь в отделке стены",
+        caption: "Спальня"
       },
       {
         src: "assets/tau-house-3k/after-6.png",
-        alt: "После ремонта: Детали отделки",
-        caption: "Детали отделки"
+        alt: "Деталь отделки: контурная подсветка потолка",
+        caption: "Освещение"
       },
       {
         src: "assets/tau-house-3k/after-7.png",
-        alt: "После ремонта: Общий вид",
-        caption: "Общий вид"
+        alt: "Спальня: изголовье с канелюрами и фактурные обои",
+        caption: "Спальня"
       }
     ],
     video: {
@@ -1412,7 +1472,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/tau-house-3k/expert-overview.mp4",
-      poster: "assets/tau-house-3k/after-1.png",
+      poster: "assets/tau-house-3k/after-4.png",
       note: ""
     },
     cta: {
