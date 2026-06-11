@@ -114,6 +114,23 @@ const CASES = [
       "caption": "Санузел с прачечной"
     }
   ],
+  "beforeGallery": [
+    {
+      "src": "assets/na-uspenskoy/before-1.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/na-uspenskoy/before-2.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/na-uspenskoy/before-3.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    }
+  ],
   "video": {
     "label": "Видео с комментариями эксперта",
     "embedUrl": null,
@@ -852,9 +869,9 @@ const CASES = [
     "id": "tau-house-2",
     "title": "ЖК Тау Хаус 2",
     "address": "Уфа, ул. Энтузиастов, 7",
-    "areaSqm": null,
-    "areaLabel": "площадь уточняется",
-    "roomsLabel": "квартира",
+    "areaSqm": 73.13,
+    "areaLabel": "73,13 м²",
+    "roomsLabel": "3-комнатная квартира",
     "format": "Дизайн + ремонт под ключ",
     "style": "Современная классика",
     "segment": "Комфорт",
@@ -868,7 +885,11 @@ const CASES = [
     "rooms": [
       "кухня-гостиная",
       "спальня",
-      "санузел"
+      "детская",
+      "гардероб",
+      "санузел",
+      "гостевой санузел",
+      "балкон"
     ],
     "hasProjectRender": false,
     "hasVideo": true,
@@ -902,6 +923,11 @@ const CASES = [
       "Хотите светлую квартиру, где санузлы и кухня так же продуманы, как гостиная",
       "Ищете подрядчика по живым объектам в новостройках Уфы"
     ],
+    "plan": {
+      "src": "assets/tau-house-2/plan.png",
+      "alt": "Планировка квартиры в ЖК Тау Хаус 2 после перепланировки",
+      "caption": "План квартиры, 73,13 м²"
+    },
     "gallery": [
       {
         "src": "assets/tau-house-2/after-1.png",
