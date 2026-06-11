@@ -111,6 +111,13 @@ img {
   color: var(--accent);
 }
 
+.nav-links a:focus-visible,
+.logo:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .container {
   max-width: 1120px;
   margin: 0 auto;
@@ -171,6 +178,12 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem 0.75rem;
+}
+
+.filter-status {
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
 }
 
 .social-channels {
@@ -296,6 +309,11 @@ img {
 .chip--active:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .grid {
@@ -429,6 +447,11 @@ a.card {
 .btn--ghost:hover {
   border-color: var(--accent);
   text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .empty-state {
@@ -570,6 +593,11 @@ a.card {
 
 .lightbox__close:hover {
   background: rgba(255, 255, 255, 0.28);
+}
+
+.lightbox__close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
 }
 
 .section {
@@ -918,5 +946,27 @@ a.card {
 
   .filters {
     padding: 1.2rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
   }
 }

@@ -1,4 +1,6 @@
 (function () {
+  const COMPLEX_PARAM = "complex";
+
   const state = {
     complex: "",
   };
@@ -6,6 +8,49 @@
   function matchesFilters(c) {
     if (state.complex && c.complex !== state.complex) return false;
     return true;
+  }
+
+  function readComplexFromUrl() {
+    const val = new URLSearchParams(window.location.search).get(COMPLEX_PARAM) || "";
+    return getComplexes().includes(val) ? val : "";
+  }
+
+  function syncComplexToUrl() {
+    const url = new URL(window.location.href);
+    if (state.complex) {
+      url.searchParams.set(COMPLEX_PARAM, state.complex);
+    } else {
+      url.searchParams.delete(COMPLEX_PARAM);
+    }
+    history.replaceState(null, "", url);
+  }
+
+  function updateFilterStatus(count) {
+    const el = document.getElementById("filter-status");
+    if (!el) return;
+
+    const total = CASES.length;
+    if (state.complex) {
+      el.textContent = `Показано ${count} из ${total}: ${state.complex}`;
+    } else {
+      el.textContent = `Все объекты: ${count}`;
+    }
+  }
+
+  function setActiveChip(complexRow, value) {
+    complexRow.querySelectorAll(".chip[data-value]").forEach((chip) => {
+      const chipValue = chip.getAttribute("data-value") || "";
+      const isActive = state.complex === chipValue;
+      chip.classList.toggle("chip--active", isActive);
+      chip.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+
+  function applyFilters() {
+    const list = CASES.filter(matchesFilters);
+    renderCards(list);
+    updateFilterStatus(list.length);
+    syncComplexToUrl();
   }
 
   function caseHref(id) {
@@ -52,7 +97,7 @@
         (c) => `
       <a class="card" href="${caseHref(c.id)}" data-id="${escapeHtml(c.id)}" aria-label="Смотреть кейс: ${escapeHtml(c.title)}">
         <div class="card__media">
-          <img src="${escapeHtml(c.cover)}" alt="" width="600" height="450" loading="lazy" decoding="async" />
+          <img src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)} — интерьер после ремонта" width="600" height="450" loading="lazy" decoding="async" />
         </div>
         <div class="card__body">
           <h3 class="card__title">${escapeHtml(c.title)}</h3>
@@ -81,26 +126,27 @@
   }
 
   function initFilters() {
+    state.complex = readComplexFromUrl();
+
     const complexes = getComplexes();
     const complexRow = document.getElementById("filter-complex");
     if (complexRow) {
       complexRow.innerHTML =
-        '<button type="button" class="chip chip--active" data-value="">Все ЖК</button>' +
+        '<button type="button" class="chip" data-value="" aria-pressed="false">Все ЖК</button>' +
         complexes
           .map(
             (x) =>
-              `<button type="button" class="chip" data-value="${escapeHtml(x)}">${escapeHtml(x)}</button>`
+              `<button type="button" class="chip" data-value="${escapeHtml(x)}" aria-pressed="false">${escapeHtml(x)}</button>`
           )
           .join("");
+
+      setActiveChip(complexRow, state.complex);
+
       complexRow.querySelectorAll(".chip[data-value]").forEach((chip) => {
         chip.addEventListener("click", () => {
-          const val = chip.getAttribute("data-value") || "";
-          state.complex = val;
-          complexRow.querySelectorAll(".chip[data-value]").forEach((c) => {
-            const v = c.getAttribute("data-value") || "";
-            c.classList.toggle("chip--active", state.complex === v);
-          });
-          renderCards(CASES.filter(matchesFilters));
+          state.complex = chip.getAttribute("data-value") || "";
+          setActiveChip(complexRow, state.complex);
+          applyFilters();
         });
       });
     }
@@ -108,6 +154,6 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initFilters();
-    renderCards(CASES.filter(matchesFilters));
+    applyFilters();
   });
 })();

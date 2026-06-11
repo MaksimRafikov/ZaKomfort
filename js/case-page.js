@@ -22,7 +22,7 @@
     }
     let inner = "";
     if (video.externalUrl) {
-      inner += `<p><a class="btn btn--primary" href="${escapeHtml(video.externalUrl)}" target="_blank" rel="noopener">Смотреть видео</a></p>`;
+      inner += `<p><a class="btn btn--primary" href="${escapeHtml(video.externalUrl)}" target="_blank" rel="noopener noreferrer">Смотреть видео</a></p>`;
     }
     if (video.note) {
       inner += `<div class="video-fallback"><p>${escapeHtml(video.note)}</p></div>`;
@@ -46,11 +46,16 @@
 
     const imgEl = overlay.querySelector(".lightbox__img");
     const closeBtn = overlay.querySelector(".lightbox__close");
+    let lastFocused = null;
 
     function close() {
       overlay.hidden = true;
       imgEl.removeAttribute("src");
       document.body.style.overflow = "";
+      if (lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      }
+      lastFocused = null;
     }
 
     closeBtn.addEventListener("click", close);
@@ -63,6 +68,7 @@
 
     document.body.appendChild(overlay);
     overlay._openLightbox = (src, alt) => {
+      lastFocused = document.activeElement;
       imgEl.src = src;
       imgEl.alt = alt || "";
       overlay.hidden = false;
@@ -130,6 +136,12 @@
     };
 
     document.title = `${c.title} · ${c.areaLabel} · За Комфортом`;
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.href = `${PUBLIC_SITE.replace(/\/$/, "")}/case.html?id=${encodeURIComponent(c.id)}`;
+    }
+
     setMetaContent('meta[name="description"]', c.summary || "");
     setMetaContent('meta[property="og:title"]', `${c.title} · ${c.areaLabel}`);
     setMetaContent('meta[property="og:description"]', c.summary || "");
@@ -143,9 +155,6 @@
     setMetaContent("meta[name=\"twitter:image\"]", absPublicUrl(c.cover));
 
     const videoHtml = c.video ? renderVideo(c.video) : "";
-    const budgetHtml = c.budgetLabel
-      ? `<p><strong>Стоимость ремонта:</strong> ${escapeHtml(c.budgetLabel)}</p>`
-      : "";
     const workListHtml = c.workList?.length
       ? `<ul class="list-check">${c.workList.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
       : `<p>Состав работ уточняется под конкретный объект.</p>`;
@@ -182,7 +191,7 @@
 
     root.innerHTML = `
       <div class="case-hero">
-        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" />
+        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" fetchpriority="high" decoding="async" />
         <div class="case-hero__content container">
           <h1>${escapeHtml(c.title)}</h1>
           <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
@@ -198,7 +207,6 @@
           <h2>Паспорт объекта</h2>
           <p><strong>Площадь:</strong> ${escapeHtml(c.areaLabel)} · <strong>Тип:</strong> ${escapeHtml(c.roomsLabel || "квартира")} · <strong>Формат:</strong> ${escapeHtml(c.format)} · <strong>Сегмент:</strong> ${escapeHtml(c.segment)}</p>
           ${c.address ? `<p><strong>Адрес:</strong> ${escapeHtml(c.address)}</p>` : ""}
-          ${budgetHtml}
         </section>
 
         <section class="section">
