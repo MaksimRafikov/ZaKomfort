@@ -902,16 +902,48 @@ const CASES = [
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-14.png",
-        "alt": "После ремонта",
-        "caption": ""
-      }
-    ],
-    "video": {
-      "label": "Видео с комментариями эксперта",
-      "embedUrl": null,
-      "externalUrl": null,
-      "fileUrl": "assets/kvartal-entuziastov/expert-overview.mp4",
+      "src": "assets/kvartal-entuziastov/after-14.png",
+      "alt": "После ремонта",
+      "caption": ""
+    }
+  ],
+  "beforeGallery": [
+    {
+      "src": "assets/kvartal-entuziastov/before-1.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/kvartal-entuziastov/before-2.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/kvartal-entuziastov/before-3.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/kvartal-entuziastov/before-4.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/kvartal-entuziastov/before-5.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/kvartal-entuziastov/before-6.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    }
+  ],
+  "video": {
+    "label": "Видео с комментариями эксперта",
+    "embedUrl": null,
+    "externalUrl": null,
+    "fileUrl": "assets/kvartal-entuziastov/expert-overview.mp4",
       "poster": "assets/kvartal-entuziastov/after-1.png",
       "note": ""
     },
@@ -1050,16 +1082,33 @@ const CASES = [
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-13.png",
-        "alt": "После ремонта",
-        "caption": ""
-      }
-    ],
-    "video": {
-      "label": "Видео с комментариями эксперта",
-      "embedUrl": null,
-      "externalUrl": null,
-      "fileUrl": "assets/tau-house-2/expert-overview.mp4",
+      "src": "assets/tau-house-2/after-13.png",
+      "alt": "После ремонта",
+      "caption": ""
+    }
+  ],
+  "beforeGallery": [
+    {
+      "src": "assets/tau-house-2/before-1.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/tau-house-2/before-2.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/tau-house-2/before-3.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    }
+  ],
+  "video": {
+    "label": "Видео с комментариями эксперта",
+    "embedUrl": null,
+    "externalUrl": null,
+    "fileUrl": "assets/tau-house-2/expert-overview.mp4",
       "poster": "assets/tau-house-2/after-1.png",
       "note": ""
     },
