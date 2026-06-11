@@ -572,6 +572,23 @@ const CASES = [
       "caption": "Гостиная"
     }
   ],
+  "beforeGallery": [
+    {
+      "src": "assets/novaland/before-1.jpg",
+      "alt": "Студия до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/novaland/before-2.jpg",
+      "alt": "Студия до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/novaland/before-3.jpg",
+      "alt": "Студия до ремонта",
+      "caption": "До ремонта"
+    }
+  ],
   "video": {
     "label": "Видео с комментариями эксперта",
     "embedUrl": null,
@@ -698,16 +715,48 @@ const CASES = [
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-11.png",
-        "alt": "После ремонта",
-        "caption": ""
-      }
-    ],
-    "video": {
-      "label": "Видео с комментариями эксперта",
-      "embedUrl": null,
-      "externalUrl": null,
-      "fileUrl": "assets/trilogiya-120/expert-overview.mp4",
+      "src": "assets/trilogiya-120/after-11.png",
+      "alt": "После ремонта",
+      "caption": ""
+    }
+  ],
+  "beforeGallery": [
+    {
+      "src": "assets/trilogiya-120/before-1.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/trilogiya-120/before-2.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/trilogiya-120/before-3.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/trilogiya-120/before-4.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/trilogiya-120/before-5.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    },
+    {
+      "src": "assets/trilogiya-120/before-6.jpg",
+      "alt": "Квартира до ремонта",
+      "caption": "До ремонта"
+    }
+  ],
+  "video": {
+    "label": "Видео с комментариями эксперта",
+    "embedUrl": null,
+    "externalUrl": null,
+    "fileUrl": "assets/trilogiya-120/expert-overview.mp4",
       "poster": "assets/trilogiya-120/after-1.png",
       "note": ""
     },
@@ -725,14 +774,16 @@ const CASES = [
     "id": "kvartal-entuziastov",
     "title": "ЖК Квартал Энтузиастов",
     "address": "Уфа, ул. Рудольфа Нуреева, 1",
-    "areaSqm": null,
-    "areaLabel": "площадь уточняется",
-    "roomsLabel": "квартира",
+    "areaSqm": 102.6,
+    "areaLabel": "102,6 м²",
+    "roomsLabel": "3-комнатная квартира",
     "format": "Дизайн + ремонт под ключ",
     "style": "Современный интерьер с акцентами",
     "segment": "Комфорт",
     "complex": "ЖК Квартал Энтузиастов",
     "tags": [
+      "102,6 м²",
+      "3-комнатная",
       "акцентные стены",
       "кухня-гостиная",
       "панорамные окна",
@@ -741,7 +792,11 @@ const CASES = [
     "rooms": [
       "кухня-гостиная",
       "спальня",
-      "санузел"
+      "спальня 2",
+      "санузел",
+      "ванная",
+      "лоджия",
+      "кладовая"
     ],
     "hasProjectRender": false,
     "hasVideo": true,
@@ -775,6 +830,11 @@ const CASES = [
       "Нужна рабочая зона и комфортные спальни — и один подрядчик от проекта до ключей",
       "Уже сравниваете студии и хотите опереться на сданную квартиру, а не на презентацию"
     ],
+    "plan": {
+      "src": "assets/kvartal-entuziastov/plan.png",
+      "alt": "Планировка квартиры в ЖК Квартал Энтузиастов",
+      "caption": "План квартиры, 102,6 м²"
+    },
     "gallery": [
       {
         "src": "assets/kvartal-entuziastov/after-1.png",
