@@ -94,12 +94,15 @@ def main() -> int:
                 [
                     f"# {args.title}",
                     "",
-                    "Put production-ready media for this case in this folder.",
+                    "Import photos via process-assets.py (watermark + web resize).",
+                    "",
+                    "Example:",
+                    f"python scripts/process-assets.py --case {case_id} --from inbox/<slug>/01-photos-after --prefix after",
                     "",
                     "Recommended files:",
-                    "- `after-1.png` ... `after-N.png`",
+                    "- `after-1.jpg` ... `after-N.jpg`",
                     "- `expert-overview.mp4`",
-                    "- optional: `plan.png`, `before-1.png`, `compare-1.png`",
+                    "- optional: `plan.png`, `before-1.jpg`, `compare-1.jpg`",
                 ]
             )
             + "\n",
@@ -111,7 +114,9 @@ def main() -> int:
     print(json.dumps(template, ensure_ascii=False, indent=2))
     print("CASE_TEMPLATE_END")
     print(f"Assets folder ready: {case_assets.relative_to(ROOT)}")
-    print("Next: copy media -> paste template object into js/data.js -> run python scripts/validate-cases.py")
+    print(
+        "Next: process-assets.py --from inbox/... -> paste template into js/data.js -> validate-cases.py"
+    )
     return 0
 
 

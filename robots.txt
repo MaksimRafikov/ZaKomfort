@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Allow: /assets/brand/
+
+Disallow: /assets/*/after-
+Disallow: /assets/*/before-
+Disallow: /assets/*/compare-
+Disallow: /assets/*/plan.
+Disallow: /assets/*/expert-overview.

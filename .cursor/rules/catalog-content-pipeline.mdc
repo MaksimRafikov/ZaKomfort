@@ -13,7 +13,9 @@ alwaysApply: true
 
 ## Case Onboarding Steps
 
-- Create/update `assets/<case-id>/` with optimized media.
+- Import inbox photos with `python scripts/process-assets.py --case <id> --from inbox/<slug>/...` (watermark + web resize).
+- Or protect files already in `assets/<case-id>/` with `python scripts/process-assets.py --case <id>`.
+- Create/update `assets/<case-id>/` with optimized, watermarked media only.
 - Add one `CASES` entry in `js/data.js` with matching `id` and `cover`.
 - Fill `gallery` paths from `assets/<case-id>/...` and verify the files exist.
 - If `hasVideo` is true, provide valid `video.fileUrl` and `video.poster`.

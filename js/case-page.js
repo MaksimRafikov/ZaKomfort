@@ -18,7 +18,7 @@
       return `<div class="video-block"><iframe title="${escapeHtml(video.label)}" src="${escapeHtml(video.embedUrl)}" allowfullscreen loading="lazy"></iframe></div>`;
     }
     if (video.fileUrl) {
-      return `<div class="video-block"><video controls playsinline preload="metadata" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="${videoMime(video.fileUrl)}" />Ваш браузер не поддерживает видео.</video></div>`;
+      return `<div class="video-block media-guard"><video controls controlsList="nodownload noplaybackrate" disablePictureInPicture playsinline preload="metadata" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="${videoMime(video.fileUrl)}" />Ваш браузер не поддерживает видео.</video></div>`;
     }
     let inner = "";
     if (video.externalUrl) {
@@ -73,6 +73,9 @@
       imgEl.alt = alt || "";
       overlay.hidden = false;
       document.body.style.overflow = "hidden";
+      if (window.ZKMediaGuard) {
+        window.ZKMediaGuard.protect(overlay);
+      }
       closeBtn.focus();
     };
     overlay._closeLightbox = close;
@@ -83,7 +86,12 @@
     const overlay = ensureCaseLightbox();
 
     container.addEventListener("click", (e) => {
-      const img = e.target.closest("img");
+      let img = e.target.closest("img");
+      const shield = e.target.closest(".media-guard__shield, .case-hero__shield");
+      if (shield) {
+        const figure = shield.closest("figure");
+        img = figure ? figure.querySelector("img") : shield.parentElement.querySelector(".case-hero__img");
+      }
       if (!img || !container.contains(img)) return;
       const src = img.currentSrc || img.src;
       if (!src) return;
@@ -268,5 +276,8 @@
     `;
 
     bindCaseImageLightbox(root);
+    if (window.ZKMediaGuard) {
+      window.ZKMediaGuard.protect(root);
+    }
   });
 })();

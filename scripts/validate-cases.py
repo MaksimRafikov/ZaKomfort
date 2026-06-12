@@ -7,7 +7,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS_DIR = ROOT / "scripts"
 DATA_FILE = ROOT / "js" / "data.js"
+IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp"}
 
 
 def read_text(path: Path) -> str:
@@ -83,6 +85,30 @@ def validate() -> tuple[list[str], list[str]]:
             warnings.append(
                 "Asset folders without matching case id: " + ", ".join(unknown_folders)
             )
+
+    unprotected_images = []
+    if asset_paths:
+        sys.path.insert(0, str(SCRIPTS_DIR))
+        try:
+            from media_protect import is_protected_image, should_skip_assets_path
+
+            for p in sorted(set(asset_paths)):
+                full = ROOT / p
+                if full.suffix.lower() not in IMAGE_SUFFIXES or not full.exists():
+                    continue
+                if should_skip_assets_path(full, ROOT / "assets"):
+                    continue
+                if not is_protected_image(full):
+                    unprotected_images.append(p)
+        except ImportError:
+            pass
+
+    if unprotected_images:
+        warnings.append(
+            "Unprotected images (run process-assets.py): "
+            + ", ".join(unprotected_images[:8])
+            + (" ..." if len(unprotected_images) > 8 else "")
+        )
 
     return errors, warnings
 

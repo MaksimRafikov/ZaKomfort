@@ -643,6 +643,7 @@ a.card {
 }
 
 .gallery figure {
+  position: relative;
   margin: 0;
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -662,6 +663,54 @@ a.card {
   padding: 0.5rem 0.75rem;
   font-size: 0.8rem;
   color: var(--muted);
+}
+
+.media-guard img,
+.media-guard video,
+.case-hero__img,
+.lightbox__img {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.media-guard__shield,
+.case-hero__shield {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: zoom-in;
+  background: transparent;
+}
+
+.gallery .media-guard__shield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  aspect-ratio: 4 / 3;
+}
+
+.card__media {
+  position: relative;
+}
+
+.card__media .media-guard__shield {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.case-hero__shield {
+  z-index: 1;
+}
+
+.case-hero__content {
+  z-index: 2;
+}
+
+#case-lightbox .lightbox__img {
+  pointer-events: none;
 }
 
 .video-block {

@@ -117,6 +117,9 @@
       .join("");
 
     bindCardNavigation(grid);
+    if (window.ZKMediaGuard) {
+      window.ZKMediaGuard.protect(grid);
+    }
   }
 
   function escapeHtml(s) {
