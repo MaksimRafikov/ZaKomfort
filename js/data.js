@@ -26,7 +26,7 @@ const CASES = [
   ],
   "hasProjectRender": false,
   "hasVideo": true,
-  "cover": "assets/na-uspenskoy/after-1.png",
+  "cover": "assets/na-uspenskoy/after-1.jpg",
   "summary": "Трёхкомнатная квартира 91,7 м² в ЖК На Успенской: дизайн-проект и ремонт под ключ в стиле современной классики — молдинги, золотой свет, кухня с фиолетовым акцентом и детская с картой мира.",
   "task": "Заказчик хотел светлую семейную квартиру с ощущением «дорогого, но не перегруженного» интерьера: тёплые бежевые стены, лепнина и многоуровневый свет в гостиной, выразительная кухня, уютная спальня с фотообоями и отдельная детская с характером. Важно было заранее согласовать отделку, встроенную мебель и освещение по проекту и получить ремонт под ключ без сюрпризов на финале.",
   "objectDescription": "На площади 91,7 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной и коридоре — декоративные молдинги, люстры-кольца и бра; на кухне — двухцветные фасады, мраморный фартук и кольцевые светильники; в спальне — рифлёные панели, фотообои и хрустальная люстра; в детской — синие стены и фотопанно с картой мира; в санузле — мраморная плитка, встроенная прачечная и шкафы до потолка. Квартира передана в состоянии, готовом к проживанию.",
@@ -64,52 +64,52 @@ const CASES = [
   ],
   "gallery": [
     {
-      "src": "assets/na-uspenskoy/after-1.png",
+      "src": "assets/na-uspenskoy/after-1.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-2.png",
+      "src": "assets/na-uspenskoy/after-2.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-3.png",
+      "src": "assets/na-uspenskoy/after-3.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-4.png",
+      "src": "assets/na-uspenskoy/after-4.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-5.png",
+      "src": "assets/na-uspenskoy/after-5.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-6.png",
+      "src": "assets/na-uspenskoy/after-6.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/na-uspenskoy/after-7.png",
+      "src": "assets/na-uspenskoy/after-7.jpg",
       "alt": "После ремонта: рифлёные панели и свет",
       "caption": "Детали отделки"
     },
     {
-      "src": "assets/na-uspenskoy/after-8.png",
+      "src": "assets/na-uspenskoy/after-8.jpg",
       "alt": "После ремонта: гостиная и коридор",
       "caption": "Гостиная и коридор"
     },
     {
-      "src": "assets/na-uspenskoy/after-9.png",
+      "src": "assets/na-uspenskoy/after-9.jpg",
       "alt": "После ремонта: детская",
       "caption": "Детская"
     },
     {
-      "src": "assets/na-uspenskoy/after-10.png",
+      "src": "assets/na-uspenskoy/after-10.jpg",
       "alt": "После ремонта: санузел с прачечной",
       "caption": "Санузел с прачечной"
     }
@@ -136,7 +136,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/na-uspenskoy/expert-overview.mp4",
-    "poster": "assets/na-uspenskoy/after-1.png",
+    "poster": "assets/na-uspenskoy/after-1.jpg",
     "note": ""
   },
   "cta": {
