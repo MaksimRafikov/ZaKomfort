@@ -1,0 +1,20 @@
+---
+description: Data and JavaScript rules for catalog filtering and rendering
+globs: js/*.js
+alwaysApply: false
+---
+
+# Catalog Data and JS Rules
+
+- Keep `js/data.js` as the single source of truth for catalog entities.
+- Define stable object shape for each item (id, title, price model, status, tags, media).
+- Never depend on display order only; use explicit sort keys where needed.
+- Keep filtering deterministic and composable (search + category + status + sort).
+- Preserve URL/share state for filters when practical.
+- Handle empty, error, and loading states explicitly in rendering logic.
+
+## Safety and Maintainability
+
+- Do not mutate source arrays in-place during filtering/sorting.
+- Escape or sanitize user-facing dynamic HTML content before injection.
+- Keep page-specific logic isolated (`catalog.js` vs `case-page.js`).

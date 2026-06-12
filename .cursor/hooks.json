@@ -1,0 +1,77 @@
+{
+
+  "version": 1,
+
+  "hooks": {
+
+    "beforeShellExecution": [
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/safety-shell.ps1"
+
+      }
+
+    ],
+
+    "beforeReadFile": [
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/guard-secrets-read.ps1"
+
+      }
+
+    ],
+
+    "beforeSubmitPrompt": [
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/guard-secrets-prompt.ps1"
+
+      }
+
+    ],
+
+    "postToolUse": [
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/edit-quality.ps1",
+
+        "matcher": "Write|TabWrite"
+
+      },
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/ui-reminder.ps1",
+
+        "matcher": "Write|TabWrite"
+
+      },
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/pipeline-reminder.ps1",
+
+        "matcher": "Write|TabWrite"
+
+      },
+
+      {
+
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/validate-cases.ps1",
+
+        "matcher": "Write|TabWrite"
+
+      }
+
+    ]
+
+  }
+
+}
+
+

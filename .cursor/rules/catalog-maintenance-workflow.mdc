@@ -1,0 +1,13 @@
+---
+description: Recurring workflow for safe catalog updates
+alwaysApply: true
+---
+
+# Recurring Update Workflow
+
+- For each new case, scaffold first with `python scripts/scaffold-case.py --title ...`.
+- Keep source media in `inbox`, production links only from `assets`.
+- Update `js/data.js` with one focused object change per case.
+- Run `python scripts/validate-cases.py` after each content update.
+- If validation fails, fix data paths and schema consistency before further edits.
+- Avoid mass refactors in `js/data.js` when only one case is being updated.

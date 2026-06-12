@@ -1,0 +1,22 @@
+---
+description: Rules for main catalog page structure and UX
+globs: index.html
+alwaysApply: false
+---
+
+# Main Catalog Page Rules
+
+- Keep the first screen conversion-focused: clear title, short value proposition, visible primary CTA.
+- Place filter/sort controls above the card grid and keep them usable on mobile.
+- Keep category chips and controls keyboard-accessible with visible focus states.
+- Show result counts and active filters so users understand what they see.
+- Include designed empty state for no-results filtering.
+- Keep card CTA labels action-oriented and consistent.
+
+## Section Order
+
+- Hero/value proposition.
+- Filters and quick categories.
+- Catalog grid.
+- Trust/proof section.
+- FAQ and final CTA.

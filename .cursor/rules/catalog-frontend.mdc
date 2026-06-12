@@ -1,0 +1,22 @@
+---
+description: Frontend implementation conventions for catalog pages
+globs: **/*.{html,css,scss,js,jsx,ts,tsx,vue,svelte}
+alwaysApply: false
+---
+
+# Frontend Conventions
+
+- Reuse design tokens for colors, spacing, radius, shadows, and typography.
+- Avoid hardcoded one-off values unless there is a documented exception.
+- Keep sections modular: hero, categories, product grid, advantages, FAQ, footer.
+- Cards must preserve predictable structure: media, title, price/value, status, CTA.
+- Favor stable hover effects (color, border, shadow); avoid layout-shifting transforms.
+- Lazy-load heavy media and virtualize long lists where relevant.
+- Use meaningful alt text and keep decorative images empty-alt.
+- Keep forms keyboard-friendly with labels, errors, and focus management.
+
+## Performance Baseline
+
+- Avoid large client bundles on catalog landing pages.
+- Optimize images and serve responsive sizes.
+- Prevent unnecessary rerenders in filter/sort interactions.

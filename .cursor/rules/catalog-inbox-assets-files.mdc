@@ -1,0 +1,19 @@
+---
+description: File-level conventions for inbox and assets folders
+globs: "{inbox,assets}/**/*"
+alwaysApply: false
+---
+
+# Inbox and Assets File Conventions
+
+- Keep `inbox` as intake storage: drafts, source photos, raw videos, plans, and notes.
+- Keep `assets` as production-ready media only.
+- Preserve readable project folder names and avoid ad-hoc one-off folder variants.
+- Use lowercase ASCII file slugs for web-facing assets whenever feasible.
+- Prefer `.mp4` for browser video compatibility unless there is a reason otherwise.
+
+## Before Publishing
+
+- Verify that every path used in `js/data.js` exists in `assets`.
+- Remove duplicates or orphaned temporary files from `assets`.
+- Keep hero/cover image first in sequence and suitable for previews.

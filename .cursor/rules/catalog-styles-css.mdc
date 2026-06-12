@@ -1,0 +1,20 @@
+---
+description: CSS standards for catalog visual consistency and responsiveness
+globs: css/styles.css
+alwaysApply: false
+---
+
+# Catalog CSS Rules
+
+- Use token-like CSS variables for colors, spacing, radius, shadows, and transitions.
+- Prefer reusable utility-like class patterns over one-off deeply nested selectors.
+- Keep motion gentle and consistent (150-300ms), avoid dramatic scale effects.
+- Validate text contrast in both light and dark modes.
+- Ensure sticky/fixed elements never overlap critical content on small screens.
+- Keep breakpoints predictable and aligned with project targets: 375, 768, 1024, 1440.
+
+## Naming and Specificity
+
+- Use readable class names based on block purpose, not visual coincidence.
+- Avoid `!important` unless it is a controlled, documented exception.
+- Keep selector specificity low to simplify future extension.

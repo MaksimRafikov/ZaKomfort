@@ -1,0 +1,22 @@
+---
+description: Core standards for Za Komfortom catalog UI and UX
+alwaysApply: true
+---
+
+# Catalog Core Standards
+
+- Build pages for fast scanning: clear headings, short paragraphs, visible CTAs.
+- Keep layouts consistent across sections: same container width, spacing scale, and card rhythm.
+- Use component-first structure: extract repeated blocks instead of copying markup.
+- Never use emoji as interface icons; use one SVG icon set consistently.
+- All interactive elements must have visible hover and focus states.
+- Maintain light and dark mode readability with strong text and border contrast.
+- Prefer accessible semantics first (`button`, `nav`, `main`, `section`, form labels).
+- Keep motion subtle (150-300ms) and respect reduced-motion preferences.
+
+## Delivery Checklist
+
+- Responsive at 375, 768, 1024, and 1440 widths.
+- No horizontal scroll on mobile.
+- Primary action is obvious in first screen.
+- Empty/loading/error states are designed, not left implicit.

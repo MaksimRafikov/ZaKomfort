@@ -1,0 +1,20 @@
+---
+description: Schema and quality constraints for CASES data model
+globs: js/data.js
+alwaysApply: false
+---
+
+# CASES Data Schema Rules
+
+- Preserve a stable minimum schema for each case: `id`, `title`, `address`, `format`, `style`, `segment`, `complex`, `cover`, `summary`, `gallery`, `cta`.
+- Keep `id` unique and URL-safe (lowercase kebab-case).
+- Keep booleans (`hasVideo`, `hasProjectRender`) aligned with actual payload presence.
+- Ensure `cover` equals an existing image in `assets/<id>/`.
+- Ensure each `gallery` item has `src` and meaningful `alt`.
+- Keep link fields valid and absolute (`https://...`) for messenger and social links.
+
+## Consistency Guardrails
+
+- Do not mix unrelated object styles inside one file unless required by runtime.
+- Avoid trailing placeholder copy before release.
+- Prefer additive updates over broad rewrites of existing case objects.

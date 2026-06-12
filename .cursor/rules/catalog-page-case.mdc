@@ -1,0 +1,20 @@
+---
+description: Rules for case page storytelling and media blocks
+globs: case.html
+alwaysApply: false
+---
+
+# Case Page Rules
+
+- Start each case with concise context: object type, problem, outcome.
+- Keep before/after media comparison prominent and easy to understand.
+- Place measurable results near the top (time saved, budget impact, quality gain).
+- Use clear anchors for long pages (overview, process, media, reviews, CTA).
+- Keep expert video blocks optional and non-blocking for page performance.
+- End with strong next step CTA to inquiry/contact.
+
+## Media Quality
+
+- Preserve consistent aspect ratios in galleries.
+- Provide alt text that describes scene context, not only filenames.
+- Avoid autoplay with sound and avoid layout jumps while media loads.

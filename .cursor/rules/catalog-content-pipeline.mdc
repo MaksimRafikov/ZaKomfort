@@ -1,0 +1,20 @@
+---
+description: Content pipeline from inbox to assets and data.js
+alwaysApply: true
+---
+
+# Inbox -> Assets -> Data Pipeline
+
+- Source materials live in `inbox/<project-slug>/` and stay immutable as raw input.
+- Public website files must be copied into `assets/<case-id>/` before linking in `js/data.js`.
+- Use one canonical slug per case across folders and data id (`kondi-nova`, `green-park-93`).
+- Keep naming stable for media sequences: `after-1`, `after-2`, `before-1`, `compare-1`, `plan`.
+- Never reference `inbox` paths from UI code or from `js/data.js`.
+
+## Case Onboarding Steps
+
+- Create/update `assets/<case-id>/` with optimized media.
+- Add one `CASES` entry in `js/data.js` with matching `id` and `cover`.
+- Fill `gallery` paths from `assets/<case-id>/...` and verify the files exist.
+- If `hasVideo` is true, provide valid `video.fileUrl` and `video.poster`.
+- Keep CTA object complete and consistent with other cases.

@@ -1,0 +1,29 @@
+---
+description: "Security for the static catalog: secrets, paths, links, and safe commits"
+alwaysApply: true
+---
+# Catalog Security
+
+## Secrets and Sensitive Data
+
+- Never hardcode API keys, tokens, or passwords in `js/data.js`, HTML, or scripts.
+- Never paste secrets into agent prompts or commit messages.
+- Keep `.env`, keys, and credentials out of the public site and out of git.
+- If a secret was exposed, rotate it before continuing.
+
+## Content Pipeline Safety
+
+- Public pages and `js/data.js` must reference only `assets/<case-id>/...`, never `inbox/`.
+- Do not ship raw client uploads or private filenames without review.
+- Verify CTA links (`tel:`, `https://`) before publishing a case.
+
+## Shell and Git Safety
+
+- Do not bypass git hooks with `--no-verify` or `core.hooksPath` overrides.
+- Ask for confirmation before destructive commands (`git reset --hard`, `rm -rf`, forced deletes).
+- Do not commit `.cursor/skills/**/__pycache__` or other build artifacts.
+
+## Before Publishing
+
+- Run `python scripts/validate-cases.py` after data or asset changes.
+- Spot-check case pages for broken media, leaked internal paths, and wrong contact links.

@@ -1,0 +1,20 @@
+---
+description: Content and conversion rules for product/service catalog
+alwaysApply: true
+---
+
+# Catalog Content Rules
+
+- Write benefits-first copy: explain value before technical details.
+- Keep product/service names concise and unique.
+- Display price or pricing model near the main CTA.
+- Show trust markers close to conversion points (reviews, guarantees, terms).
+- Use clear stock/availability/service-status labels.
+- Keep filter labels user-facing (not internal naming).
+- For each card, define one primary CTA and optional secondary action.
+
+## Conversion Requirements
+
+- Every page has a clear primary next step.
+- Avoid dead-end sections without links or actions.
+- Keep legal and delivery/payment details easy to find.
