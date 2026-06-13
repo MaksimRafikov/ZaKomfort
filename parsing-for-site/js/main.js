@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  var THEME_KEY = "new-project-theme";
+  var THEME_KEY = "parsing-for-site-theme";
   var root = document.documentElement;
   var toggle = document.getElementById("theme-toggle");
 
