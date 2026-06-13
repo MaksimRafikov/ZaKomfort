@@ -132,33 +132,49 @@ def city_id(u: str):
     return (m.group(1), m.group(2)) if m else None
 
 
-def load_cdx_latest():
-    """Строит индексы Wayback по самому свежему снимку 200.
+def load_cdx_lists():
+    """Строит индексы Wayback со ВСЕМИ снимками 200 (для отката к более старым).
 
-    Возвращает (by_url, by_cityid):
-      by_url    : {норм_url -> (timestamp, original)}
-      by_cityid : {(город, id) -> (timestamp, original)}  — устойчив к смене slug
+    Возвращает (by_url, by_cityid), где значения — списки (timestamp, original),
+    отсортированные от свежих к старым. Перебор от свежих к старым нужен, потому
+    что часть недавних снимков сама является анти-бот заглушкой; в этом случае
+    берётся ближайший рабочий снимок постарше.
     """
     if not os.path.exists(CDX_FILE):
         sys.exit(f"Нет {CDX_FILE}. Сначала запустите с --build-cdx")
-    by_url: dict[str, tuple[str, str]] = {}
-    by_cityid: dict[tuple[str, str], tuple[str, str]] = {}
+    by_url: dict[str, list[tuple[str, str]]] = {}
+    by_cityid: dict[tuple[str, str], list[tuple[str, str]]] = {}
     with open(CDX_FILE, encoding="utf-8", errors="replace") as f:
         for line in f:
             parts = line.split()
             if len(parts) < 2:
                 continue
             original, ts = parts[0], parts[1]
-            key = norm(original)
-            cur = by_url.get(key)
-            if cur is None or ts > cur[0]:
-                by_url[key] = (ts, original)
+            by_url.setdefault(norm(original), []).append((ts, original))
             ci = city_id(original)
             if ci:
-                cur2 = by_cityid.get(ci)
-                if cur2 is None or ts > cur2[0]:
-                    by_cityid[ci] = (ts, original)
+                by_cityid.setdefault(ci, []).append((ts, original))
+    for d in (by_url, by_cityid):
+        for k, v in d.items():
+            d[k] = sorted(set(v), key=lambda x: x[0], reverse=True)
     return by_url, by_cityid
+
+
+def candidates_for(url, by_url, by_cityid, k=8):
+    """Список снимков-кандидатов (свежие первыми, без дублей по timestamp)."""
+    merged = list(by_url.get(norm(url), []))
+    ci = city_id(url)
+    if ci:
+        merged += by_cityid.get(ci, [])
+    seen, out = set(), []
+    for ts, orig in sorted(merged, key=lambda x: x[0], reverse=True):
+        if ts in seen:
+            continue
+        seen.add(ts)
+        out.append((ts, orig))
+        if len(out) >= k:
+            break
+    return out
 
 
 # --------------------------------------------------------------------------- #
@@ -207,7 +223,8 @@ def parse_club(html: str, source_url: str) -> dict | None:
     links = list(dict.fromkeys(links))
 
     city_raw = _clean_div(soup.find("div", class_="ciCities"))
-    city = city_raw.split("/")[0].strip() if city_raw else ""
+    # «Город / Регион» или «Город » Округ » Район» — берём только город
+    city = re.split(r"[/»]", city_raw)[0].strip() if city_raw else ""
     address = _clean_div(soup.find("div", class_="ciAdress"))
     phone = _clean_div(soup.find("div", class_="ciPhone"))
     worktime = _clean_div(soup.find("div", class_="ciWorkTime"))
@@ -239,13 +256,17 @@ def load_done(path: str) -> set[str]:
     return done
 
 
-def fetch_and_parse(session, url, ts, original):
-    snap = f"https://web.archive.org/web/{ts}id_/{original}"
-    html = http_get(session, snap)
-    if not html:
-        return url, None, ts
-    rec = parse_club(html, url)
-    return url, rec, ts
+def fetch_and_parse(session, url, candidates):
+    """Перебирает снимки от свежих к старым, пока не найдёт страницу с данными."""
+    for ts, original in candidates:
+        snap = f"https://web.archive.org/web/{ts}id_/{original}"
+        html = http_get(session, snap)
+        if not html:
+            continue
+        rec = parse_club(html, url)
+        if rec:
+            return url, rec, ts
+    return url, None, candidates[0][0] if candidates else ""
 
 
 def run(limit=None, city=None, workers=6):
@@ -255,19 +276,15 @@ def run(limit=None, city=None, workers=6):
         urls = [u for u in urls if f"/{city}/" in u]
     log(f"Карточек клубов в sitemap: {len(urls)}")
 
-    by_url, by_cityid = load_cdx_latest()
+    by_url, by_cityid = load_cdx_lists()
     log(f"URL в CDX-индексе Wayback: {len(by_url)} | клубов по (город,id): {len(by_cityid)}")
 
     tasks = []
     missing = 0
     for u in urls:
-        snap = by_url.get(norm(u))
-        if not snap:
-            ci = city_id(u)
-            if ci:
-                snap = by_cityid.get(ci)
-        if snap:
-            tasks.append((u, snap[0], snap[1]))
+        cands = candidates_for(u, by_url, by_cityid)
+        if cands:
+            tasks.append((u, cands))
         else:
             missing += 1
     log(f"Есть снимок: {len(tasks)} | нет снимка: {missing}")
@@ -277,6 +294,8 @@ def run(limit=None, city=None, workers=6):
 
     done = load_done(OUT_CSV)
     tasks = [t for t in tasks if t[0] not in done]
+    if not tasks:
+        log("Нечего обрабатывать (всё уже собрано).")
     log(f"К обработке (с учётом докачки): {len(tasks)}")
 
     new_file = not os.path.exists(OUT_CSV)
@@ -290,8 +309,8 @@ def run(limit=None, city=None, workers=6):
     t0 = time.time()
     with requests.Session() as session:
         with ThreadPoolExecutor(max_workers=workers) as ex:
-            futs = {ex.submit(fetch_and_parse, session, u, ts, orig): u
-                    for (u, ts, orig) in tasks}
+            futs = {ex.submit(fetch_and_parse, session, u, cands): u
+                    for (u, cands) in tasks}
             for i, fut in enumerate(as_completed(futs), 1):
                 url, rec, ts = fut.result()
                 if rec:
