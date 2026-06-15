@@ -97,6 +97,7 @@ parsing-for-site/
 │   ├── sportgyms_clubs.xlsx  # результат (XLSX: фильтры + листы Города/Типы/Сети)
 │   ├── by_city.zip           # разбивка по городам (по файлу на город)
 │   ├── demo_sample.csv       # бесплатный демо-образец (60 строк)
+│   ├── demo_sample.xlsx      # демо в Excel: титульный лист, фильтры, кликабельные ссылки
 │   ├── cdx_all.txt           # кэш индекса Wayback (gitignored)
 │   ├── sitemap.xml           # кэш sitemap (gitignored)
 │   └── emails*.csv           # кэш собранных e-mail (gitignored)
