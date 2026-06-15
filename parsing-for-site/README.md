@@ -68,17 +68,38 @@ python3 parse_sportgyms.py --xlsx-only      # пересобрать XLSX из �
 4. Архивная страница скачивается «как есть» (суффикс `id_`, без перезаписи ссылок)
    и парсится.
 
+## Обогащение и продуктовые файлы
+
+```bash
+cd scraper
+python3 harvest_emails.py     # собрать e-mail с сайтов клубов -> data/emails.csv
+python3 enrich.py             # добавить «Бренд/сеть», «Тип объекта», подмешать e-mail
+python3 build_products.py     # XLSX с фильтрами/сводками, разбивка по городам, демо
+```
+
+Итоговые поля: `Название клуба, Бренд/сеть, Тип объекта, Город, Адрес, Телефон,
+E-mail, Режим работы, Ссылки на сайт или соц. сети, URL источника, Дата снимка`.
+
+Коммерческое описание (витрина) — `ОПИСАНИЕ_ДЛЯ_ПРОДАЖИ.md`.
+
 ## Структура
 
 ```
 parsing-for-site/
 ├── scraper/
-│   ├── parse_sportgyms.py    # парсер
+│   ├── parse_sportgyms.py    # парсер (Wayback + bs4)
+│   ├── harvest_emails.py     # сбор e-mail с сайтов клубов
+│   ├── enrich.py             # бренд/сеть, тип объекта, подмешивание e-mail
+│   ├── build_products.py     # XLSX, разбивка по городам, демо
 │   └── requirements.txt
 ├── data/
 │   ├── sportgyms_clubs.csv   # результат (CSV)
-│   ├── sportgyms_clubs.xlsx  # результат (XLSX)
+│   ├── sportgyms_clubs.xlsx  # результат (XLSX: фильтры + листы Города/Типы/Сети)
+│   ├── by_city.zip           # разбивка по городам (по файлу на город)
+│   ├── demo_sample.csv       # бесплатный демо-образец (60 строк)
 │   ├── cdx_all.txt           # кэш индекса Wayback (gitignored)
-│   └── sitemap.xml           # кэш sitemap (gitignored)
+│   ├── sitemap.xml           # кэш sitemap (gitignored)
+│   └── emails*.csv           # кэш собранных e-mail (gitignored)
+├── ОПИСАНИЕ_ДЛЯ_ПРОДАЖИ.md   # витрина/описание продукта
 └── README.md
 ```
