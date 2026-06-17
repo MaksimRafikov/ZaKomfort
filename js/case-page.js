@@ -13,12 +13,43 @@
     return /\.mov$/i.test(url) ? "video/quicktime" : "video/mp4";
   }
 
+  function imgPerfAttrs({ lazy = true, highPriority = false } = {}) {
+    const attrs = ['decoding="async"'];
+    if (highPriority) {
+      attrs.push('fetchpriority="high"');
+    } else if (lazy) {
+      attrs.push('loading="lazy"', 'fetchpriority="low"');
+    }
+    return attrs.join(" ");
+  }
+
+  function preloadCoverImage(src) {
+    let link = document.getElementById("case-cover-preload");
+    if (!link) {
+      link = document.createElement("link");
+      link.id = "case-cover-preload";
+      link.rel = "preload";
+      link.as = "image";
+      document.head.appendChild(link);
+    }
+    link.href = src;
+  }
+
+  function renderGalleryImage(g, title, attrs) {
+    return `
+              <figure>
+                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || title)}" width="800" height="600" ${attrs} />
+                <figcaption>${escapeHtml(title)}</figcaption>
+              </figure>
+            `;
+  }
+
   function renderVideo(video) {
     if (video.embedUrl) {
       return `<div class="video-block"><iframe title="${escapeHtml(video.label)}" src="${escapeHtml(video.embedUrl)}" allowfullscreen loading="lazy"></iframe></div>`;
     }
     if (video.fileUrl) {
-      return `<div class="video-block media-guard"><video controls controlsList="nodownload noplaybackrate" disablePictureInPicture playsinline preload="metadata" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="${videoMime(video.fileUrl)}" />Ваш браузер не поддерживает видео.</video></div>`;
+      return `<div class="video-block media-guard"><video controls controlsList="nodownload noplaybackrate" disablePictureInPicture playsinline preload="none" poster="${escapeHtml(video.poster || "")}"><source src="${escapeHtml(video.fileUrl)}" type="${videoMime(video.fileUrl)}" />Ваш браузер не поддерживает видео.</video></div>`;
     }
     let inner = "";
     if (video.externalUrl) {
@@ -161,45 +192,33 @@
     setMetaContent("meta[name=\"twitter:title\"]", `${c.title} · ${c.areaLabel}`);
     setMetaContent("meta[name=\"twitter:description\"]", c.summary || "");
     setMetaContent("meta[name=\"twitter:image\"]", absPublicUrl(c.cover));
+    preloadCoverImage(c.cover);
 
+    const lazyImg = imgPerfAttrs({ lazy: true });
     const videoHtml = c.video ? renderVideo(c.video) : "";
     const workListHtml = c.workList?.length
       ? `<ul class="list-check">${c.workList.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
       : `<p>Состав работ уточняется под конкретный объект.</p>`;
     const planHtml = c.plan
-      ? `<div class="gallery"><figure><img src="${escapeHtml(c.plan.src)}" alt="${escapeHtml(c.plan.alt || "План объекта")}" width="1200" height="800" loading="lazy" /><figcaption>${escapeHtml(c.plan.caption || "")}</figcaption></figure></div>`
+      ? `<div class="gallery"><figure><img src="${escapeHtml(c.plan.src)}" alt="${escapeHtml(c.plan.alt || "План объекта")}" width="1200" height="800" ${lazyImg} /><figcaption>${escapeHtml(c.plan.caption || "")}</figcaption></figure></div>`
       : "<p>План объекта будет добавлен.</p>";
-    const photoCaption = escapeHtml(c.title);
+    const photoCaption = c.title;
 
     const beforeHtml = c.beforeGallery?.length
       ? `<div class="gallery">${c.beforeGallery
-          .map(
-            (g) => `
-              <figure>
-                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
-                <figcaption>${photoCaption}</figcaption>
-              </figure>
-            `
-          )
+          .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
           .join("")}</div>`
       : "<p>Фото до ремонта не добавлены.</p>";
     const compareHtml = c.compareGallery?.length
       ? `<div class="gallery">${c.compareGallery
-          .map(
-            (g) => `
-              <figure>
-                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt)}" width="800" height="600" loading="lazy" />
-                <figcaption>${photoCaption}</figcaption>
-              </figure>
-            `
-          )
+          .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
           .join("")}</div>`
       : "";
     const heroAction = `<a class="btn btn--ghost" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать похожий ремонт</a>`;
 
     root.innerHTML = `
       <div class="case-hero">
-        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" fetchpriority="high" decoding="async" />
+        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" ${imgPerfAttrs({ lazy: false, highPriority: true })} />
         <div class="case-hero__content container">
           <h1>${escapeHtml(c.title)}</h1>
           <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
@@ -244,14 +263,8 @@
           <h2>Галерея</h2>
           <div class="gallery">
             ${c.gallery
-              .map(
-                (g) => `
-              <figure>
-                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || c.title)}" width="800" height="600" loading="lazy" />
-                <figcaption>${photoCaption}</figcaption>
-              </figure>
-            `
-              )
+              .filter((g) => g.src !== c.cover)
+              .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
               .join("")}
           </div>
         </section>

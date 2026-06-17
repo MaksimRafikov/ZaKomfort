@@ -9,10 +9,11 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 PROTECTED_MARKER = "zk-protected-v1"
-MAX_WEB_DIMENSION = 1920
-JPEG_QUALITY = 85
+MAX_WEB_DIMENSION = 1440
+JPEG_QUALITY = 82
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp"}
 SKIP_DIRS = {"brand"}
+PHOTO_PREFIXES = ("after-", "before-", "compare-")
 
 WATERMARK_TILE = "zakomfortom.com"
 WATERMARK_BADGE = "За Комфортом"
@@ -30,6 +31,17 @@ def _font(size: int) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
         if path.exists():
             return ImageFont.truetype(str(path), size=size)
     return ImageFont.load_default()
+
+
+def is_photo_filename(name: str) -> bool:
+    lower = name.lower()
+    return lower.startswith(PHOTO_PREFIXES)
+
+
+def output_path_for(path: Path) -> Path:
+    if is_photo_filename(path.name):
+        return path.with_suffix(".jpg")
+    return path
 
 
 def is_protected_image(path: Path) -> bool:
@@ -122,11 +134,16 @@ def _draw_watermark_layer(base: Image.Image) -> Image.Image:
     return Image.alpha_composite(rgba, overlay)
 
 
-def protect_image_file(path: Path, *, force: bool = False) -> bool:
+def protect_image_file(path: Path, *, force: bool = False) -> Path | None:
+    """Watermark and optimize. Returns final path, or None if skipped."""
     if path.suffix.lower() not in IMAGE_SUFFIXES:
-        return False
-    if not force and is_protected_image(path):
-        return False
+        return None
+
+    out_path = output_path_for(path)
+    if not force and out_path.exists() and is_protected_image(out_path):
+        return None
+    if not force and out_path == path and is_protected_image(path):
+        return None
 
     with Image.open(path) as opened:
         img = opened.convert("RGBA") if opened.mode in ("RGBA", "LA", "P") else opened.convert("RGB")
@@ -140,27 +157,27 @@ def protect_image_file(path: Path, *, force: bool = False) -> bool:
     img = _resize_for_web(img)
     watermarked = _draw_watermark_layer(img)
 
-    suffix = path.suffix.lower()
-    if suffix == ".png":
+    if out_path.suffix.lower() == ".png":
         from PIL import PngImagePlugin
 
         meta = PngImagePlugin.PngInfo()
         meta.add_text("zk_protected", PROTECTED_MARKER)
-        watermarked.convert("RGBA").save(path, optimize=True, pnginfo=meta)
-    elif suffix in {".jpg", ".jpeg"}:
+        watermarked.convert("RGB").save(out_path, optimize=True, pnginfo=meta)
+    else:
         exif = Image.Exif()
         exif[0x9286] = PROTECTED_MARKER.encode("utf-8")
         watermarked.convert("RGB").save(
-            path,
+            out_path,
             quality=JPEG_QUALITY,
             optimize=True,
-            subsampling=1,
+            subsampling=2,
             exif=exif,
         )
-    else:
-        watermarked.convert("RGB").save(path, quality=JPEG_QUALITY, optimize=True)
 
-    return True
+    if out_path != path and path.exists():
+        path.unlink()
+
+    return out_path
 
 
 def natural_sort_key(path: Path) -> list:

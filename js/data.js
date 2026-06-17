@@ -174,7 +174,7 @@ const CASES = [
   ],
   "hasProjectRender": false,
   "hasVideo": true,
-  "cover": "assets/kondi-nova/after-1.png",
+  "cover": "assets/kondi-nova/after-1.jpg",
   "summary": "Трёхкомнатная квартира 69 м² в ЖК Конди Нова: дизайн-проект и ремонт под ключ в стиле современного лофта — декоративный кирпич, скрытые двери, встроенная мебель и продуманное освещение.",
   "task": "Заказчик хотел интерьер с характером: не холодный минимализм, а сочетание кирпича и бетонных фактур с уютом и тёплым светом. Важны были скрытые двери, выразительная гостиная с акцентной стеной, рабочие места в спальнях, гардеробная и компактная прачечная в санузле — всё по проекту и под ключ, без сюрпризов на финале.",
   "objectDescription": "На площади 69 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной — кирпичная акцентная стена с LED-подсветкой, трековый свет и белая кухня; в коридоре — скрытые двери и рифлёные панели; в ТВ-зоне — декоративные обои и подвесная мебель. В спальнях — декоративный кирпич, подсветка изголовья, встроенные рабочие зоны и гардеробная со стеклянными фасадами. В санузле — каменная плитка, встроенная стиральная и сушильная машины, деревянная мебель у раковины. Квартира передана в состоянии, готовом к проживанию.",
@@ -212,84 +212,84 @@ const CASES = [
   ],
   "gallery": [
     {
-      "src": "assets/kondi-nova/after-1.png",
+      "src": "assets/kondi-nova/after-1.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-2.png",
+      "src": "assets/kondi-nova/after-2.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-3.png",
+      "src": "assets/kondi-nova/after-3.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-4.png",
+      "src": "assets/kondi-nova/after-4.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-5.png",
+      "src": "assets/kondi-nova/after-5.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-6.png",
+      "src": "assets/kondi-nova/after-6.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-7.png",
+      "src": "assets/kondi-nova/after-7.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-8.png",
+      "src": "assets/kondi-nova/after-8.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-9.png",
+      "src": "assets/kondi-nova/after-9.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-10.png",
+      "src": "assets/kondi-nova/after-10.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-11.png",
+      "src": "assets/kondi-nova/after-11.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-12.png",
+      "src": "assets/kondi-nova/after-12.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kondi-nova/after-13.png",
+      "src": "assets/kondi-nova/after-13.jpg",
       "alt": "После ремонта",
       "caption": ""
     }
   ],
   "beforeGallery": [
     {
-      "src": "assets/kondi-nova/before-1.png",
+      "src": "assets/kondi-nova/before-1.jpg",
       "alt": "Квартира до ремонта: подготовка оснований",
       "caption": "До ремонта: черновой этап"
     },
     {
-      "src": "assets/kondi-nova/before-2.png",
+      "src": "assets/kondi-nova/before-2.jpg",
       "alt": "Санузел до ремонта: черновая отделка",
       "caption": "До ремонта: санузел"
     },
     {
-      "src": "assets/kondi-nova/before-3.png",
+      "src": "assets/kondi-nova/before-3.jpg",
       "alt": "Квартира до ремонта: разводка электрики",
       "caption": "До ремонта: инженерные сети"
     }
@@ -299,7 +299,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/kondi-nova/expert-overview.mp4",
-    "poster": "assets/kondi-nova/after-1.png",
+    "poster": "assets/kondi-nova/after-1.jpg",
     "note": ""
   },
   "cta": {
@@ -340,7 +340,7 @@ const CASES = [
   ],
   "hasProjectRender": false,
   "hasVideo": true,
-  "cover": "assets/kvartal-entuziastov-2/after-1.png",
+  "cover": "assets/kvartal-entuziastov-2/after-1.jpg",
   "summary": "Трёхкомнатная квартира 77,94 м² в ЖК Квартал Энтузиастов 2: дизайн-проект и ремонт под ключ с выразительными цветовыми акцентами, встроенной мебелью, трековым светом и продуманными детскими зонами.",
   "task": "Заказчик хотел современную семейную квартиру с характером: не «белая коробка», а продуманные акценты — синий диван, тёмно-зелёная кухня, уютная спальня и функциональные детские. Важно было заранее согласовать отделку, встроенную мебель и освещение по проекту и получить ремонт под ключ без сюрпризов на финале.",
   "objectDescription": "На площади 77,94 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной — синий акцент и рифлёная перегородка, в кухне — двухцветные фасады и мраморный фартук, в спальне — тёмно-зелёная стена и молдинги, в детских — зонирование и встроенные рабочие места, в санузле — плитка с подсветкой. Квартира передана в состоянии, готовом к проживанию.",
@@ -377,57 +377,57 @@ const CASES = [
   ],
   "gallery": [
     {
-      "src": "assets/kvartal-entuziastov-2/after-1.png",
+      "src": "assets/kvartal-entuziastov-2/after-1.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-2.png",
+      "src": "assets/kvartal-entuziastov-2/after-2.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-3.png",
+      "src": "assets/kvartal-entuziastov-2/after-3.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-4.png",
+      "src": "assets/kvartal-entuziastov-2/after-4.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-5.png",
+      "src": "assets/kvartal-entuziastov-2/after-5.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-6.png",
+      "src": "assets/kvartal-entuziastov-2/after-6.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-7.png",
+      "src": "assets/kvartal-entuziastov-2/after-7.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-8.png",
+      "src": "assets/kvartal-entuziastov-2/after-8.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-9.png",
+      "src": "assets/kvartal-entuziastov-2/after-9.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-10.png",
+      "src": "assets/kvartal-entuziastov-2/after-10.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/kvartal-entuziastov-2/after-11.png",
+      "src": "assets/kvartal-entuziastov-2/after-11.jpg",
       "alt": "После ремонта",
       "caption": ""
     }
@@ -437,7 +437,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/kvartal-entuziastov-2/expert-overview.mp4",
-    "poster": "assets/kvartal-entuziastov-2/after-1.png",
+    "poster": "assets/kvartal-entuziastov-2/after-1.jpg",
     "note": ""
   },
   "cta": {
@@ -475,7 +475,7 @@ const CASES = [
   ],
   "hasProjectRender": false,
   "hasVideo": true,
-  "cover": "assets/novaland/after-1.png",
+  "cover": "assets/novaland/after-1.jpg",
   "summary": "Студия 37,81 м² в ЖК Новаленд: дизайн-проект и ремонт под ключ с тёплыми деревянными текстурами, декоративным кирпичом, ёлочкой на полу и зонированием пространства.",
   "task": "Заказчик хотел светлую современную студию с характером: натуральные материалы, удобная кухня-столовая, уютная зона отдыха с зонированием и санузел без перегруза. Важно было заранее согласовать отделку, встроенную мебель и освещение по проекту и получить ремонт под ключ без сюрпризов на финале.",
   "objectDescription": "На площади 37,81 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В зоне кухни-гостиной — деревянная перегородка с ТВ-нишей и фотообои с лесным пейзажем, двухцветные фасады и трековый свет, в санузле — тёмная плитка с LED-подсветкой. Квартира передана в состоянии, готовом к проживанию.",
@@ -512,62 +512,62 @@ const CASES = [
   ],
   "gallery": [
     {
-      "src": "assets/novaland/after-1.png",
+      "src": "assets/novaland/after-1.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-2.png",
+      "src": "assets/novaland/after-2.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-3.png",
+      "src": "assets/novaland/after-3.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-4.png",
+      "src": "assets/novaland/after-4.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-5.png",
+      "src": "assets/novaland/after-5.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-6.png",
+      "src": "assets/novaland/after-6.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-7.png",
+      "src": "assets/novaland/after-7.jpg",
       "alt": "После ремонта",
       "caption": ""
     },
     {
-      "src": "assets/novaland/after-8.png",
+      "src": "assets/novaland/after-8.jpg",
       "alt": "Санузел: накладная раковина, овальное зеркало с подсветкой",
       "caption": "Санузел"
     },
     {
-      "src": "assets/novaland/after-9.png",
+      "src": "assets/novaland/after-9.jpg",
       "alt": "Кухня: фасады под дерево, фартук под бетон и паркет «ёлочкой»",
       "caption": "Кухня"
     },
     {
-      "src": "assets/novaland/after-10.png",
+      "src": "assets/novaland/after-10.jpg",
       "alt": "Декоративный кирпич, зеркало и бра у входа в зону отдыха",
       "caption": "Детали отделки"
     },
     {
-      "src": "assets/novaland/after-11.png",
+      "src": "assets/novaland/after-11.jpg",
       "alt": "Зона у окна: дизайнерский радиатор и встроенный шкаф",
       "caption": "Гостиная"
     },
     {
-      "src": "assets/novaland/after-12.png",
+      "src": "assets/novaland/after-12.jpg",
       "alt": "Деревянная перегородка с ТВ-нишей и рейками",
       "caption": "Гостиная"
     }
@@ -594,7 +594,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/novaland/expert-overview.mp4",
-    "poster": "assets/novaland/after-1.png",
+    "poster": "assets/novaland/after-1.jpg",
     "note": ""
   },
   "cta": {
@@ -633,7 +633,7 @@ const CASES = [
     ],
     "hasProjectRender": false,
     "hasVideo": true,
-    "cover": "assets/trilogiya-120/after-1.png",
+    "cover": "assets/trilogiya-120/after-1.jpg",
     "summary": "Квартира 120 м² в ЖК Трилогия: дизайн-проект и ремонт под ключ с тёплой нейтральной палитрой, мраморной плиткой, встроенной мебелью и продуманным светом.",
     "task": "Заказчик хотел просторную квартиру с комфортом «как в отеле»: спокойные тёплые оттенки, отдельные зоны для отдыха и приёма гостей, функциональная кухня-столовая, уютные спальни и санузлы без визуального шума. Важно было заранее согласовать отделку, встроенную мебель и освещение по проекту и получить ремонт без сюрпризов на финале.",
     "objectDescription": "На площади 120 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной и спальнях — декоративные панели, встроенная мебель и ТВ-зоны, в кухне — фартук из плитки и деревянные фасады, в санузлах — крупноформатная плитка под мрамор. Квартира передана в состоянии, готовом к проживанию.",
@@ -665,57 +665,57 @@ const CASES = [
     ],
     "gallery": [
       {
-        "src": "assets/trilogiya-120/after-1.png",
+        "src": "assets/trilogiya-120/after-1.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-2.png",
+        "src": "assets/trilogiya-120/after-2.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-3.png",
+        "src": "assets/trilogiya-120/after-3.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-4.png",
+        "src": "assets/trilogiya-120/after-4.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-5.png",
+        "src": "assets/trilogiya-120/after-5.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-6.png",
+        "src": "assets/trilogiya-120/after-6.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-7.png",
+        "src": "assets/trilogiya-120/after-7.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-8.png",
+        "src": "assets/trilogiya-120/after-8.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-9.png",
+        "src": "assets/trilogiya-120/after-9.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/trilogiya-120/after-10.png",
+        "src": "assets/trilogiya-120/after-10.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-      "src": "assets/trilogiya-120/after-11.png",
+      "src": "assets/trilogiya-120/after-11.jpg",
       "alt": "После ремонта",
       "caption": ""
     }
@@ -757,7 +757,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/trilogiya-120/expert-overview.mp4",
-      "poster": "assets/trilogiya-120/after-1.png",
+      "poster": "assets/trilogiya-120/after-1.jpg",
       "note": ""
     },
     "cta": {
@@ -800,7 +800,7 @@ const CASES = [
     ],
     "hasProjectRender": false,
     "hasVideo": true,
-    "cover": "assets/kvartal-entuziastov/after-1.png",
+    "cover": "assets/kvartal-entuziastov/after-1.jpg",
     "summary": "Квартира в ЖК Квартал Энтузиастов: дизайн-проект и ремонт под ключ с выразительными акцентными стенами, встроенной мебелью, трековым светом и панорамными окнами.",
     "task": "Заказчик хотел современную квартиру с характером: не «белая коробка», а продуманные акценты, удобная кухня-столовая, комфортные спальни и рабочая зона, качественная инженерия и понятный результат по проекту. Важно было заранее согласовать отделку, встроенную мебель и освещение и получить ремонт без сюрпризов на финале.",
     "objectDescription": "Выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной и спальнях — декоративные панели и 3D-стены с LED-подсветкой, в кухне — двухцветные фасады и стеклянные верхние шкафы, в санузле — плитка под камень и деревянные акценты. Квартира передана в состоянии, готовом к проживанию.",
@@ -837,72 +837,72 @@ const CASES = [
     },
     "gallery": [
       {
-        "src": "assets/kvartal-entuziastov/after-1.png",
+        "src": "assets/kvartal-entuziastov/after-1.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-2.png",
+        "src": "assets/kvartal-entuziastov/after-2.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-3.png",
+        "src": "assets/kvartal-entuziastov/after-3.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-4.png",
+        "src": "assets/kvartal-entuziastov/after-4.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-5.png",
+        "src": "assets/kvartal-entuziastov/after-5.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-6.png",
+        "src": "assets/kvartal-entuziastov/after-6.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-7.png",
+        "src": "assets/kvartal-entuziastov/after-7.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-8.png",
+        "src": "assets/kvartal-entuziastov/after-8.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-9.png",
+        "src": "assets/kvartal-entuziastov/after-9.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-10.png",
+        "src": "assets/kvartal-entuziastov/after-10.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-11.png",
+        "src": "assets/kvartal-entuziastov/after-11.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-12.png",
+        "src": "assets/kvartal-entuziastov/after-12.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/kvartal-entuziastov/after-13.png",
+        "src": "assets/kvartal-entuziastov/after-13.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-      "src": "assets/kvartal-entuziastov/after-14.png",
+      "src": "assets/kvartal-entuziastov/after-14.jpg",
       "alt": "После ремонта",
       "caption": ""
     }
@@ -944,7 +944,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/kvartal-entuziastov/expert-overview.mp4",
-      "poster": "assets/kvartal-entuziastov/after-1.png",
+      "poster": "assets/kvartal-entuziastov/after-1.jpg",
       "note": ""
     },
     "cta": {
@@ -985,7 +985,7 @@ const CASES = [
     ],
     "hasProjectRender": false,
     "hasVideo": true,
-    "cover": "assets/tau-house-2/after-1.png",
+    "cover": "assets/tau-house-2/after-1.jpg",
     "summary": "Квартира в ЖК Тау Хаус 2: дизайн-проект и ремонт под ключ в светлой современной классике — молдинги, рифлёная мебель, многоуровневый свет и продуманные детские комнаты.",
     "task": "Заказчик хотел светлую квартиру для семьи: спокойная палитра, функциональная кухня-столовая и гостиная, уютные спальни и детские с характером, но без перегруза. Важно было заранее согласовать отделку, встроенную мебель и освещение по проекту и получить ремонт под ключ без сюрпризов на финале.",
     "objectDescription": "Выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. В гостиной — ТВ-зона с подсветкой и молдинги, в кухне — рифлёные фасады и мраморный фартук, в санузлах — крупноформатная плитка и встроенная мебель, в детских — авторские фотообои и LED-подсветка. Квартира передана в состоянии, готовом к проживанию.",
@@ -1022,67 +1022,67 @@ const CASES = [
     },
     "gallery": [
       {
-        "src": "assets/tau-house-2/after-1.png",
+        "src": "assets/tau-house-2/after-1.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-2.png",
+        "src": "assets/tau-house-2/after-2.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-3.png",
+        "src": "assets/tau-house-2/after-3.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-4.png",
+        "src": "assets/tau-house-2/after-4.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-5.png",
+        "src": "assets/tau-house-2/after-5.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-6.png",
+        "src": "assets/tau-house-2/after-6.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-7.png",
+        "src": "assets/tau-house-2/after-7.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-8.png",
+        "src": "assets/tau-house-2/after-8.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-9.png",
+        "src": "assets/tau-house-2/after-9.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-10.png",
+        "src": "assets/tau-house-2/after-10.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-11.png",
+        "src": "assets/tau-house-2/after-11.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-        "src": "assets/tau-house-2/after-12.png",
+        "src": "assets/tau-house-2/after-12.jpg",
         "alt": "После ремонта",
         "caption": ""
       },
       {
-      "src": "assets/tau-house-2/after-13.png",
+      "src": "assets/tau-house-2/after-13.jpg",
       "alt": "После ремонта",
       "caption": ""
     }
@@ -1109,7 +1109,7 @@ const CASES = [
     "embedUrl": null,
     "externalUrl": null,
     "fileUrl": "assets/tau-house-2/expert-overview.mp4",
-      "poster": "assets/tau-house-2/after-1.png",
+      "poster": "assets/tau-house-2/after-1.jpg",
       "note": ""
     },
     "cta": {
@@ -1230,44 +1230,44 @@ const CASES = [
         caption: "Спальня, рабочая зона"
       },
       {
-        src: "assets/green-park-93/after-10.png",
+        src: "assets/green-park-93/after-10.jpg",
         alt: "ТВ-зона: декоративная штукатурка, молдинги и рифлёная тумба",
         caption: "ТВ-зона"
       },
       {
-        src: "assets/green-park-93/after-11.png",
+        src: "assets/green-park-93/after-11.jpg",
         alt: "Спальня: фотообои с одуванчиками и дизайнерский радиатор",
         caption: "Спальня"
       },
       {
-        src: "assets/green-park-93/after-12.png",
+        src: "assets/green-park-93/after-12.jpg",
         alt: "Кухня-столовая: вид в гостиную с линейным светом",
         caption: "Кухня-столовая"
       },
       {
-        src: "assets/green-park-93/after-13.png",
+        src: "assets/green-park-93/after-13.jpg",
         alt: "Гостиная: кресло и акцентная мебель у окна",
         caption: "Гостиная"
       },
       {
-        src: "assets/green-park-93/after-14.png",
+        src: "assets/green-park-93/after-14.jpg",
         alt: "Детали отделки: молдинги и LED-подсветка стены",
         caption: "Детали отделки"
       }
     ],
     beforeGallery: [
       {
-        src: "assets/green-park-93/before-1.png",
+        src: "assets/green-park-93/before-1.jpg",
         alt: "Квартира до ремонта: черновая отделка у окна",
         caption: "До ремонта: черновой этап"
       },
       {
-        src: "assets/green-park-93/before-2.png",
+        src: "assets/green-park-93/before-2.jpg",
         alt: "Квартира до ремонта: разводка труб у панорамных окон",
         caption: "До ремонта: инженерные сети"
       },
       {
-        src: "assets/green-park-93/before-3.png",
+        src: "assets/green-park-93/before-3.jpg",
         alt: "Квартира до ремонта: монтаж отопления перед стяжкой",
         caption: "До ремонта: отопление"
       }
@@ -1316,7 +1316,7 @@ const CASES = [
     ],
     hasProjectRender: false,
     hasVideo: true,
-    cover: "assets/nesterovsky-49/after-5.png",
+    cover: "assets/nesterovsky-49/after-5.jpg",
     summary: "Двухкомнатная квартира 49 м² в ЖК Нестеровский: дизайн-проект и ремонт под ключ со светлой отделкой, встроенной мебелью и аккуратной чистовой реализацией.",
     task: "Заказчик хотел обновить двухкомнатную квартиру под современный формат проживания: светлый интерьер, функциональные зоны, качественная инженерная часть и понятный результат по проекту. Важно было заранее согласовать решения по отделке и встроенным элементам и получить ремонт без сюрпризов на финале.",
     objectDescription: "На площади 49 м² выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. Смонтированы потолки с продуманным освещением, встроенная мебель, двери, сантехника. Квартира передана в состоянии, готовом к меблировке.",
@@ -1352,52 +1352,52 @@ const CASES = [
     ],
     gallery: [
       {
-        src: "assets/nesterovsky-49/after-1.png",
+        src: "assets/nesterovsky-49/after-1.jpg",
         alt: "После ремонта: Коридор",
         caption: "Коридор"
       },
       {
-        src: "assets/nesterovsky-49/after-2.png",
+        src: "assets/nesterovsky-49/after-2.jpg",
         alt: "После ремонта: Комната",
         caption: "Комната"
       },
       {
-        src: "assets/nesterovsky-49/after-3.png",
+        src: "assets/nesterovsky-49/after-3.jpg",
         alt: "После ремонта: Спальня со шкафом",
         caption: "Спальня со шкафом"
       },
       {
-        src: "assets/nesterovsky-49/after-4.png",
+        src: "assets/nesterovsky-49/after-4.jpg",
         alt: "После ремонта: Кухня и коридор",
         caption: "Кухня и коридор"
       },
       {
-        src: "assets/nesterovsky-49/after-5.png",
+        src: "assets/nesterovsky-49/after-5.jpg",
         alt: "После ремонта: Кухня",
         caption: "Кухня"
       },
       {
-        src: "assets/nesterovsky-49/after-6.png",
+        src: "assets/nesterovsky-49/after-6.jpg",
         alt: "После ремонта: ТВ-зона",
         caption: "ТВ-зона"
       },
       {
-        src: "assets/nesterovsky-49/after-7.png",
+        src: "assets/nesterovsky-49/after-7.jpg",
         alt: "После ремонта: Санузел, душевая",
         caption: "Санузел, душевая"
       },
       {
-        src: "assets/nesterovsky-49/after-8.png",
+        src: "assets/nesterovsky-49/after-8.jpg",
         alt: "После ремонта: Санузел",
         caption: "Санузел"
       },
       {
-        src: "assets/nesterovsky-49/after-9.png",
+        src: "assets/nesterovsky-49/after-9.jpg",
         alt: "После ремонта: Прихожая",
         caption: "Прихожая"
       },
       {
-        src: "assets/nesterovsky-49/after-10.png",
+        src: "assets/nesterovsky-49/after-10.jpg",
         alt: "После ремонта: Встроенная мебель и отопление",
         caption: "Встроенная мебель и отопление"
       }
@@ -1407,7 +1407,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/nesterovsky-49/expert-overview.mp4",
-      poster: "assets/nesterovsky-49/after-1.png",
+      poster: "assets/nesterovsky-49/after-1.jpg",
       note: ""
     },
     cta: {
@@ -1444,7 +1444,7 @@ const CASES = [
     ],
     hasProjectRender: false,
     hasVideo: true,
-    cover: "assets/imperial-3k/after-1.png",
+    cover: "assets/imperial-3k/after-1.jpg",
     summary: "Трёхкомнатная квартира в ЖК Империал: дизайн-проект и ремонт под ключ с продуманной планировкой, светлыми материалами и готовностью к проживанию.",
     task: "Заказчик хотел получить современную квартиру для семейного проживания: отдельные зоны для отдыха и работы, функциональная кухня-гостиная, удобная ванная зона, достаточно мест для хранения. Важно было заранее увидеть результат на проекте и получить ремонт без «сюрпризов» по отделке и инженерии.",
     objectDescription: "Выполнены демонтажные работы, новая электрика и сантехника, выравнивание стен и полов, чистовая отделка по дизайн-проекту. Смонтированы потолки, двери, освещение, установлена сантехника и чистовая фурнитура. Квартира сдана в состоянии, готовом к меблировке и заселению.",
@@ -1479,69 +1479,69 @@ const CASES = [
     ],
     gallery: [
       {
-        src: "assets/imperial-3k/after-1.png",
+        src: "assets/imperial-3k/after-1.jpg",
         alt: "После ремонта: Гостиная",
         caption: "Гостиная"
       },
       {
-        src: "assets/imperial-3k/after-2.png",
+        src: "assets/imperial-3k/after-2.jpg",
         alt: "После ремонта: Кухня-гостиная",
         caption: "Кухня-гостиная"
       },
       {
-        src: "assets/imperial-3k/after-3.png",
+        src: "assets/imperial-3k/after-3.jpg",
         alt: "После ремонта: Спальня",
         caption: "Спальня"
       },
       {
-        src: "assets/imperial-3k/after-4.png",
+        src: "assets/imperial-3k/after-4.jpg",
         alt: "После ремонта: Санузел",
         caption: "Санузел"
       },
       {
-        src: "assets/imperial-3k/after-5.png",
+        src: "assets/imperial-3k/after-5.jpg",
         alt: "После ремонта: Прихожая",
         caption: "Прихожая"
       },
       {
-        src: "assets/imperial-3k/after-6.png",
+        src: "assets/imperial-3k/after-6.jpg",
         alt: "После ремонта: Детали отделки",
         caption: "Детали отделки"
       },
       {
-        src: "assets/imperial-3k/after-7.png",
+        src: "assets/imperial-3k/after-7.jpg",
         alt: "После ремонта: Освещение и потолки",
         caption: "Освещение и потолки"
       },
       {
-        src: "assets/imperial-3k/after-8.png",
+        src: "assets/imperial-3k/after-8.jpg",
         alt: "После ремонта: Общий вид",
         caption: "Общий вид"
       },
       {
-        src: "assets/imperial-3k/after-9.png",
+        src: "assets/imperial-3k/after-9.jpg",
         alt: "Коридор: декоративная штукатурка и линейная подсветка",
         caption: "Коридор"
       },
       {
-        src: "assets/imperial-3k/after-10.png",
+        src: "assets/imperial-3k/after-10.jpg",
         alt: "Санузел: мраморная плитка, накладная раковина и золотые светильники",
         caption: "Санузел"
       }
     ],
     beforeGallery: [
       {
-        src: "assets/imperial-3k/before-1.png",
+        src: "assets/imperial-3k/before-1.jpg",
         alt: "Квартира до ремонта: разводка инженерных сетей в полу",
         caption: "До ремонта: черновой этап"
       },
       {
-        src: "assets/imperial-3k/before-2.png",
+        src: "assets/imperial-3k/before-2.jpg",
         alt: "Квартира до ремонта: коридор с трубами тёплого пола",
         caption: "До ремонта: коридор"
       },
       {
-        src: "assets/imperial-3k/before-3.png",
+        src: "assets/imperial-3k/before-3.jpg",
         alt: "Квартира до ремонта: укладка труб перед стяжкой",
         caption: "До ремонта: инженерные сети"
       }
@@ -1551,7 +1551,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/imperial-3k/expert-overview.mov",
-      poster: "assets/imperial-3k/after-1.png",
+      poster: "assets/imperial-3k/after-1.jpg",
       note: ""
     },
     cta: {
@@ -1588,7 +1588,7 @@ const CASES = [
     ],
     hasProjectRender: false,
     hasVideo: true,
-    cover: "assets/tau-house-3k/after-1.png",
+    cover: "assets/tau-house-3k/after-1.jpg",
     summary: "Квартира в ЖК Tau House: дизайн-проект и ремонт под ключ с аккуратной чистовой отделкой, продуманным освещением и готовностью к заселению.",
     task: "Заказчик хотел современную квартиру «под ключ» без лишней перегрузки в интерьере: светлые тона, функциональные зоны, качественная инженерная часть и понятный результат по проекту. Важно было заранее увидеть планировку решений и получить аккуратную реализацию в срок.",
     objectDescription: "Выполнены демонтажные работы, замена электрики и сантехники, выравнивание оснований и чистовая отделка по дизайн-проекту. Смонтированы потолки, двери, свет, установлена сантехника и чистовая фурнитура. Объект передан в состоянии, готовом к меблировке.",
@@ -1618,89 +1618,89 @@ const CASES = [
     ],
     gallery: [
       {
-        src: "assets/tau-house-3k/after-1.png",
+        src: "assets/tau-house-3k/after-1.jpg",
         alt: "После ремонта: Гостиная",
         caption: "Гостиная"
       },
       {
-        src: "assets/tau-house-3k/after-2.png",
+        src: "assets/tau-house-3k/after-2.jpg",
         alt: "После ремонта: Кухня-гостиная",
         caption: "Кухня-гостиная"
       },
       {
-        src: "assets/tau-house-3k/after-3.png",
+        src: "assets/tau-house-3k/after-3.jpg",
         alt: "После ремонта: Спальня",
         caption: "Спальня"
       },
       {
-        src: "assets/tau-house-3k/after-4.png",
+        src: "assets/tau-house-3k/after-4.jpg",
         alt: "После ремонта: Санузел",
         caption: "Санузел"
       },
       {
-        src: "assets/tau-house-3k/after-5.png",
+        src: "assets/tau-house-3k/after-5.jpg",
         alt: "После ремонта: Коридор",
         caption: "Коридор"
       },
       {
-        src: "assets/tau-house-3k/after-6.png",
+        src: "assets/tau-house-3k/after-6.jpg",
         alt: "После ремонта: Детали отделки",
         caption: "Детали отделки"
       },
       {
-        src: "assets/tau-house-3k/after-7.png",
+        src: "assets/tau-house-3k/after-7.jpg",
         alt: "После ремонта: Общий вид",
         caption: "Общий вид"
       },
       {
-        src: "assets/tau-house-3k/after-8.png",
+        src: "assets/tau-house-3k/after-8.jpg",
         alt: "Санузел: крупноформатная плитка, ниши с подсветкой",
         caption: "Санузел"
       },
       {
-        src: "assets/tau-house-3k/after-9.png",
+        src: "assets/tau-house-3k/after-9.jpg",
         alt: "Коридор: двери скрытого монтажа и декоративная штукатурка",
         caption: "Коридор"
       },
       {
-        src: "assets/tau-house-3k/after-10.png",
+        src: "assets/tau-house-3k/after-10.jpg",
         alt: "Спальня: ТВ-зона, рифлёный комод и реечная панель",
         caption: "Спальня"
       },
       {
-        src: "assets/tau-house-3k/after-11.png",
+        src: "assets/tau-house-3k/after-11.jpg",
         alt: "Кухня: рифлёные фасады, чёрная мойка и подсветка фартука",
         caption: "Кухня"
       },
       {
-        src: "assets/tau-house-3k/after-12.png",
+        src: "assets/tau-house-3k/after-12.jpg",
         alt: "Спальня: кольцевая люстра и скрытая дверь в отделке стены",
         caption: "Спальня"
       },
       {
-        src: "assets/tau-house-3k/after-13.png",
+        src: "assets/tau-house-3k/after-13.jpg",
         alt: "Деталь отделки: контурная подсветка потолка",
         caption: "Освещение"
       },
       {
-        src: "assets/tau-house-3k/after-14.png",
+        src: "assets/tau-house-3k/after-14.jpg",
         alt: "Спальня: изголовье с канелюрами и фактурные обои",
         caption: "Спальня"
       }
     ],
     beforeGallery: [
       {
-        src: "assets/tau-house-3k/before-1.png",
+        src: "assets/tau-house-3k/before-1.jpg",
         alt: "Квартира до ремонта: возведение перегородок",
         caption: "До ремонта: черновой этап"
       },
       {
-        src: "assets/tau-house-3k/before-2.png",
+        src: "assets/tau-house-3k/before-2.jpg",
         alt: "Квартира до ремонта: кирпичная кладка стен",
         caption: "До ремонта: перегородки"
       },
       {
-        src: "assets/tau-house-3k/before-3.png",
+        src: "assets/tau-house-3k/before-3.jpg",
         alt: "Квартира до ремонта: монтаж отопления",
         caption: "До ремонта: инженерные сети"
       }
@@ -1710,7 +1710,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/tau-house-3k/expert-overview.mp4",
-      poster: "assets/tau-house-3k/after-1.png",
+      poster: "assets/tau-house-3k/after-1.jpg",
       note: ""
     },
     cta: {
@@ -1744,7 +1744,7 @@ const CASES = [
     rooms: ["кухня-гостиная", "спальня", "санузел"],
     hasProjectRender: true,
     hasVideo: true,
-    cover: "assets/pervomaysky-44/after-8.png",
+    cover: "assets/pervomaysky-44/after-8.jpg",
     summary:
       "Реализованный проект однокомнатной квартиры 44 м² с полным циклом работ: от инженерной базы до чистовой отделки и подключения сантехники.",
     task:
@@ -1780,106 +1780,106 @@ const CASES = [
     ],
     gallery: [
       {
-        src: "assets/pervomaysky-44/after-1.png",
+        src: "assets/pervomaysky-44/after-1.jpg",
         alt: "После ремонта: спальня и рабочая зона",
         caption: "Спальня и рабочая зона",
       },
       {
-        src: "assets/pervomaysky-44/after-2.png",
+        src: "assets/pervomaysky-44/after-2.jpg",
         alt: "После ремонта: гардеробная/прихожая зона",
         caption: "Входная зона",
       },
       {
-        src: "assets/pervomaysky-44/after-3.png",
+        src: "assets/pervomaysky-44/after-3.jpg",
         alt: "После ремонта: зона гостиной",
         caption: "Гостиная",
       },
       {
-        src: "assets/pervomaysky-44/after-4.png",
+        src: "assets/pervomaysky-44/after-4.jpg",
         alt: "После ремонта: кухня-гостиная",
         caption: "Кухня-гостиная",
       },
       {
-        src: "assets/pervomaysky-44/after-5.png",
+        src: "assets/pervomaysky-44/after-5.jpg",
         alt: "После ремонта: обеденная группа",
         caption: "Обеденная зона",
       },
       {
-        src: "assets/pervomaysky-44/after-6.png",
+        src: "assets/pervomaysky-44/after-6.jpg",
         alt: "После ремонта: санузел",
         caption: "Санузел",
       },
       {
-        src: "assets/pervomaysky-44/after-7.png",
+        src: "assets/pervomaysky-44/after-7.jpg",
         alt: "После ремонта: общий вид кухни-гостиной",
         caption: "Общий вид кухни-гостиной",
       },
       {
-        src: "assets/pervomaysky-44/after-8.png",
+        src: "assets/pervomaysky-44/after-8.jpg",
         alt: "После ремонта: гардеробная зона",
         caption: "Гардеробная зона",
       },
       {
-        src: "assets/pervomaysky-44/after-9.png",
+        src: "assets/pervomaysky-44/after-9.jpg",
         alt: "После ремонта: зона у окна",
         caption: "Зона у окна",
       },
       {
-        src: "assets/pervomaysky-44/after-10.png",
+        src: "assets/pervomaysky-44/after-10.jpg",
         alt: "После ремонта: кухня",
         caption: "Кухня",
       },
       {
-        src: "assets/pervomaysky-44/after-11.png",
+        src: "assets/pervomaysky-44/after-11.jpg",
         alt: "После ремонта: душевая",
         caption: "Душевая зона",
       },
       {
-        src: "assets/pervomaysky-44/after-12.png",
+        src: "assets/pervomaysky-44/after-12.jpg",
         alt: "После ремонта: санузел с раковиной",
         caption: "Санузел с тумбой и раковиной",
       },
     ],
     beforeGallery: [
       {
-        src: "assets/pervomaysky-44/before-1.png",
+        src: "assets/pervomaysky-44/before-1.jpg",
         alt: "Квартира до ремонта",
         caption: "До ремонта: помещение",
       },
       {
-        src: "assets/pervomaysky-44/before-2.png",
+        src: "assets/pervomaysky-44/before-2.jpg",
         alt: "Квартира до ремонта: инженерная часть",
         caption: "До ремонта: сантехнические работы",
       },
       {
-        src: "assets/pervomaysky-44/before-3.png",
+        src: "assets/pervomaysky-44/before-3.jpg",
         alt: "Квартира до ремонта: черновой этап",
         caption: "До ремонта: черновой этап",
       },
     ],
     compareGallery: [
       {
-        src: "assets/pervomaysky-44/compare-1.png",
+        src: "assets/pervomaysky-44/compare-1.jpg",
         alt: "Проект и реализация: общий коллаж",
         caption: "Проект / реализация",
       },
       {
-        src: "assets/pervomaysky-44/compare-2.png",
+        src: "assets/pervomaysky-44/compare-2.jpg",
         alt: "Проект и реализация: спальня",
         caption: "Спальня: проект / реализация",
       },
       {
-        src: "assets/pervomaysky-44/compare-3.png",
+        src: "assets/pervomaysky-44/compare-3.jpg",
         alt: "Проект и реализация: кухня-гостиная",
         caption: "Кухня-гостиная: проект / реализация",
       },
       {
-        src: "assets/pervomaysky-44/compare-4.png",
+        src: "assets/pervomaysky-44/compare-4.jpg",
         alt: "Проект и реализация: рабочая зона",
         caption: "Рабочая зона: проект / реализация",
       },
       {
-        src: "assets/pervomaysky-44/compare-5.png",
+        src: "assets/pervomaysky-44/compare-5.jpg",
         alt: "Проект и реализация: санузел",
         caption: "Санузел: проект / реализация",
       },
@@ -1889,7 +1889,7 @@ const CASES = [
       embedUrl: null,
       externalUrl: null,
       fileUrl: "assets/pervomaysky-44/expert-overview.mp4",
-      poster: "assets/pervomaysky-44/after-1.png",
+      poster: "assets/pervomaysky-44/after-1.jpg",
       note: "",
     },
     cta: {

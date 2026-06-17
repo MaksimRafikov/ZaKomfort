@@ -40,7 +40,7 @@ def make_template(case_id: str, title: str, address: str) -> dict:
         "rooms": ["гостиная", "кухня", "санузел"],
         "hasProjectRender": False,
         "hasVideo": True,
-        "cover": f"assets/{case_id}/after-1.png",
+        "cover": f"assets/{case_id}/after-1.jpg",
         "summary": "Краткое описание объекта и результата работ.",
         "task": "Что хотел заказчик и какие ограничения были на старте.",
         "objectDescription": "Что именно выполнено в рамках реализации.",
@@ -48,14 +48,14 @@ def make_template(case_id: str, title: str, address: str) -> dict:
         "highlights": ["Преимущество 1", "Преимущество 2"],
         "clientFit": ["Для кого подходит этот кейс"],
         "gallery": [
-            {"src": f"assets/{case_id}/after-1.png", "alt": "После ремонта", "caption": ""}
+            {"src": f"assets/{case_id}/after-1.jpg", "alt": "После ремонта", "caption": ""}
         ],
         "video": {
             "label": "Видео с комментариями эксперта",
             "embedUrl": None,
             "externalUrl": None,
             "fileUrl": f"assets/{case_id}/expert-overview.mp4",
-            "poster": f"assets/{case_id}/after-1.png",
+            "poster": f"assets/{case_id}/after-1.jpg",
             "note": "",
         },
         "cta": {
