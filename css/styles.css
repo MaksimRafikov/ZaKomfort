@@ -17,6 +17,8 @@
   --safe-left: env(safe-area-inset-left, 0px);
   --inset-left: calc(var(--page-gutter) + var(--safe-left));
   --inset-right: calc(var(--page-gutter) + var(--safe-right));
+  --logo-height: 56px;
+  --logo-text-align: calc(var(--logo-height) * 62 / 146);
 }
 
 *,
@@ -152,12 +154,16 @@ img {
   font-size: 1.05rem;
 }
 
+.hero .lead {
+  margin-left: var(--logo-text-align);
+}
+
 .filters {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   box-shadow: var(--shadow);
 }
 
@@ -193,6 +199,14 @@ img {
   margin: 1rem 0 0;
   font-size: 0.875rem;
   color: var(--muted);
+}
+
+.tips-cta-row {
+  margin: 0 0 1.25rem;
+}
+
+.tips-cta {
+  box-shadow: var(--shadow);
 }
 
 .social-channels {
@@ -249,23 +263,6 @@ img {
 
 .social-channel--2gis .social-channel__icon {
   color: #2dbe2c;
-}
-
-.social-channel--tips {
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
-  color: var(--accent);
-  font-weight: 600;
-}
-
-.social-channel--tips .social-channel__icon {
-  color: var(--accent);
-}
-
-.social-channel--tips:hover {
-  border-color: var(--accent);
-  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-  color: var(--accent);
 }
 
 .social-link {
@@ -1097,6 +1094,10 @@ a.card {
 
   .logo__img {
     height: 42px;
+  }
+
+  :root {
+    --logo-height: 42px;
   }
 
   .hero {

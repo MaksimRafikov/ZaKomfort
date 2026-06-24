@@ -190,6 +190,7 @@
           .join("")}</div>`
       : "";
     const heroAction = `<a class="btn btn--ghost" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать похожий ремонт</a>`;
+    const tipsAction = `<a class="btn btn--ghost" href="tips.html">Советы эксперта</a>`;
 
     root.innerHTML = `
       <div class="case-hero">
@@ -200,6 +201,7 @@
           <div class="case-actions">
             <a class="btn btn--primary" href="#gallery">Смотреть фото</a>
             ${heroAction}
+            ${tipsAction}
           </div>
         </div>
       </div>
