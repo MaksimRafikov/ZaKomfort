@@ -251,6 +251,23 @@ img {
   color: #2dbe2c;
 }
 
+.social-channel--tips {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.social-channel--tips .social-channel__icon {
+  color: var(--accent);
+}
+
+.social-channel--tips:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+  color: var(--accent);
+}
+
 .social-link {
   display: inline-flex;
   align-items: center;
