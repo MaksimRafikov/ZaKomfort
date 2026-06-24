@@ -19,9 +19,11 @@
   --inset-right: calc(var(--page-gutter) + var(--safe-right));
   --logo-height: 56px;
   --logo-native-height: 144;
-  /* Horizontal offset to «ЗА КОМФОРТОМ» text in assets/brand/logo.png */
+  /* «ЗА КОМФОРТОМ» text offset in assets/brand/logo.png */
   --logo-text-offset-x: 223;
-  --content-align-inset: calc(var(--logo-height) * var(--logo-text-offset-x) / var(--logo-native-height));
+  --logo-text-start: calc(var(--logo-height) * var(--logo-text-offset-x) / var(--logo-native-height));
+  --layout-max: 1120px;
+  --stack-gap: 1.25rem;
 }
 
 *,
@@ -78,7 +80,7 @@ img {
 }
 
 .site-header__inner {
-  max-width: 1120px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -104,8 +106,10 @@ img {
 }
 
 .logo__img {
-  width: auto;
+  width: calc(var(--logo-height) * 801 / var(--logo-native-height));
   height: var(--logo-height);
+  max-width: none;
+  flex-shrink: 0;
   object-fit: contain;
   display: block;
 }
@@ -133,14 +137,28 @@ img {
 }
 
 .container {
-  max-width: 1120px;
+  max-width: var(--layout-max);
   margin: 0 auto;
-  padding-left: calc(var(--inset-left) + var(--content-align-inset));
+  padding-left: calc(var(--inset-left) + var(--logo-text-start));
   padding-right: var(--inset-right);
 }
 
+/* Vertical rhythm inside a single page column — do not use padding shorthand on .hero / .section when combined with .container */
+.page-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--stack-gap);
+  padding-bottom: 2rem;
+}
+
+.page-flow > .filters,
+.page-flow > .social-channels,
+.page-flow > .tips-cta-row {
+  margin-bottom: 0;
+}
+
 .hero {
-  padding: 2.5rem 0 1.5rem;
+  padding-block: 2.5rem 0.5rem;
 }
 
 .hero h1 {
@@ -517,7 +535,7 @@ a.card {
 .case-hero__content {
   position: relative;
   z-index: 1;
-  padding: 2.5rem 0 2rem;
+  padding-block: 2.5rem 2rem;
   width: 100%;
 }
 
@@ -627,7 +645,7 @@ a.card {
 }
 
 .section {
-  padding: 2.25rem 0;
+  padding-block: 2.25rem;
   border-bottom: 1px solid var(--border);
 }
 
@@ -1108,8 +1126,7 @@ a.card {
   }
 
   .hero {
-    padding-top: 2rem;
-    padding-bottom: 1.25rem;
+    padding-block: 2rem 0.75rem;
   }
 
   .hero h1 {
@@ -1198,7 +1215,7 @@ a.card {
   }
 
   .section {
-    padding: 2rem 0;
+    padding-block: 2rem;
   }
 
   .section h2 {

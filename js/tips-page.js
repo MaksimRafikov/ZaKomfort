@@ -247,14 +247,14 @@
 
     state.category = readCategoryFromUrl();
     root.innerHTML = `
-      <div class="container hero">
-        <h1>Советы эксперта</h1>
-        <p class="lead">
-          Короткие видео о ремонте и дизайне от студии «За Комфортом»: практичные решения без лишней теории.
-        </p>
-        <p><a class="btn btn--primary" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать ремонт</a></p>
-      </div>
-      <div class="container">
+      <div class="container page-flow">
+        <header class="hero">
+          <h1>Советы эксперта</h1>
+          <p class="lead">
+            Короткие видео о ремонте и дизайне от студии «За Комфортом»: практичные решения без лишней теории.
+          </p>
+          <p><a class="btn btn--primary" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать ремонт</a></p>
+        </header>
         <section class="filters tips-filters" aria-label="Фильтр советов">
           <div class="filter-row filter-row--complex">
             <span class="filter-label">Тема</span>
