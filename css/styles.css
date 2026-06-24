@@ -17,6 +17,9 @@
   --safe-left: env(safe-area-inset-left, 0px);
   --inset-left: calc(var(--page-gutter) + var(--safe-left));
   --inset-right: calc(var(--page-gutter) + var(--safe-right));
+  --logo-height: 56px;
+  /* Visible logo graphic starts after transparent padding in logo.png */
+  --content-align-inset: calc(var(--logo-height) * 62 / 146);
 }
 
 *,
@@ -130,7 +133,7 @@ img {
 .container {
   max-width: 1120px;
   margin: 0 auto;
-  padding-left: var(--inset-left);
+  padding-left: calc(var(--inset-left) + var(--content-align-inset));
   padding-right: var(--inset-right);
 }
 
@@ -1096,6 +1099,10 @@ a.card {
 
   .logo__img {
     height: 42px;
+  }
+
+  :root {
+    --logo-height: 42px;
   }
 
   .hero {
