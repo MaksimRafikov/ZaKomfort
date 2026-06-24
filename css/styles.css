@@ -18,8 +18,10 @@
   --inset-left: calc(var(--page-gutter) + var(--safe-left));
   --inset-right: calc(var(--page-gutter) + var(--safe-right));
   --logo-height: 56px;
-  /* Visible logo graphic starts after transparent padding in logo.png */
-  --content-align-inset: calc(var(--logo-height) * 62 / 146);
+  --logo-native-height: 144;
+  /* Horizontal offset to «ЗА КОМФОРТОМ» text in assets/brand/logo.png */
+  --logo-text-offset-x: 223;
+  --content-align-inset: calc(var(--logo-height) * var(--logo-text-offset-x) / var(--logo-native-height));
 }
 
 *,
@@ -103,7 +105,7 @@ img {
 
 .logo__img {
   width: auto;
-  height: 56px;
+  height: var(--logo-height);
   object-fit: contain;
   display: block;
 }
