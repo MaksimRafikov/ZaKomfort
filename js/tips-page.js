@@ -5,7 +5,6 @@
 
   const state = {
     category: "",
-    query: "",
   };
 
   function tipHref(id) {
@@ -25,11 +24,6 @@
 
   function matchesFilters(tip) {
     if (state.category && tip.category !== state.category) return false;
-    if (state.query) {
-      const q = state.query.toLowerCase();
-      const hay = `${tip.title} ${tip.summary} ${tip.category}`.toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
     return true;
   }
 
@@ -53,7 +47,7 @@
     const el = document.getElementById("tips-filter-status");
     if (!el) return;
     const total = EXPERT_TIPS.length;
-    if (state.category || state.query) {
+    if (state.category) {
       el.textContent = `Показано ${count} из ${total}`;
     } else {
       el.textContent = `Все советы: ${count}`;
@@ -127,14 +121,6 @@
       </div>
       <div class="container">
         ${renderRelatedTips(tip)}
-        <section class="section section--cta">
-          <h2>Нужна консультация по вашему объекту?</h2>
-          <p>Расскажем, какие решения подойдут именно вам — бесплатно на первой встрече.</p>
-          <p>
-            <a class="btn btn--primary" href="tel:+79177660938">Позвонить</a>
-            <a class="btn btn--ghost" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать ремонт</a>
-          </p>
-        </section>
       </div>
     `;
   }
@@ -142,7 +128,6 @@
   function renderList(root) {
     const filtered = EXPERT_TIPS.filter(matchesFilters);
     const chipsHost = document.getElementById("tips-filter-chips");
-    const searchInput = document.getElementById("tips-search");
 
     if (chipsHost && !chipsHost.dataset.bound) {
       chipsHost.dataset.bound = "1";
@@ -163,23 +148,14 @@
       });
     }
 
-    if (searchInput && !searchInput.dataset.bound) {
-      searchInput.dataset.bound = "1";
-      searchInput.addEventListener("input", () => {
-        state.query = searchInput.value.trim();
-        applyList(root);
-      });
-    }
-
     setActiveChips(chipsHost);
-    if (searchInput) searchInput.value = state.query;
 
     const grid = document.getElementById("tips-grid");
     if (!grid) return;
 
     if (!filtered.length) {
       grid.innerHTML =
-        '<p class="empty-state">Нет советов по выбранному фильтру. Сбросьте категорию или измените поиск.</p>';
+        '<p class="empty-state">Нет советов по выбранной теме. Выберите другую категорию.</p>';
     } else {
       grid.innerHTML = filtered.map((t) => renderTipCard(t)).join("");
     }
@@ -259,10 +235,6 @@
           <div class="filter-row filter-row--complex">
             <span class="filter-label">Тема</span>
             <div id="tips-filter-chips" class="filter-complex-chips"></div>
-          </div>
-          <div class="filter-row tips-search-row">
-            <label class="filter-label" for="tips-search">Поиск</label>
-            <input type="search" id="tips-search" class="tip-search" placeholder="Название или тема" autocomplete="off" />
           </div>
           <p id="tips-filter-status" class="filter-status" aria-live="polite"></p>
         </section>

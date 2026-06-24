@@ -914,28 +914,6 @@ a.card {
   margin-bottom: 0.5rem;
 }
 
-.tips-search-row {
-  align-items: center;
-}
-
-.tip-search {
-  flex: 1;
-  min-width: 0;
-  max-width: 22rem;
-  padding: 0.55rem 0.85rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  font-size: 0.95rem;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.tip-search:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 1px;
-  border-color: var(--accent);
-}
-
 .tip-breadcrumbs {
   display: flex;
   flex-wrap: wrap;
@@ -975,18 +953,6 @@ a.card {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin: 1.5rem 0 0;
-}
-
-.section--cta {
-  text-align: center;
-  padding-bottom: 2rem;
-}
-
-.section--cta p:last-child {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
 }
 
 .manager-toggle {
