@@ -10,3 +10,6 @@ __pycache__/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Raw expert-tip uploads (large videos; processed output in assets/tips/)
+inbox/expert-tips/

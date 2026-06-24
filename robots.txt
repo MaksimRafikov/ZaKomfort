@@ -7,3 +7,4 @@ Disallow: /assets/*/before-
 Disallow: /assets/*/compare-
 Disallow: /assets/*/plan.
 Disallow: /assets/*/expert-overview.
+Disallow: /assets/tips/

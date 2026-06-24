@@ -3,16 +3,45 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#1f5f4e" />
-    <title>Страница не найдена | За Комфортом</title>
+    <title>Советы эксперта по ремонту | За Комфортом · Уфа</title>
     <meta
       name="description"
-      content="Запрошенная страница не найдена. Перейдите в каталог реализованных ремонтов студии «За Комфортом» в Уфе."
+      content="Видеосоветы дизайнера студии «За Комфортом»: кухня, санузел, планировка, отделка и бюджет ремонта в Уфе."
     />
-    <link rel="canonical" href="https://katalog.zakomfortom.com/" />
+    <link rel="canonical" href="https://katalog.zakomfortom.com/tips.html" />
     <link rel="icon" type="image/png" href="assets/brand/logo.png" />
-    <link rel="stylesheet" href="css/styles.css?v=20260617b" />
+    <link rel="apple-touch-icon" href="assets/brand/logo.png" />
+
+    <link rel="preconnect" href="https://zakomfortom.com" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="За Комфортом" />
+    <meta property="og:url" content="https://katalog.zakomfortom.com/tips.html" />
+    <meta property="og:title" content="Советы эксперта по ремонту | За Комфортом" />
+    <meta
+      property="og:description"
+      content="Короткие видео о ремонте и дизайне: практичные решения от студии «За Комфортом» в Уфе."
+    />
+    <meta
+      property="og:image"
+      content="https://katalog.zakomfortom.com/assets/brand/og-share.png"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Советы эксперта по ремонту | За Комфортом" />
+    <meta
+      name="twitter:description"
+      content="Короткие видео о ремонте и дизайне от студии «За Комфортом» в Уфе."
+    />
+    <meta
+      name="twitter:image"
+      content="https://katalog.zakomfortom.com/assets/brand/og-share.png"
+    />
+
+    <link rel="stylesheet" href="css/styles.css?v=20260624a" />
   </head>
   <body>
     <header class="site-header">
@@ -22,15 +51,14 @@
         </a>
         <nav class="nav-links" aria-label="Навигация">
           <a href="index.html">Каталог</a>
-          <a href="tips.html">Советы эксперта</a>
+          <a href="tips.html" aria-current="page">Советы эксперта</a>
+          <a href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать ремонт</a>
         </nav>
       </div>
     </header>
-    <main class="container section page-404">
-      <h1>Страница не найдена</h1>
-      <p class="lead">Проверьте адрес или перейдите в каталог реализованных ремонтов.</p>
-      <p><a class="btn btn--primary" href="index.html">Каталог</a></p>
-    </main>
+
+    <main id="tips-root"></main>
+
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__top">
@@ -98,5 +126,10 @@
         </div>
       </div>
     </footer>
+
+    <script src="js/media-utils.js?v=20260624a" defer></script>
+    <script src="js/tips-data.js?v=20260624a" defer></script>
+    <script src="js/media-guard.js?v=20260612a" defer></script>
+    <script src="js/tips-page.js?v=20260624a" defer></script>
   </body>
 </html>

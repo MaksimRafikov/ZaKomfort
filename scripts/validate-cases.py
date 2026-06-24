@@ -36,6 +36,38 @@ def find_inbox_refs(data_text: str) -> list[str]:
     return pattern.findall(data_text)
 
 
+def validate_tips() -> tuple[list[str], list[str]]:
+    errors: list[str] = []
+    warnings: list[str] = []
+    tips_file = ROOT / "js" / "tips-data.js"
+    if not tips_file.exists():
+        warnings.append("Missing js/tips-data.js (run scripts/process-videos.py).")
+        return errors, warnings
+
+    text = read_text(tips_file)
+    inbox_refs = sorted(set(find_inbox_refs(text)))
+    if inbox_refs:
+        errors.append(
+            "Found forbidden inbox references in js/tips-data.js: " + ", ".join(inbox_refs)
+        )
+
+    asset_paths = find_asset_paths(text)
+    missing = [p for p in sorted(set(asset_paths)) if not (ROOT / p).exists()]
+    if missing:
+        errors.append(
+            "Missing assets referenced by js/tips-data.js: "
+            + ", ".join(missing[:12])
+            + (" ..." if len(missing) > 12 else "")
+        )
+
+    ids = re.findall(r'["\']id["\']?\s*:\s*["\']([a-z0-9-]+)["\']', text)
+    dupes = sorted({cid for cid in ids if ids.count(cid) > 1})
+    if dupes:
+        errors.append("Duplicate tip ids in js/tips-data.js: " + ", ".join(dupes))
+
+    return errors, warnings
+
+
 def validate() -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -80,7 +112,9 @@ def validate() -> tuple[list[str], list[str]]:
     # Validate id <-> assets folder consistency for present media refs.
     if ids and asset_paths:
         asset_folders = {p.split("/")[1] for p in asset_paths if p.count("/") >= 2}
-        unknown_folders = sorted(asset_folders.difference(set(ids)).difference({"brand"}))
+        unknown_folders = sorted(
+            asset_folders.difference(set(ids)).difference({"brand", "tips"})
+        )
         if unknown_folders:
             warnings.append(
                 "Asset folders without matching case id: " + ", ".join(unknown_folders)
@@ -98,6 +132,8 @@ def validate() -> tuple[list[str], list[str]]:
                     continue
                 if should_skip_assets_path(full, ROOT / "assets"):
                     continue
+                if "/tips/" in p.replace("\\", "/"):
+                    continue
                 if not is_protected_image(full):
                     unprotected_images.append(p)
         except ImportError:
@@ -109,6 +145,10 @@ def validate() -> tuple[list[str], list[str]]:
             + ", ".join(unprotected_images[:8])
             + (" ..." if len(unprotected_images) > 8 else "")
         )
+
+    tip_errors, tip_warnings = validate_tips()
+    errors.extend(tip_errors)
+    warnings.extend(tip_warnings)
 
     return errors, warnings
 
