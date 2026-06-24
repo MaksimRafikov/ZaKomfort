@@ -255,6 +255,8 @@ def extract_poster(ffmpeg: str, source: Path, target: Path) -> None:
             str(source),
             "-frames:v",
             "1",
+            "-vf",
+            "scale=720:-2:flags=lanczos",
             "-q:v",
             "3",
             str(target),

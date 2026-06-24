@@ -78,7 +78,7 @@
     return `
       <a class="tip-card${compact ? " tip-card--compact" : ""}" href="${tipHref(tip.id)}" aria-label="Смотреть: ${escapeHtml(tip.title)}">
         <div class="tip-card__media">
-          <img src="${escapeHtml(tip.cover)}" alt="" width="640" height="360" loading="lazy" decoding="async" />
+          <img src="${escapeHtml(tip.cover)}" alt="" width="404" height="720" loading="lazy" decoding="async" />
           <span class="tip-card__play" aria-hidden="true"></span>
           ${durationHtml}
         </div>
