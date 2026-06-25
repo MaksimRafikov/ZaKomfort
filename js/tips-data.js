@@ -363,6 +363,76 @@ const EXPERT_TIPS = [
       "embedUrl": null,
       "poster": "assets/tips/bathroom-door-seam/poster.jpg"
     }
+  },
+  {
+    "id": "site-visit-importance",
+    "title": "Зачем нужна экскурсия по действующим объектам",
+    "summary": "Зачем ехать на действующие объекты перед ремонтом и что это даёт.",
+    "category": "Общее",
+    "durationSec": 81,
+    "cover": "assets/tips/site-visit-importance/poster.jpg",
+    "video": {
+      "label": "Зачем нужна экскурсия по действующим объектам",
+      "fileUrl": "assets/tips/site-visit-importance/video.mp4",
+      "embedUrl": null,
+      "poster": "assets/tips/site-visit-importance/poster.jpg"
+    }
+  },
+  {
+    "id": "avoid-random-interior",
+    "title": "Как не получить случайный результат в интерьере",
+    "summary": "Как избежать случайного результата в интерьере и управлять итогом.",
+    "category": "Дизайн",
+    "durationSec": 38,
+    "cover": "assets/tips/avoid-random-interior/poster.jpg",
+    "video": {
+      "label": "Как не получить случайный результат в интерьере",
+      "fileUrl": "assets/tips/avoid-random-interior/video.mp4",
+      "embedUrl": null,
+      "poster": "assets/tips/avoid-random-interior/poster.jpg"
+    }
+  },
+  {
+    "id": "bedroom-design-choice",
+    "title": "Какой дизайн выбрать для спальни",
+    "summary": "Как выбрать дизайн спальни: стиль, цвет и функциональные решения.",
+    "category": "Дизайн",
+    "durationSec": 45,
+    "cover": "assets/tips/bedroom-design-choice/poster.jpg",
+    "video": {
+      "label": "Какой дизайн выбрать для спальни",
+      "fileUrl": "assets/tips/bedroom-design-choice/video.mp4",
+      "embedUrl": null,
+      "poster": "assets/tips/bedroom-design-choice/poster.jpg"
+    }
+  },
+  {
+    "id": "design-project-necessity",
+    "title": "Почему дизайн проект - это не роскошь а необходимость",
+    "summary": "Почему дизайн-проект — необходимость, а не роскошь при ремонте.",
+    "category": "Общее",
+    "durationSec": 42,
+    "cover": "assets/tips/design-project-necessity/poster.jpg",
+    "video": {
+      "label": "Почему дизайн проект - это не роскошь а необходимость",
+      "fileUrl": "assets/tips/design-project-necessity/video.mp4",
+      "embedUrl": null,
+      "poster": "assets/tips/design-project-necessity/poster.jpg"
+    }
+  },
+  {
+    "id": "narrow-specialists",
+    "title": "Почему нужно выбирать узкопрофильных специалистов",
+    "summary": "Зачем выбирать узкопрофильных специалистов вместо «мастера на все руки».",
+    "category": "Общее",
+    "durationSec": 38,
+    "cover": "assets/tips/narrow-specialists/poster.jpg",
+    "video": {
+      "label": "Почему нужно выбирать узкопрофильных специалистов",
+      "fileUrl": "assets/tips/narrow-specialists/video.mp4",
+      "embedUrl": null,
+      "poster": "assets/tips/narrow-specialists/poster.jpg"
+    }
   }
 ];
 
