@@ -13,7 +13,7 @@ if (-not $isPipelineTouch) {
 }
 
 $message = @"
-[Pipeline checklist] Use inbox as source only, reference only assets/* in data.js, keep case id <-> assets folder slug consistent, verify gallery/video paths exist. For new photos run: python scripts/process-assets.py --case <id> --from inbox/<slug>/... (watermark + resize). For raw drops into assets run: python scripts/process-assets.py --case <id>.
+[Pipeline checklist] Use inbox as source only, reference only assets/* in data.js, keep case id <-> assets folder slug consistent, verify gallery/video paths exist. For new photos run: python scripts/process-assets.py --case <id> --from inbox/<slug>/... (resize + compress). For raw drops into assets run: python scripts/process-assets.py --case <id>.
 "@
 
 $response = @{

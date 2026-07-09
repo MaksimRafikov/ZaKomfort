@@ -141,7 +141,7 @@ def validate() -> tuple[list[str], list[str]]:
 
     if unprotected_images:
         warnings.append(
-            "Unprotected images (run process-assets.py): "
+            "Unoptimized images (run process-assets.py --optimize-all): "
             + ", ".join(unprotected_images[:8])
             + (" ..." if len(unprotected_images) > 8 else "")
         )

@@ -94,7 +94,7 @@ def main() -> int:
                 [
                     f"# {args.title}",
                     "",
-                    "Import photos via process-assets.py (watermark + web resize).",
+                    "Import photos via process-assets.py (web resize + compress).",
                     "",
                     "Example:",
                     f"python scripts/process-assets.py --case {case_id} --from inbox/<slug>/01-photos-after --prefix after",

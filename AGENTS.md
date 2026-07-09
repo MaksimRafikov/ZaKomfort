@@ -7,7 +7,7 @@
 - Репозиторий: `MaksimRafikov/ZaKomfort`, ветка `main`.
 - Сборка не требуется — откройте `index.html` или поднимите локальный сервер: `python3 -m http.server 8080`.
 - После изменений в `js/data.js` или `assets/` всегда запускайте: `python3 scripts/validate-cases.py`.
-- Новый кейс: `python3 scripts/scaffold-case.py --title "..."`, затем `python3 scripts/process-assets.py --case <id> --from inbox/<slug>/...` (водяной знак + ресайз).
+- Новый кейс: `python3 scripts/scaffold-case.py --title "..."`, затем `python3 scripts/process-assets.py --case <id> --from inbox/<slug>/...` (ресайз + сжатие).
 - Советы эксперта: исходники в `inbox/expert-tips/`, обработка `python3 scripts/process-videos.py` (ffmpeg, без водяного знака) → `assets/tips/<slug>/`, данные в `js/tips-data.js`.
 - В публичном коде ссылайтесь только на `assets/<case-id>/...`, никогда на `inbox/`.
 - Правила проекта: `.cursor/rules/*.mdc`. Hooks в `.cursor/hooks.json` рассчитаны на Windows/PowerShell в десктопе; в Cloud Agents основной контроль — `validate-cases.py` и rules.
@@ -15,5 +15,5 @@
 ## Content pipeline
 
 1. Исходники — `inbox/<project-slug>/` (неизменяемый архив загрузок).
-2. Продакшен-медиа — `assets/<case-id>/` через `scripts/process-assets.py` (водяной знак, max 1920px).
+2. Продакшен-медиа — `assets/<case-id>/` через `scripts/process-assets.py` (ресайз до 1440px, JPEG/PNG).
 3. Один объект кейса в `js/data.js` с совпадающим `id` и `cover`.
