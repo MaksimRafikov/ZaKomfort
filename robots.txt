@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Allow: /assets/brand/
+Allow: /assets/tips/*/poster.
 
 Disallow: /assets/*/after-
 Disallow: /assets/*/before-

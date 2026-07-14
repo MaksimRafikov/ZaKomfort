@@ -1,5 +1,5 @@
 (function () {
-  const { escapeHtml, renderVideo, formatDuration } = window.ZKMediaUtils;
+  const { escapeHtml, formatDuration } = window.ZKMediaUtils;
 
   const CATEGORY_PARAM = "category";
 
@@ -8,18 +8,8 @@
   };
 
   function tipHref(id) {
-    return `tips.html?id=${encodeURIComponent(id)}`;
-  }
-
-  function listHref(category) {
-    const url = new URL("tips.html", window.location.href);
-    url.searchParams.delete("id");
-    if (category) {
-      url.searchParams.set(CATEGORY_PARAM, category);
-    } else {
-      url.searchParams.delete(CATEGORY_PARAM);
-    }
-    return `${url.pathname}${url.search}`;
+    // Статические страницы советов генерирует scripts/build-pages.py.
+    return `tips/${encodeURIComponent(id)}/`;
   }
 
   function matchesFilters(tip) {
@@ -63,14 +53,13 @@
     });
   }
 
-  function renderTipCard(tip, options) {
-    const compact = options && options.compact;
+  function renderTipCard(tip) {
     const duration = formatDuration(tip.durationSec);
     const durationHtml = duration
       ? `<span class="tip-card__duration" aria-label="Длительность ${escapeHtml(duration)}">${escapeHtml(duration)}</span>`
       : "";
     return `
-      <a class="tip-card${compact ? " tip-card--compact" : ""}" href="${tipHref(tip.id)}" aria-label="Смотреть: ${escapeHtml(tip.title)}">
+      <a class="tip-card" href="${tipHref(tip.id)}" aria-label="Смотреть: ${escapeHtml(tip.title)}">
         <div class="tip-card__media">
           <img src="${escapeHtml(tip.cover)}" alt="" width="404" height="720" loading="lazy" decoding="async" />
           <span class="tip-card__play" aria-hidden="true"></span>
@@ -79,49 +68,9 @@
         <div class="tip-card__body">
           <span class="tip-card__category">${escapeHtml(tip.category)}</span>
           <h3 class="tip-card__title">${escapeHtml(tip.title)}</h3>
-          ${compact ? "" : `<p class="tip-card__summary">${escapeHtml(tip.summary)}</p>`}
+          <p class="tip-card__summary">${escapeHtml(tip.summary)}</p>
         </div>
       </a>
-    `;
-  }
-
-  function renderRelatedTips(current) {
-    const related = EXPERT_TIPS.filter((t) => t.category === current.category && t.id !== current.id).slice(
-      0,
-      3
-    );
-    if (!related.length) return "";
-    return `
-      <section class="section">
-        <h2>Похожие советы</h2>
-        <div class="tip-grid tip-grid--related">
-          ${related.map((t) => renderTipCard(t, { compact: true })).join("")}
-        </div>
-      </section>
-    `;
-  }
-
-  function renderDetail(tip) {
-    const videoHtml = tip.video ? renderVideo(tip.video, { label: tip.title }) : "";
-    const categoryLink = listHref(tip.category);
-    return `
-      <div class="container tip-detail">
-        <nav class="tip-breadcrumbs" aria-label="Навигация">
-          <a href="${listHref("")}">Все советы</a>
-          <span aria-hidden="true">/</span>
-          <a href="${categoryLink}">${escapeHtml(tip.category)}</a>
-        </nav>
-        <h1>${escapeHtml(tip.title)}</h1>
-        ${videoHtml}
-        <p class="lead">${escapeHtml(tip.summary)}</p>
-        <p class="tip-detail__actions">
-          <a class="btn btn--primary" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Обсудить ремонт</a>
-          <a class="btn btn--ghost" href="${listHref("")}">Все советы</a>
-        </p>
-      </div>
-      <div class="container">
-        ${renderRelatedTips(tip)}
-      </div>
     `;
   }
 
@@ -167,38 +116,6 @@
     renderList(root);
   }
 
-  function setDetailMeta(tip) {
-    const PUBLIC_SITE = "https://katalog.zakomfortom.com/";
-    document.title = `${tip.title} · Советы эксперта · За Комфортом`;
-
-    const setMeta = (selector, content) => {
-      const el = document.querySelector(selector);
-      if (el && content) el.setAttribute("content", content);
-    };
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.href = `${PUBLIC_SITE.replace(/\/$/, "")}/tips.html?id=${encodeURIComponent(tip.id)}`;
-    }
-
-    setMeta('meta[name="description"]', tip.summary);
-    setMeta('meta[property="og:title"]', tip.title);
-    setMeta('meta[property="og:description"]', tip.summary);
-    try {
-      const img = new URL(tip.cover.replace(/^\//, ""), PUBLIC_SITE).href;
-      setMeta('meta[property="og:image"]', img);
-      setMeta('meta[name="twitter:image"]', img);
-    } catch {
-      /* ignore */
-    }
-    setMeta(
-      'meta[property="og:url"]',
-      `${PUBLIC_SITE.replace(/\/$/, "")}/tips.html?id=${encodeURIComponent(tip.id)}`
-    );
-    setMeta('meta[name="twitter:title"]', tip.title);
-    setMeta('meta[name="twitter:description"]', tip.summary);
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("tips-root");
     if (!root || typeof EXPERT_TIPS === "undefined") return;
@@ -207,14 +124,13 @@
     const id = params.get("id");
 
     if (id) {
-      const tip = getTipById(id);
-      if (!tip) {
-        root.innerHTML =
-          '<div class="container section"><p>Совет не найден. <a href="tips.html">К списку советов</a></p></div>';
+      // Старый формат tips.html?id=<slug> редиректит на статические страницы.
+      if (getTipById(id)) {
+        window.location.replace(tipHref(id));
         return;
       }
-      setDetailMeta(tip);
-      root.innerHTML = renderDetail(tip);
+      root.innerHTML =
+        '<div class="container section"><p>Совет не найден. <a href="tips.html">К списку советов</a></p></div>';
       return;
     }
 

@@ -183,7 +183,9 @@ def validate_case_file(path: Path) -> tuple[list[str], list[str], set[str]]:
     return errors, warnings, assets
 
 
-def validate_generated(build, site: dict, cases: list[dict]) -> list[str]:
+def validate_generated(
+    build, site: dict, cases: list[dict], tips: list[dict]
+) -> list[str]:
     """Generated artifacts must match a fresh in-memory build."""
     errors: list[str] = []
     stale_hint = " (run: python scripts/build-pages.py)"
@@ -209,6 +211,15 @@ def validate_generated(build, site: dict, cases: list[dict]) -> list[str]:
         ):
             errors.append(f'cases/{c["id"]}/index.html is out of date' + stale_hint)
 
+    for tip in tips:
+        page = ROOT / "tips" / tip["id"] / "index.html"
+        if not page.is_file():
+            errors.append(f'Missing tips/{tip["id"]}/index.html' + stale_hint)
+        elif page.read_text(encoding="utf-8") != build.build_tip_page(
+            site, tip, tips, versions
+        ):
+            errors.append(f'tips/{tip["id"]}/index.html is out of date' + stale_hint)
+
     sitemap = ROOT / "sitemap.xml"
     if not sitemap.is_file():
         errors.append("Missing sitemap.xml" + stale_hint)
@@ -220,6 +231,13 @@ def validate_generated(build, site: dict, cases: list[dict]) -> list[str]:
         if missing:
             errors.append(
                 "sitemap.xml misses case URLs: " + ", ".join(missing) + stale_hint
+            )
+        missing_tips = [
+            t["id"] for t in tips if build.tip_url(site, t["id"]) not in text
+        ]
+        if missing_tips:
+            errors.append(
+                "sitemap.xml misses tip URLs: " + ", ".join(missing_tips) + stale_hint
             )
 
     return errors
@@ -308,12 +326,13 @@ def validate() -> tuple[list[str], list[str]]:
             + (" ..." if len(missing_assets) > 12 else "")
         )
 
-    # Generated artifacts (data.js, case pages, sitemap) must be fresh.
+    # Generated artifacts (data.js, case/tip pages, sitemap) must be fresh.
     try:
         build = load_build_module()
         site = build.load_site()
         cases = build.load_cases()
-        errors.extend(validate_generated(build, site, cases))
+        tips = build.load_tips()
+        errors.extend(validate_generated(build, site, cases, tips))
     except SystemExit as exc:
         errors.append(f"build-pages.py failed to load cases: {exc}")
     except Exception as exc:  # noqa: BLE001 - report any build breakage
