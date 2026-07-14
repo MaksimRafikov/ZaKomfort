@@ -54,7 +54,8 @@
   }
 
   function caseHref(id) {
-    return `case.html?id=${encodeURIComponent(id)}`;
+    // Статические страницы кейсов генерирует scripts/build-pages.py.
+    return `cases/${encodeURIComponent(id)}/`;
   }
 
   function bindCardNavigation(grid) {
@@ -82,6 +83,21 @@
     });
   }
 
+  // Карточка занимает ~треть контейнера (1120px) на десктопе и весь экран на мобильных.
+  const CARD_SIZES = "(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw";
+
+  function cardMedia(c) {
+    const alt = `${escapeHtml(c.title)} — интерьер после ремонта`;
+    const webpSource = c.coverWebpSrcset
+      ? `<source type="image/webp" srcset="${escapeHtml(c.coverWebpSrcset)}" sizes="${CARD_SIZES}" />`
+      : "";
+    const imgSrcset = c.coverSrcset
+      ? ` srcset="${escapeHtml(c.coverSrcset)}" sizes="${CARD_SIZES}"`
+      : "";
+    const img = `<img src="${escapeHtml(c.cover)}"${imgSrcset} alt="${alt}" width="600" height="450" loading="lazy" decoding="async" />`;
+    return webpSource ? `<picture>${webpSource}${img}</picture>` : img;
+  }
+
   function renderCards(list) {
     const grid = document.getElementById("case-grid");
     if (!grid) return;
@@ -97,7 +113,7 @@
         (c) => `
       <a class="card" href="${caseHref(c.id)}" data-id="${escapeHtml(c.id)}" aria-label="Смотреть кейс: ${escapeHtml(c.title)}">
         <div class="card__media">
-          <img src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)} — интерьер после ремонта" width="600" height="450" loading="lazy" decoding="async" />
+          ${cardMedia(c)}
         </div>
         <div class="card__body">
           <h3 class="card__title">${escapeHtml(c.title)}</h3>
@@ -117,9 +133,6 @@
       .join("");
 
     bindCardNavigation(grid);
-    if (window.ZKMediaGuard) {
-      window.ZKMediaGuard.protect(grid);
-    }
   }
 
   function escapeHtml(s) {

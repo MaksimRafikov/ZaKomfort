@@ -12,9 +12,28 @@ OPTIMIZED_MARKER = "zk-optimized-v1"
 LEGACY_PROTECTED_MARKER = "zk-protected-v1"
 MAX_WEB_DIMENSION = 1440
 JPEG_QUALITY = 82
+WEBP_QUALITY = 80
+# Responsive variants generated next to each master image:
+#   <stem>-640.jpg / <stem>-640.webp / <stem>-1024.webp / <stem>.webp
+VARIANT_WIDTHS = (640, 1024)
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp"}
 SKIP_DIRS = {"brand"}
 PHOTO_PREFIXES = ("after-", "before-", "compare-")
+
+_VARIANT_STEM_RE = re.compile(
+    r"-(?:%s)$" % "|".join(str(w) for w in VARIANT_WIDTHS)
+)
+
+
+def is_variant_file(path: Path) -> bool:
+    """True for generated files: width variants and full-size webp twins."""
+    if _VARIANT_STEM_RE.search(path.stem):
+        return True
+    if path.suffix.lower() == ".webp":
+        for ext in (".jpg", ".jpeg", ".png"):
+            if path.with_suffix(ext).exists():
+                return True
+    return False
 
 
 def is_photo_filename(name: str) -> bool:
@@ -62,25 +81,95 @@ def _resize_for_web(img: Image.Image) -> Image.Image:
     return img.resize(new_size, Image.Resampling.LANCZOS)
 
 
+def _flatten_to_rgb(img: Image.Image) -> Image.Image:
+    if img.mode in ("RGBA", "LA", "P"):
+        rgba = img.convert("RGBA")
+        background = Image.new("RGB", rgba.size, (255, 255, 255))
+        background.paste(rgba, mask=rgba.split()[-1])
+        return background
+    return img.convert("RGB")
+
+
+def variant_targets(master: Path, width: int) -> tuple[Path, Path]:
+    """(same-format variant, webp variant) paths for a given width."""
+    return (
+        master.with_name(f"{master.stem}-{width}{master.suffix}"),
+        master.with_name(f"{master.stem}-{width}.webp"),
+    )
+
+
+def expected_variants(master: Path) -> list[Path]:
+    """Variant files that should exist next to an optimized master image."""
+    paths = [master.with_suffix(".webp")]
+    try:
+        with Image.open(master) as img:
+            master_width = img.size[0]
+    except OSError:
+        return paths
+    for width in VARIANT_WIDTHS:
+        if master_width > width:
+            paths.extend(variant_targets(master, width))
+    return paths
+
+
+def _save_webp(img: Image.Image, target: Path) -> None:
+    img.save(target, "WEBP", quality=WEBP_QUALITY, method=6)
+
+
+def generate_variants(master: Path) -> list[Path]:
+    """(Re)create the webp twin and narrow width variants for a master image."""
+    created: list[Path] = []
+    with Image.open(master) as opened:
+        img = _flatten_to_rgb(opened)
+    w, h = img.size
+
+    webp_full = master.with_suffix(".webp")
+    _save_webp(img, webp_full)
+    created.append(webp_full)
+
+    for width in VARIANT_WIDTHS:
+        variant, variant_webp = variant_targets(master, width)
+        if w <= width:
+            for stale in (variant, variant_webp):
+                if stale.exists():
+                    stale.unlink()
+            continue
+        resized = img.resize(
+            (width, max(1, round(h * width / w))), Image.Resampling.LANCZOS
+        )
+        if variant.suffix.lower() == ".png":
+            resized.save(variant, optimize=True)
+        else:
+            resized.save(variant, quality=JPEG_QUALITY, optimize=True, subsampling=2)
+        _save_webp(resized, variant_webp)
+        created.extend([variant, variant_webp])
+    return created
+
+
+def ensure_variants(master: Path) -> list[Path]:
+    """Generate variants only when some expected file is missing."""
+    if any(not p.exists() for p in expected_variants(master)):
+        return generate_variants(master)
+    return []
+
+
 def optimize_image_file(path: Path, *, force: bool = False) -> Path | None:
     """Resize and optimize for web. Returns final path, or None if skipped."""
     if path.suffix.lower() not in IMAGE_SUFFIXES:
         return None
+    if is_variant_file(path):
+        return None
 
     out_path = output_path_for(path)
     if not force and out_path.exists() and is_optimized_image(out_path):
+        ensure_variants(out_path)
         return None
     if not force and out_path == path and is_optimized_image(path):
+        ensure_variants(path)
         return None
 
     with Image.open(path) as opened:
-        img = opened.convert("RGBA") if opened.mode in ("RGBA", "LA", "P") else opened.convert("RGB")
-        if img.mode == "RGBA":
-            background = Image.new("RGB", img.size, (255, 255, 255))
-            background.paste(img, mask=img.split()[-1])
-            img = background
-        else:
-            img = img.convert("RGB")
+        img = _flatten_to_rgb(opened)
 
     img = _resize_for_web(img)
 
@@ -104,6 +193,7 @@ def optimize_image_file(path: Path, *, force: bool = False) -> Path | None:
     if out_path != path and path.exists():
         path.unlink()
 
+    generate_variants(out_path)
     return out_path
 
 
@@ -133,6 +223,7 @@ def should_skip_assets_path(path: Path, assets_root: Path) -> bool:
 
 
 def iter_case_images(assets_root: Path) -> list[Path]:
+    """Master images only; generated variants (-640/-1024/webp twins) are skipped."""
     files: list[Path] = []
     if not assets_root.exists():
         return files
@@ -141,6 +232,9 @@ def iter_case_images(assets_root: Path) -> list[Path]:
             continue
         if should_skip_assets_path(path, assets_root):
             continue
-        if path.suffix.lower() in IMAGE_SUFFIXES:
-            files.append(path)
+        if path.suffix.lower() not in IMAGE_SUFFIXES:
+            continue
+        if is_variant_file(path):
+            continue
+        files.append(path)
     return files

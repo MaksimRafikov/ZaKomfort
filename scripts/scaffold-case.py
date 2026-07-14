@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS_DIR = ROOT / "assets"
+CASES_DIR = ROOT / "content" / "cases"
 
 
 def slugify(value: str) -> str:
@@ -24,8 +25,21 @@ def slugify(value: str) -> str:
     return value
 
 
+def next_order() -> int:
+    orders = []
+    for path in CASES_DIR.glob("*.json"):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(data.get("order"), int):
+            orders.append(data["order"])
+    return (max(orders) + 10) if orders else 10
+
+
 def make_template(case_id: str, title: str, address: str) -> dict:
     return {
+        "order": next_order(),
         "id": case_id,
         "title": title,
         "address": address,
@@ -109,13 +123,21 @@ def main() -> int:
             encoding="utf-8",
         )
 
+    case_file = CASES_DIR / f"{case_id}.json"
+    if case_file.exists():
+        print(f"Case file already exists, not overwriting: {case_file.relative_to(ROOT)}", file=sys.stderr)
+        return 1
+
     template = make_template(case_id, args.title, args.address)
-    print("CASE_TEMPLATE_START")
-    print(json.dumps(template, ensure_ascii=False, indent=2))
-    print("CASE_TEMPLATE_END")
+    CASES_DIR.mkdir(parents=True, exist_ok=True)
+    case_file.write_text(
+        json.dumps(template, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"Created: {case_file.relative_to(ROOT)}")
     print(f"Assets folder ready: {case_assets.relative_to(ROOT)}")
     print(
-        "Next: process-assets.py --from inbox/... -> paste template into js/data.js -> validate-cases.py"
+        "Next: process-assets.py --from inbox/... -> edit the JSON -> "
+        "python scripts/build-pages.py -> python scripts/validate-cases.py"
     )
     return 0
 

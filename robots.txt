@@ -8,3 +8,5 @@ Disallow: /assets/*/compare-
 Disallow: /assets/*/plan.
 Disallow: /assets/*/expert-overview.
 Disallow: /assets/tips/
+
+Sitemap: https://katalog.zakomfortom.com/sitemap.xml

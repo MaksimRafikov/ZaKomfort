@@ -215,9 +215,6 @@
       }
       setDetailMeta(tip);
       root.innerHTML = renderDetail(tip);
-      if (window.ZKMediaGuard) {
-        window.ZKMediaGuard.protect(root);
-      }
       return;
     }
 

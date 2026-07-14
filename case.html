@@ -3,132 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="noindex, follow" />
     <meta name="theme-color" content="#1f5f4e" />
     <title>Кейс | За Комфортом</title>
     <meta
       name="description"
-      content="Подробный кейс ремонта и дизайна от студии «За Комфортом»: планировка, фото до и после, видео, стоимость на момент реализации."
+      content="Подробный кейс ремонта и дизайна от студии «За Комфортом». Страница переехала в раздел /cases/."
     />
-    <link rel="canonical" href="https://katalog.zakomfortom.com/case.html?id=pervomaysky-44" />
+    <link rel="canonical" href="https://katalog.zakomfortom.com/" />
     <link rel="icon" type="image/png" href="assets/brand/logo.png" />
-    <link rel="apple-touch-icon" href="assets/brand/logo.png" />
-
-    <link rel="preconnect" href="https://zakomfortom.com" crossorigin />
-
-    <meta property="og:type" content="article" />
-    <meta property="og:locale" content="ru_RU" />
-    <meta property="og:site_name" content="За Комфортом" />
-    <meta property="og:url" content="https://katalog.zakomfortom.com/case.html?id=pervomaysky-44" />
-    <meta property="og:title" content="Кейс | За Комфортом" />
-    <meta
-      property="og:description"
-      content="Подробный кейс ремонта и дизайна: планировка, фото до и после, проект и реализация, видео с комментариями эксперта."
-    />
-    <meta
-      property="og:image"
-      content="https://katalog.zakomfortom.com/assets/pervomaysky-44/after-8.png"
-    />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Кейс | За Комфортом" />
-    <meta
-      name="twitter:description"
-      content="Подробный кейс ремонта и дизайна: планировка, фото до и после, проект и реализация."
-    />
-    <meta
-      name="twitter:image"
-      content="https://katalog.zakomfortom.com/assets/pervomaysky-44/after-8.png"
-    />
-
-    <link rel="stylesheet" href="css/styles.css?v=20260625a" />
+    <link rel="stylesheet" href="css/styles.css?v=77a1bd7d45" />
+    <script>
+      // Старый формат ссылок case.html?id=<slug> редиректит на статические страницы /cases/<slug>/.
+      (function () {
+        var id = new URLSearchParams(window.location.search).get("id") || "";
+        if (/^[a-z0-9-]+$/.test(id)) {
+          window.location.replace("cases/" + id + "/" + window.location.hash);
+        } else {
+          window.location.replace("index.html");
+        }
+      })();
+    </script>
   </head>
   <body>
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a class="logo" href="index.html" aria-label="За Комфортом">
-          <img class="logo__img" src="assets/brand/logo.png" alt="За Комфортом" />
-        </a>
-        <nav class="nav-links" aria-label="Навигация">
-          <a href="index.html">Каталог</a>
-          <a href="tips.html">Советы эксперта</a>
-          <a href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать ремонт</a>
-        </nav>
+    <main>
+      <div class="container section">
+        <h1>Страница кейса переехала</h1>
+        <p class="lead">Сейчас вы будете перенаправлены на новую страницу кейса.</p>
+        <p><a class="btn btn--primary" href="index.html">Открыть каталог работ</a></p>
       </div>
-    </header>
-    <main id="case-root"></main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <div class="site-footer__top">
-          <div class="site-footer__brand">
-            <strong>За Комфортом</strong>
-            <span>Студия дизайна и ремонта · Уфа</span>
-          </div>
-          <div class="site-footer__actions">
-            <a class="btn btn--primary" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer"
-              >Рассчитать ремонт</a
-            >
-            <a class="site-footer__phone" href="tel:+79177660938">+7 (917) 766-09-38</a>
-          </div>
-        </div>
-        <div class="site-footer__messengers" aria-label="Мессенджеры">
-          <a
-            class="social-link social-link--whatsapp"
-            href="https://wa.me/79177660938?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9D%D0%B0%D1%88%D0%B5%D0%BB%20%D0%B2%D0%B0%D1%88%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B0%D0%BA%D1%82%20%D0%BF%D0%B5%D1%80%D0%B5%D0%B9%D0%B4%D1%8F%20%D1%87%D0%B5%D1%80%D0%B5%D0%B7%20%D1%81%D0%B0%D0%B9%D1%82"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg class="social-link__icon" aria-hidden="true">
-              <use href="assets/brand/social-icons.svg#icon-whatsapp"></use>
-            </svg>
-            <span>WhatsApp</span>
-          </a>
-          <a
-            class="social-link social-link--telegram"
-            href="https://t.me/+79177660938"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg class="social-link__icon" aria-hidden="true">
-              <use href="assets/brand/social-icons.svg#icon-telegram"></use>
-            </svg>
-            <span>Telegram</span>
-          </a>
-          <a
-            class="social-link social-link--max"
-            href="https://max.ru/chat?phone=%2B79641995283"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              class="social-link__icon social-link__icon--brand"
-              src="assets/brand/max-icon.png"
-              alt=""
-              width="18"
-              height="18"
-              decoding="async"
-            />
-            <span>Max</span>
-          </a>
-          <a
-            class="social-link social-link--vk"
-            href="https://vk.com/za.komfortom"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg class="social-link__icon" aria-hidden="true">
-              <use href="assets/brand/social-icons.svg#icon-vk"></use>
-            </svg>
-            <span>VK</span>
-          </a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="js/data.js?v=20260617c" defer></script>
-    <script src="js/media-utils.js?v=20260624a" defer></script>
-    <script src="js/media-guard.js?v=20260612a" defer></script>
-    <script src="js/case-page.js?v=20260624b" defer></script>
+    </main>
   </body>
 </html>

@@ -1,46 +1,20 @@
+/* Прогрессивное улучшение статических страниц кейсов (cases/<slug>/index.html):
+   лайтбокс с листанием стрелками, клавиатурой и свайпом. Разметка страницы
+   генерируется scripts/build-pages.py, этот скрипт данных не рендерит. */
 (function () {
-  const { escapeHtml, renderVideo } = window.ZKMediaUtils;
+  const ARROW_SVG = {
+    prev: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+    next: '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>',
+  };
 
-  function getCaseById(id) {
-    return CASES.find((c) => c.id === id);
+  function fullSizeSrc(img) {
+    // Базовый src в <img> — это полноразмерный JPEG 1440px; currentSrc может
+    // указывать на уменьшенный вариант из srcset.
+    return img.getAttribute("src") || img.currentSrc || "";
   }
 
-  function imgPerfAttrs({ lazy = true, highPriority = false } = {}) {
-    const attrs = ['decoding="async"'];
-    if (highPriority) {
-      attrs.push('fetchpriority="high"');
-    } else if (lazy) {
-      attrs.push('loading="lazy"', 'fetchpriority="low"');
-    }
-    return attrs.join(" ");
-  }
-
-  function preloadCoverImage(src) {
-    let link = document.getElementById("case-cover-preload");
-    if (!link) {
-      link = document.createElement("link");
-      link.id = "case-cover-preload";
-      link.rel = "preload";
-      link.as = "image";
-      document.head.appendChild(link);
-    }
-    link.href = src;
-  }
-
-  function renderGalleryImage(g, title, attrs) {
-    return `
-              <figure>
-                <img src="${escapeHtml(g.src)}" alt="${escapeHtml(g.alt || title)}" width="800" height="600" ${attrs} />
-                <figcaption>${escapeHtml(title)}</figcaption>
-              </figure>
-            `;
-  }
-
-  function ensureCaseLightbox() {
-    let overlay = document.getElementById("case-lightbox");
-    if (overlay) return overlay;
-
-    overlay = document.createElement("div");
+  function createLightbox() {
+    const overlay = document.createElement("div");
     overlay.id = "case-lightbox";
     overlay.className = "lightbox";
     overlay.setAttribute("role", "dialog");
@@ -48,226 +22,110 @@
     overlay.setAttribute("aria-label", "Фото в полном размере");
     overlay.hidden = true;
     overlay.innerHTML =
-      '<button type="button" class="lightbox__close" aria-label="Закрыть">&times;</button><img class="lightbox__img" alt="" />';
+      '<button type="button" class="lightbox__close" aria-label="Закрыть">&times;</button>' +
+      `<button type="button" class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущее фото">${ARROW_SVG.prev}</button>` +
+      '<img class="lightbox__img" alt="" />' +
+      `<button type="button" class="lightbox__nav lightbox__nav--next" aria-label="Следующее фото">${ARROW_SVG.next}</button>` +
+      '<p class="lightbox__counter" aria-live="polite"></p>';
+    document.body.appendChild(overlay);
+    return overlay;
+  }
 
+  function initLightbox(root) {
+    const images = Array.from(root.querySelectorAll(".gallery img, .case-hero__img"));
+    if (!images.length) return;
+
+    const overlay = createLightbox();
     const imgEl = overlay.querySelector(".lightbox__img");
+    const counterEl = overlay.querySelector(".lightbox__counter");
     const closeBtn = overlay.querySelector(".lightbox__close");
+    const prevBtn = overlay.querySelector(".lightbox__nav--prev");
+    const nextBtn = overlay.querySelector(".lightbox__nav--next");
+
+    let index = 0;
     let lastFocused = null;
+
+    function show(i) {
+      index = (i + images.length) % images.length;
+      const img = images[index];
+      imgEl.src = fullSizeSrc(img);
+      imgEl.alt = img.getAttribute("alt") || "";
+      counterEl.textContent = images.length > 1 ? `${index + 1} / ${images.length}` : "";
+      const showNav = images.length > 1;
+      prevBtn.hidden = !showNav;
+      nextBtn.hidden = !showNav;
+    }
+
+    function open(i) {
+      lastFocused = document.activeElement;
+      show(i);
+      overlay.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeBtn.focus();
+    }
 
     function close() {
       overlay.hidden = true;
       imgEl.removeAttribute("src");
       document.body.style.overflow = "";
-      if (lastFocused && typeof lastFocused.focus === "function") {
-        lastFocused.focus();
-      }
+      if (lastFocused && typeof lastFocused.focus === "function") lastFocused.focus();
       lastFocused = null;
     }
 
     closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", () => show(index - 1));
+    nextBtn.addEventListener("click", () => show(index + 1));
     overlay.addEventListener("click", (e) => {
       if (e.target === overlay) close();
     });
+
     document.addEventListener("keydown", (e) => {
-      if (!overlay.hidden && e.key === "Escape") close();
+      if (overlay.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(index - 1);
+      else if (e.key === "ArrowRight") show(index + 1);
     });
 
-    document.body.appendChild(overlay);
-    overlay._openLightbox = (src, alt) => {
-      lastFocused = document.activeElement;
-      imgEl.src = src;
-      imgEl.alt = alt || "";
-      overlay.hidden = false;
-      document.body.style.overflow = "hidden";
-      if (window.ZKMediaGuard) {
-        window.ZKMediaGuard.protect(overlay);
-      }
-      closeBtn.focus();
-    };
-    overlay._closeLightbox = close;
-    return overlay;
-  }
+    let touchStartX = null;
+    let touchStartY = null;
+    overlay.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      },
+      { passive: true }
+    );
+    overlay.addEventListener(
+      "touchend",
+      (e) => {
+        if (touchStartX === null) return;
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        touchStartX = null;
+        touchStartY = null;
+        if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return;
+        show(dx > 0 ? index - 1 : index + 1);
+      },
+      { passive: true }
+    );
 
-  function bindCaseImageLightbox(container) {
-    const overlay = ensureCaseLightbox();
-
-    container.addEventListener("click", (e) => {
-      let img = e.target.closest("img");
-      const shield = e.target.closest(".media-guard__shield, .case-hero__shield");
-      if (shield) {
-        const figure = shield.closest("figure");
-        img = figure ? figure.querySelector("img") : shield.parentElement.querySelector(".case-hero__img");
-      }
-      if (!img || !container.contains(img)) return;
-      const src = img.currentSrc || img.src;
-      if (!src) return;
-      overlay._openLightbox(src, img.getAttribute("alt") || "");
-    });
-
-    container.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter" && e.key !== " ") return;
-      const img = e.target.closest("img");
-      if (!img || !container.contains(img)) return;
-      e.preventDefault();
-      const src = img.currentSrc || img.src;
-      if (!src) return;
-      overlay._openLightbox(src, img.getAttribute("alt") || "");
-    });
-
-    container.querySelectorAll("img").forEach((img) => {
+    images.forEach((img, i) => {
       img.style.cursor = "zoom-in";
       if (!img.hasAttribute("tabindex")) img.setAttribute("tabindex", "0");
+      img.addEventListener("click", () => open(i));
+      img.addEventListener("keydown", (e) => {
+        if (e.key !== "Enter" && e.key !== " ") return;
+        e.preventDefault();
+        open(i);
+      });
     });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-
-    const c = id ? getCaseById(id) : null;
     const root = document.getElementById("case-root");
     if (!root) return;
-
-    if (!c) {
-      root.innerHTML =
-        '<div class="container section"><p>Кейс не найден. <a href="index.html">На главную</a></p></div>';
-      return;
-    }
-
-    const PUBLIC_SITE = "https://katalog.zakomfortom.com/";
-
-    const setMetaContent = (selector, content) => {
-      const el = document.querySelector(selector);
-      if (el && content) el.setAttribute("content", content);
-    };
-
-    const absPublicUrl = (relativePath) => {
-      try {
-        return new URL(String(relativePath).replace(/^\//, ""), PUBLIC_SITE).href;
-      } catch {
-        return relativePath;
-      }
-    };
-
-    document.title = `${c.title} · ${c.areaLabel} · За Комфортом`;
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.href = `${PUBLIC_SITE.replace(/\/$/, "")}/case.html?id=${encodeURIComponent(c.id)}`;
-    }
-
-    setMetaContent('meta[name="description"]', c.summary || "");
-    setMetaContent('meta[property="og:title"]', `${c.title} · ${c.areaLabel}`);
-    setMetaContent('meta[property="og:description"]', c.summary || "");
-    setMetaContent('meta[property="og:image"]', absPublicUrl(c.cover));
-    setMetaContent(
-      "meta[property=\"og:url\"]",
-      `${PUBLIC_SITE.replace(/\/$/, "")}/case.html?id=${encodeURIComponent(c.id)}`
-    );
-    setMetaContent("meta[name=\"twitter:title\"]", `${c.title} · ${c.areaLabel}`);
-    setMetaContent("meta[name=\"twitter:description\"]", c.summary || "");
-    setMetaContent("meta[name=\"twitter:image\"]", absPublicUrl(c.cover));
-    preloadCoverImage(c.cover);
-
-    const lazyImg = imgPerfAttrs({ lazy: true });
-    const videoHtml = c.video ? renderVideo(c.video) : "";
-    const workListHtml = c.workList?.length
-      ? `<ul class="list-check">${c.workList.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`
-      : `<p>Состав работ уточняется под конкретный объект.</p>`;
-    const planHtml = c.plan
-      ? `<div class="gallery"><figure><img src="${escapeHtml(c.plan.src)}" alt="${escapeHtml(c.plan.alt || "План объекта")}" width="1200" height="800" ${lazyImg} /><figcaption>${escapeHtml(c.plan.caption || "")}</figcaption></figure></div>`
-      : "<p>План объекта будет добавлен.</p>";
-    const photoCaption = c.title;
-
-    const beforeHtml = c.beforeGallery?.length
-      ? `<div class="gallery">${c.beforeGallery
-          .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
-          .join("")}</div>`
-      : "<p>Фото до ремонта не добавлены.</p>";
-    const compareHtml = c.compareGallery?.length
-      ? `<div class="gallery">${c.compareGallery
-          .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
-          .join("")}</div>`
-      : "";
-    const heroAction = `<a class="btn btn--ghost" href="https://zakomfortom.com/" target="_blank" rel="noopener noreferrer">Рассчитать похожий ремонт</a>`;
-    const tipsAction = `<a class="btn btn--ghost" href="tips.html">Советы эксперта</a>`;
-
-    root.innerHTML = `
-      <div class="case-hero">
-        <img class="case-hero__img" src="${escapeHtml(c.cover)}" alt="${escapeHtml(c.title)}" width="1600" height="900" ${imgPerfAttrs({ lazy: false, highPriority: true })} />
-        <div class="case-hero__content container">
-          <h1>${escapeHtml(c.title)}</h1>
-          <p class="case-hero__meta">${escapeHtml(c.areaLabel)} · ${escapeHtml(c.format)} · ${escapeHtml(c.style)}</p>
-          <div class="case-actions">
-            <a class="btn btn--primary" href="#gallery">Смотреть фото</a>
-            ${heroAction}
-            ${tipsAction}
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <section class="section">
-          <h2>Паспорт объекта</h2>
-          <p><strong>Площадь:</strong> ${escapeHtml(c.areaLabel)} · <strong>Тип:</strong> ${escapeHtml(c.roomsLabel || "квартира")} · <strong>Формат:</strong> ${escapeHtml(c.format)} · <strong>Сегмент:</strong> ${escapeHtml(c.segment)}</p>
-          ${c.address ? `<p><strong>Адрес:</strong> ${escapeHtml(c.address)}</p>` : ""}
-        </section>
-
-        <section class="section">
-          <h2>Запрос заказчика</h2>
-          <p>${escapeHtml(c.task)}</p>
-        </section>
-
-        <section class="section">
-          <h2>План и описание объекта</h2>
-          <p>${escapeHtml(c.objectDescription || "")}</p>
-          ${planHtml}
-        </section>
-
-        <section class="section">
-          <h2>Краткий список работ</h2>
-          ${workListHtml}
-        </section>
-
-        <section class="section">
-          <h2>Проект и реализация</h2>
-          <ul class="list-check">
-            ${c.highlights.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
-          </ul>
-        </section>
-
-        <section class="section" id="gallery">
-          <h2>Галерея</h2>
-          <div class="gallery">
-            ${c.gallery
-              .filter((g) => g.src !== c.cover)
-              .map((g) => renderGalleryImage(g, photoCaption, lazyImg))
-              .join("")}
-          </div>
-        </section>
-
-        <section class="section">
-          <h2>Фото до ремонта</h2>
-          ${beforeHtml}
-        </section>
-
-        ${compareHtml ? `<section class="section"><h2>Проект / реализация</h2>${compareHtml}</section>` : ""}
-
-        ${c.video && (c.video.embedUrl || c.video.fileUrl || c.video.externalUrl) ? `<section class="section"><h2>${escapeHtml(c.video.label || "Видео")}</h2>${videoHtml}</section>` : ""}
-
-        <section class="section section--fit">
-          <h2>Если узнаёте себя</h2>
-          <ul class="list-check list-check--fit">
-            ${c.clientFit.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}
-          </ul>
-          <p class="section-cta"><a class="btn btn--primary" href="https://zakomfortom.com/design-project" target="_blank" rel="noopener noreferrer">Обсудить похожий дизайн</a></p>
-        </section>
-      </div>
-    `;
-
-    bindCaseImageLightbox(root);
-    if (window.ZKMediaGuard) {
-      window.ZKMediaGuard.protect(root);
-    }
+    initLightbox(root);
   });
 })();

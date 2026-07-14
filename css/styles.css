@@ -644,6 +644,51 @@ a.card {
   outline-offset: 2px;
 }
 
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.75rem;
+  height: 2.75rem;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.lightbox__nav--prev {
+  left: calc(0.75rem + var(--safe-left));
+}
+
+.lightbox__nav--next {
+  right: calc(0.75rem + var(--safe-right));
+}
+
+.lightbox__nav:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.lightbox__nav:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.lightbox__counter {
+  position: absolute;
+  bottom: calc(0.75rem + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+}
+
 .section {
   padding-block: 2.25rem;
   border-bottom: 1px solid var(--border);
@@ -695,6 +740,13 @@ a.card {
   background: var(--surface);
 }
 
+/* <picture> обёртки (адаптивные изображения) не должны влиять на раскладку. */
+.gallery picture,
+.card__media picture,
+.case-hero picture {
+  display: contents;
+}
+
 .gallery img {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -709,8 +761,8 @@ a.card {
   color: var(--muted);
 }
 
-.media-guard img,
-.media-guard video,
+.gallery img,
+.card__media img,
 .case-hero__img,
 .lightbox__img {
   -webkit-user-select: none;
@@ -718,43 +770,8 @@ a.card {
   -webkit-user-drag: none;
 }
 
-.media-guard__shield,
-.case-hero__shield {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  cursor: zoom-in;
-  background: transparent;
-}
-
-.gallery .media-guard__shield {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  aspect-ratio: 4 / 3;
-}
-
-.card__media {
-  position: relative;
-}
-
-.card__media .media-guard__shield {
-  position: absolute;
-  inset: 0;
-  cursor: pointer;
-}
-
-.case-hero__shield {
-  z-index: 1;
-}
-
 .case-hero__content {
   z-index: 2;
-}
-
-#case-lightbox .lightbox__img {
-  pointer-events: none;
 }
 
 .video-block {

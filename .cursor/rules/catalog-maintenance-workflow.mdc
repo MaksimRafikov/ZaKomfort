@@ -7,7 +7,8 @@ alwaysApply: true
 
 - For each new case, scaffold first with `python scripts/scaffold-case.py --title ...`.
 - Keep source media in `inbox`, production links only from `assets`.
-- Update `js/data.js` with one focused object change per case.
+- Edit case content only in `content/cases/<id>.json` (one focused change per case); `js/data.js` and `cases/<slug>/index.html` are generated.
+- After any change in `content/`, `js/`, `css/` or `assets/` run `python scripts/build-pages.py` — it regenerates data, case pages, sitemap and cache-bust `?v=` versions (never edit `?v=` by hand).
 - Run `python scripts/validate-cases.py` after each content update.
 - If validation fails, fix data paths and schema consistency before further edits.
-- Avoid mass refactors in `js/data.js` when only one case is being updated.
+- Avoid mass refactors in `content/cases/` when only one case is being updated.

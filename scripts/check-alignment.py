@@ -7,7 +7,7 @@ PAGES = [
     ("index", "http://127.0.0.1:8765/index.html", ".hero h1", ".filters"),
     ("tips", "http://127.0.0.1:8765/tips.html", ".hero h1", ".filters"),
     ("404", "http://127.0.0.1:8765/404.html", ".page-404 h1", ".page-404 .lead"),
-    ("case", "http://127.0.0.1:8765/case.html?id=pervomaysky-44", ".case-hero h1", ".section h2"),
+    ("case", "http://127.0.0.1:8765/cases/pervomaysky-44/", ".case-hero h1", ".section h2"),
 ]
 WIDTHS = [1440, 768, 375]
 TOL = 1.5
