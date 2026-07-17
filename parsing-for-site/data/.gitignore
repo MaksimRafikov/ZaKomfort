@@ -1,0 +1,8 @@
+# Большие регенерируемые кэши (создаются скриптами)
+cdx_all.txt
+sitemap.xml
+emails_by_domain.csv
+emails.csv
+
+# Разбивка по городам хранится в архиве by_city.zip; сырую папку не коммитим
+by_city/
