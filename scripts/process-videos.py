@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Import expert-tip videos from inbox, transcode for web, extract posters (no watermark)."""
+"""Import expert-tip videos from inbox, transcode for web, extract posters (no watermark).
+
+Existing web encodes are kept unless --force is passed (avoids bloating a lighter file).
+Case overview helper: python scripts/process-videos.py --case-overview <case-id> [--from PATH]
+"""
 
 from __future__ import annotations
 
@@ -313,6 +317,76 @@ def build_tips_data_js(entries: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def keep_existing_encode(path: Path, *, force: bool) -> bool:
+    """Return True if an existing web encode should be kept (no overwrite)."""
+    return (not force) and path.is_file() and path.stat().st_size > 0
+
+
+def import_case_overview(
+    case_id: str,
+    *,
+    source: Path | None,
+    force: bool,
+    dry_run: bool,
+) -> int:
+    """Import/transcode assets/<case-id>/expert-overview.mp4 without clobbering a lighter encode."""
+    case_dir = ROOT / "assets" / case_id
+    if not case_dir.is_dir():
+        print(f"ERROR: assets folder not found: {case_dir}", file=sys.stderr)
+        return 1
+
+    video_out = case_dir / "expert-overview.mp4"
+    poster_out = case_dir / "expert-overview-poster.jpg"
+    src = source
+    if src is None:
+        inbox_candidates = [
+            ROOT / "inbox" / case_id / "expert-overview.mp4",
+            ROOT / "inbox" / case_id / "expert-overview.MP4",
+        ]
+        for candidate in inbox_candidates:
+            if candidate.is_file():
+                src = candidate
+                break
+        if src is None and video_out.is_file() and not force:
+            print(
+                f"KEEP {case_id}/expert-overview.mp4 "
+                f"({video_out.stat().st_size / (1024 * 1024):.1f} MB, use --force to replace)"
+            )
+            return 0
+        if src is None:
+            print(
+                f"ERROR: no source for {case_id} (pass --from PATH or place inbox/{case_id}/expert-overview.mp4)",
+                file=sys.stderr,
+            )
+            return 1
+
+    if not src.is_file():
+        print(f"ERROR: source not found: {src}", file=sys.stderr)
+        return 1
+
+    if keep_existing_encode(video_out, force=force):
+        size_out = video_out.stat().st_size / (1024 * 1024)
+        print(
+            f"KEEP {case_id}/expert-overview.mp4 ({size_out:.1f} MB existing encode, use --force to replace)"
+        )
+        return 0
+
+    size_mb = src.stat().st_size / (1024 * 1024)
+    crf = 30 if size_mb > 50 else 28
+    if dry_run:
+        print(f"[dry-run] {case_id}/expert-overview <- {src} ({size_mb:.1f} MB) crf={crf}")
+        return 0
+
+    ffmpeg = find_ffmpeg()
+    print(f"Processing {case_id}/expert-overview ({size_mb:.1f} MB)...", flush=True)
+    transcode_video(ffmpeg, src, video_out, crf=crf, max_height=720)
+    if not poster_out.is_file() or force:
+        extract_poster(ffmpeg, video_out, poster_out)
+    vsize = video_out.stat().st_size / (1024 * 1024)
+    print(f"  -> video {vsize:.1f} MB", flush=True)
+    return 0
+
+
 def process_all(
     *,
     source_dir: Path | None,
@@ -352,8 +426,12 @@ def process_all(
             print(f"[dry-run] {slug}: {filename} ({size_mb:.1f} MB) crf={crf}")
             continue
 
-        if not force and video_out.is_file() and poster_out.is_file():
-            print(f"SKIP {slug} (exists, use --force)")
+        if keep_existing_encode(video_out, force=force):
+            size_out = video_out.stat().st_size / (1024 * 1024)
+            print(f"KEEP {slug} ({size_out:.1f} MB existing encode, use --force to replace)")
+            if not poster_out.is_file():
+                extract_poster(ffmpeg, video_out, poster_out)
+                print("  -> poster OK", flush=True)
         else:
             print(f"Processing {slug} ({size_mb:.1f} MB)...", flush=True)
             transcode_video(ffmpeg, source, video_out, crf=crf, max_height=max_h)
@@ -397,7 +475,12 @@ def main() -> int:
         "--from",
         dest="source_dir",
         type=Path,
-        help="Source folder (default: inbox/expert-tips)",
+        help="Source folder (default: inbox/expert-tips) or overview source file with --case-overview",
+    )
+    parser.add_argument(
+        "--case-overview",
+        metavar="CASE_ID",
+        help="Import/transcode assets/<CASE_ID>/expert-overview.mp4 (keeps lighter encode unless --force)",
     )
     parser.add_argument("--force", action="store_true", help="Re-transcode existing outputs")
     parser.add_argument("--dry-run", action="store_true", help="List work without transcoding")
@@ -407,6 +490,13 @@ def main() -> int:
         help="Skip regenerating js/tips-data.js",
     )
     args = parser.parse_args()
+    if args.case_overview:
+        return import_case_overview(
+            args.case_overview,
+            source=args.source_dir,
+            force=args.force,
+            dry_run=args.dry_run,
+        )
     return process_all(
         source_dir=args.source_dir,
         force=args.force,
