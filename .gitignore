@@ -11,5 +11,11 @@ __pycache__/
 Thumbs.db
 desktop.ini
 
+# Public Pages export (see scripts/export-public-site.py)
+_site/
+
+# Local agent / session scratch
+.ecc/
+
 # Raw expert-tip uploads (large videos; processed output in assets/tips/)
 inbox/expert-tips/

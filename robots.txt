@@ -10,4 +10,17 @@ Disallow: /assets/*/plan.
 Disallow: /assets/*/expert-overview.
 Disallow: /assets/tips/
 
+# Pipeline / handoff (not in public _site export; keep Disallow if branch deploy returns)
+Disallow: /scripts/
+Disallow: /content/
+Disallow: /docs/
+Disallow: /inbox/
+Disallow: /partials/
+Disallow: /AGENTS.md
+Disallow: /WORKFLOW.md
+Disallow: /STATUS.md
+Disallow: /requirements.txt
+Disallow: /.gitignore
+Disallow: /_headers
+
 Sitemap: https://katalog.zakomfortom.com/sitemap.xml

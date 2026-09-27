@@ -5,8 +5,9 @@
 ## Cursor Cloud specific instructions
 
 - Репозиторий: `MaksimRafikov/ZaKomfort`, ветка `main`.
-- Сборка: `python3 scripts/build-pages.py` (data.js, config.js, страницы кейсов и советов, sitemap, кэш-версии `?v=`). Просмотр — `python3 -m http.server 8080`.
+- Сборка: `python3 scripts/build-pages.py` (data.js, config.js, страницы кейсов и советов, sitemap, кэш-версии `?v=`). Просмотр исходников — `python3 -m http.server 8080`.
 - После любых изменений в `content/`, `js/`, `css/` или `assets/` всегда запускайте: `python3 scripts/build-pages.py`, затем `python3 scripts/validate-cases.py`.
+- Публичный деплой: только allowlist через `python3 scripts/export-public-site.py` → `_site/` (workflow `.github/workflows/deploy-pages.yml`). На Pages **не** должны попадать `scripts/`, `content/`, `docs/`, `inbox/`, `AGENTS.md`, `WORKFLOW.md`, `requirements.txt`, `.gitignore`. Подробности: `docs/public-deploy.md`.
 - Новый кейс: `python3 scripts/scaffold-case.py --title "..."`, затем `python3 scripts/process-assets.py --case <id> --from inbox/<slug>/...`, правки в `content/cases/<id>.json`, пересборка.
 - Советы эксперта: исходники в `inbox/expert-tips/`, обработка `python3 scripts/process-videos.py` (ffmpeg, без водяного знака) → `assets/tips/<slug>/`, данные в `js/tips-data.js`; статические страницы `tips/<slug>/index.html` генерирует `build-pages.py`.
 - В публичном коде ссылайтесь только на `assets/<case-id>/...`, никогда на `inbox/`.
