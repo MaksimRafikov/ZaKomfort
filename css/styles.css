@@ -1159,6 +1159,22 @@ a.card {
   border-top: 1px solid var(--border);
 }
 
+.site-footer__credit {
+  margin: 1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.site-footer__credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.site-footer__credit a:hover {
+  color: var(--accent);
+}
+
 .section--fit {
   padding-bottom: 2.5rem;
 }

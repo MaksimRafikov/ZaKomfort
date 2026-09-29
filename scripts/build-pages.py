@@ -365,6 +365,10 @@ def footer_html(site: dict, prefix: str) -> str:
             <span>VK</span>
           </a>
         </div>
+        <p class="site-footer__credit">
+          Разработка сайта —
+          <a href="https://maximrafikov.ru/" target="_blank" rel="noopener noreferrer">Максим Рафиков</a>
+        </p>
       </div>
     </footer>"""
 
